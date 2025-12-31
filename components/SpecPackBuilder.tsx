@@ -283,7 +283,8 @@ export default function SpecPackBuilder(props: { activeStep: StepId }) {
         </div>
         <button
           onClick={resetAll}
-          style={{ border: "1px solid #ccc", padding: "8px 10px", borderRadius: 8, background: "white", cursor: "pointer" }}
+          style={{ border: "1px solid #ccc", padding: "8px 10px", borderRadius: 8, background: "white",
+                      color: "#111", cursor: "pointer" }}
           aria-label="Start over"
           title="Start over"
         >
@@ -328,6 +329,7 @@ export default function SpecPackBuilder(props: { activeStep: StepId }) {
                       borderRadius: 10,
                       border: selected ? "2px solid #111" : "1px solid #ddd",
                       background: "white",
+                      color: "#111",
                       cursor: "pointer"
                     }}
                   >
@@ -468,7 +470,8 @@ export default function SpecPackBuilder(props: { activeStep: StepId }) {
                     const id = `actor_${Math.random().toString(16).slice(2)}`;
                     setState((s) => ({ ...s, actors: [...s.actors, { id, label: "New Actor" }] }));
                   }}
-                  style={{ border: "1px solid #ccc", padding: "6px 10px", borderRadius: 8, background: "white", cursor: "pointer" }}
+                  style={{ border: "1px solid #ccc", padding: "6px 10px", borderRadius: 8, background: "white",
+                      color: "#111", cursor: "pointer" }}
                 >
                   Add actor
                 </button>
@@ -497,7 +500,8 @@ export default function SpecPackBuilder(props: { activeStep: StepId }) {
                           scenes: s.scenes.filter((sc) => sc.actor_id !== a.id)
                         }));
                       }}
-                      style={{ border: "1px solid #ccc", padding: "6px 10px", borderRadius: 8, background: "white", cursor: "pointer" }}
+                      style={{ border: "1px solid #ccc", padding: "6px 10px", borderRadius: 8, background: "white",
+                      color: "#111", cursor: "pointer" }}
                       aria-label="Remove actor"
                     >
                       Remove
@@ -516,7 +520,8 @@ export default function SpecPackBuilder(props: { activeStep: StepId }) {
                     const actor_id = state.actors[0]?.id ?? "actor_user";
                     setState((s) => ({ ...s, scenes: [...s.scenes, { id, label: "New Scene", actor_id }] }));
                   }}
-                  style={{ border: "1px solid #ccc", padding: "6px 10px", borderRadius: 8, background: "white", cursor: "pointer" }}
+                  style={{ border: "1px solid #ccc", padding: "6px 10px", borderRadius: 8, background: "white",
+                      color: "#111", cursor: "pointer" }}
                 >
                   Add scene
                 </button>
@@ -555,7 +560,8 @@ export default function SpecPackBuilder(props: { activeStep: StepId }) {
                     </select>
                     <button
                       onClick={() => setState((s) => ({ ...s, scenes: s.scenes.filter((x) => x.id !== sc.id) }))}
-                      style={{ border: "1px solid #ccc", padding: "6px 10px", borderRadius: 8, background: "white", cursor: "pointer" }}
+                      style={{ border: "1px solid #ccc", padding: "6px 10px", borderRadius: 8, background: "white",
+                      color: "#111", cursor: "pointer" }}
                       aria-label="Remove scene"
                     >
                       Remove
@@ -759,6 +765,7 @@ export default function SpecPackBuilder(props: { activeStep: StepId }) {
               borderRadius: 10,
               border: "1px solid #ccc",
               background: "white",
+                      color: "#111",
               cursor: "pointer"
             }}
           >
