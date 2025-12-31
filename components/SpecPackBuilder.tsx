@@ -1,507 +1,771 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import launchPaths from "@/sdde/contracts/launch_paths.json";
-import AiConnectorsWizard, { AiConnector } from "@/components/AiConnectorsWizard";
+import React, { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
+
+type StepId =
+  | "launch-path"
+  | "basics"
+  | "brownfield"
+  | "palettes"
+  | "design"
+  | "ai-connectors"
+  | "review";
 
 type Tradeoffs = {
-  speedVsQuality: number;
-  simplicityVsPower: number;
-  safetyVsFreedom: number;
+  speed_vs_quality: number;     // -5..+5 (higher = quality)
+  simple_vs_powerful: number;   // -5..+5 (higher = powerful)
+  cheap_vs_reliable: number;    // -5..+5 (higher = reliable)
+  flexible_vs_safe: number;     // -5..+5 (higher = safe)
 };
 
 type Actor = { id: string; label: string };
-type Scene = { id: string; label: string; kind: "page" | "state" };
+type Scene = { id: string; label: string; actor_id: string };
 
-type LaunchPathDef = {
-  id: string;
-  category: string;
-  label: string;
-  desc: string;
-  recommendedPalettes: string[];
-  defaultTradeoffs: Tradeoffs;
+type AiMode = "offline" | "hosted" | "local";
+
+type AiConfig = {
+  mode: AiMode;
+  hosted_model: string;       // for hosted
+  local_base_url: string;     // for local
+  local_model: string;        // for local
 };
 
-type Palette = { id: string; label: string; desc: string };
+type BuilderState = {
+  schema: "kindred.builder_state.v1";
+  updated_at_utc: string;
 
-const ALL_PALETTES: Palette[] = [
-  { id: "identity_access", label: "Identity & Access", desc: "Roles, permissions, sessions (wallet later)." },
-  { id: "communication_social", label: "Communication & Social Surfaces", desc: "Messaging, feeds, notifications, community." },
-  { id: "content_media", label: "Content & Media", desc: "Posts, pages, uploads, media pipelines." },
-  { id: "knowledge_learning", label: "Knowledge & Learning", desc: "Docs, lessons, onboarding, help systems." },
-  { id: "search_discovery", label: "Search / Navigation & Discovery", desc: "Search, browse, taxonomy, wayfinding." },
-  { id: "matching_recommendation", label: "Matching & Recommendation", desc: "Personalization, ranking, suggested items." },
-  { id: "collaboration_work", label: "Collaboration & Work", desc: "Projects, tasks, workflows, review loops." },
-  { id: "commerce_value", label: "Commerce & Value Exchange", desc: "Payments, billing, subscriptions, value flows." },
-  { id: "governance_policy", label: "Governance / Rules & Policy", desc: "Policies, gates, rules, compliance." },
-  { id: "reputation_trust_safety", label: "Reputation / Trust & Safety", desc: "Moderation, reputation, abuse prevention." },
-  { id: "game_incentives", label: "Game & Incentive Mechanics", desc: "Points, quests, incentives, reward loops." },
-  { id: "automation_agents", label: "Automation / Agents / Workflows", desc: "Automations, agents, orchestration." },
-  { id: "infrastructure_data_files", label: "Infrastructure / Data / Files", desc: "Storage, data models, files, backups." },
-  { id: "connection_integration", label: "Connection / Integration", desc: "APIs, webhooks, integrations, connectors." }
+  launch_path_id: string;
+
+  product_name: string;
+  one_liner: string;
+
+  brownfield_repo_url: string;
+
+  palettes: string[];
+  tradeoffs: Tradeoffs;
+
+  actors: Actor[];
+  scenes: Scene[];
+
+  ai: AiConfig;
+};
+
+const STORAGE_KEY = "kindred_builder_state_v1";
+
+const PALETTES: { id: string; label: string; help: string }[] = [
+  { id: "identity_access", label: "Identity & Access", help: "Auth, roles, permissions, accounts." },
+  { id: "communication_social", label: "Communication & Social Surfaces", help: "Messaging, feeds, notifications." },
+  { id: "content_media", label: "Content & Media", help: "Pages, posts, media, publishing pipelines." },
+  { id: "knowledge_learning", label: "Knowledge & Learning", help: "Docs, onboarding, guided flows, learning loops." },
+  { id: "search_discovery", label: "Search / Navigation & Discovery", help: "Search, browse, information architecture." },
+  { id: "matching_recommendation", label: "Matching & Recommendation", help: "Personalization and recommendations." },
+  { id: "collaboration_work", label: "Collaboration & Work", help: "Projects, tasks, teamwork, workflows." },
+  { id: "commerce_value", label: "Commerce & Value Exchange", help: "Billing, credits, pricing, payments." },
+  { id: "governance_policy", label: "Governance / Rules & Policy", help: "Rules, policies, moderation, governance." },
+  { id: "reputation_trust_safety", label: "Reputation / Trust & Safety", help: "Abuse prevention, reputation, safety controls." },
+  { id: "game_incentives", label: "Game & Incentive Mechanics", help: "Points, rewards, mechanics, incentives." },
+  { id: "automation_agents", label: "Automation / Agents / Workflows", help: "Automations, agents, background jobs." },
+  { id: "infrastructure_data_files", label: "Infrastructure / Data / Files", help: "Storage, files, data model, ops." },
+  { id: "connection_integration", label: "Connection / Integration", help: "APIs, webhooks, integrations." }
 ];
 
-function normalizeId(raw: string): string {
-  return raw.trim().toLowerCase().replace(/[^a-z0-9_]+/g, "_").replace(/^_+|_+$/g, "");
+function nowUtcIso(): string {
+  return new Date().toISOString();
 }
 
-function downloadBlob(blob: Blob, filename: string) {
+function defaultState(): BuilderState {
+  return {
+    schema: "kindred.builder_state.v1",
+    updated_at_utc: nowUtcIso(),
+
+    launch_path_id: "quick_saas_v1",
+
+    product_name: "",
+    one_liner: "",
+
+    brownfield_repo_url: "",
+
+    palettes: ["content_media", "collaboration_work", "automation_agents"],
+    tradeoffs: {
+      speed_vs_quality: 1,
+      simple_vs_powerful: 1,
+      cheap_vs_reliable: 1,
+      flexible_vs_safe: 1
+    },
+
+    actors: [{ id: "actor_user", label: "User" }],
+    scenes: [{ id: "scene_onboarding", label: "Onboarding", actor_id: "actor_user" }],
+
+    ai: {
+      mode: "offline",
+      hosted_model: "gpt-4.1-mini",
+      local_base_url: "http://localhost:11434/v1",
+      local_model: "llama3.1:8b"
+    }
+  };
+}
+
+function safeParseState(raw: string | null): BuilderState | null {
+  if (!raw) return null;
+  try {
+    const obj = JSON.parse(raw) as Partial<BuilderState>;
+    if (!obj || obj.schema !== "kindred.builder_state.v1") return null;
+    return obj as BuilderState;
+  } catch {
+    return null;
+  }
+}
+
+function isBrownfieldLaunchPath(launchPathId: string): boolean {
+  // Keep this simple for now; we can refine later once the launch_paths catalog is richer.
+  return (
+    launchPathId.includes("brownfield") ||
+    launchPathId.includes("upgrade") ||
+    launchPathId.includes("rebuild") ||
+    launchPathId.startsWith("website_")
+  );
+}
+
+function stepsFor(launchPathId: string): StepId[] {
+  const base: StepId[] = ["launch-path", "basics", "palettes", "design", "ai-connectors", "review"];
+  if (isBrownfieldLaunchPath(launchPathId)) {
+    return ["launch-path", "basics", "brownfield", "palettes", "design", "ai-connectors", "review"];
+  }
+  return base;
+}
+
+function hrefFor(step: StepId): string {
+  switch (step) {
+    case "launch-path": return "/builder/launch-path";
+    case "basics": return "/builder/basics";
+    case "brownfield": return "/builder/brownfield";
+    case "palettes": return "/builder/palettes";
+    case "design": return "/builder/design";
+    case "ai-connectors": return "/builder/ai-connectors";
+    case "review": return "/builder/review";
+  }
+}
+
+function clampTradeoff(n: number): number {
+  if (Number.isNaN(n)) return 0;
+  if (n < -5) return -5;
+  if (n > 5) return 5;
+  return Math.trunc(n);
+}
+
+async function downloadSpecPack(payload: any): Promise<void> {
+  const res = await fetch("/api/spec-pack", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  });
+
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new Error(`Spec pack export failed (${res.status}): ${text || "Unknown error"}`);
+  }
+
+  const blob = await res.blob();
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = filename;
+  a.download = "sdde_spec_pack.zip";
   document.body.appendChild(a);
   a.click();
   a.remove();
   URL.revokeObjectURL(url);
 }
 
-type Step = 1 | 2 | 3 | 4 | 5 | 6;
+export default function SpecPackBuilder(props: { activeStep: StepId }) {
+  const router = useRouter();
 
-export default function SpecPackBuilder() {
-  const catalog = (launchPaths as unknown as LaunchPathDef[]);
-  const fallback = catalog.length > 0 ? catalog[0].id : "quick_saas_v1";
+  const [hydrated, setHydrated] = useState(false);
+  const [state, setState] = useState<BuilderState>(() => defaultState());
 
-  const [step, setStep] = useState<Step>(1);
-  const [launchPath, setLaunchPath] = useState<string>(fallback);
+  // Load once (client-side) from localStorage
+  useEffect(() => {
+    const loaded = safeParseState(localStorage.getItem(STORAGE_KEY));
+    if (loaded) setState(loaded);
+    setHydrated(true);
+  }, []);
 
-  const current = useMemo(() => {
-    return catalog.find((x) => x.id === launchPath) ?? catalog[0];
-  }, [catalog, launchPath]);
+  // Persist on change (after hydration)
+  useEffect(() => {
+    if (!hydrated) return;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...state, updated_at_utc: nowUtcIso() }));
+  }, [hydrated, state]);
 
-  const categories = useMemo(() => {
-    const m = new Map<string, LaunchPathDef[]>();
-    for (const lp of catalog) {
-      const arr = m.get(lp.category) ?? [];
-      arr.push(lp);
-      m.set(lp.category, arr);
+  const steps = useMemo(() => stepsFor(state.launch_path_id), [state.launch_path_id]);
+
+  // If user is on a step that no longer exists due to launch path change, bounce them.
+  useEffect(() => {
+    if (!hydrated) return;
+    if (!steps.includes(props.activeStep)) {
+      router.push(hrefFor("basics"));
     }
-    return Array.from(m.entries());
-  }, [catalog]);
+  }, [hydrated, props.activeStep, router, steps]);
 
-  const [productName, setProductName] = useState("My Project");
-  const [oneLiner, setOneLiner] = useState("A project generated via an offline, guided SDDE builder.");
+  const stepIndex = Math.max(0, steps.indexOf(props.activeStep));
+  const stepNumber = stepIndex + 1;
 
-  const [selected, setSelected] = useState<Set<string>>(new Set(current?.recommendedPalettes ?? ["content_media"]));
-  const [tradeoffs, setTradeoffs] = useState<Tradeoffs>({ ...(current?.defaultTradeoffs ?? { speedVsQuality: 0, simplicityVsPower: 0, safetyVsFreedom: 0 }) });
+  function go(step: StepId) {
+    router.push(hrefFor(step));
+  }
 
-  const [actors, setActors] = useState<Actor[]>([
-    { id: "visitor", label: "Visitor" },
-    { id: "member", label: "Member" },
-    { id: "admin", label: "Admin" },
-    { id: "system", label: "System" }
-  ]);
+  function goNext() {
+    const i = steps.indexOf(props.activeStep);
+    if (i < 0) return;
+    const next = steps[i + 1];
+    if (next) go(next);
+  }
 
-  const [scenes, setScenes] = useState<Scene[]>([
-    { id: "landing", label: "Landing", kind: "page" },
-    { id: "builder", label: "Builder", kind: "page" }
-  ]);
+  function goBack() {
+    const i = steps.indexOf(props.activeStep);
+    if (i <= 0) return;
+    const prev = steps[i - 1];
+    if (prev) go(prev);
+  }
 
-  const [ai, setAi] = useState<AiConnector>({
-    mode: "offline",
-    hosted: { base_url: "https://api.openai.com/v1", default_model: "gpt-4.1-mini" },
-    local: { base_url: "http://localhost:11434/v1", default_model: "llama3.1" },
-    policy: { confirm_before_spend: true, daily_spend_cap_usd: null }
-  });
+  function resetAll() {
+    localStorage.removeItem(STORAGE_KEY);
+    setState(defaultState());
+    router.push(hrefFor("launch-path"));
+  }
 
-  const [status, setStatus] = useState<
-    | { kind: "idle" }
-    | { kind: "working" }
-    | { kind: "done" }
-    | { kind: "error"; message: string }
-  >({ kind: "idle" });
+  const canNext = useMemo(() => {
+    if (!hydrated) return false;
 
-  function resetForLaunchPath(nextId: string) {
-    setLaunchPath(nextId);
-    const lp = catalog.find((x) => x.id === nextId) ?? current;
-    if (lp) {
-      setSelected(new Set(lp.recommendedPalettes));
-      setTradeoffs({ ...lp.defaultTradeoffs });
+    switch (props.activeStep) {
+      case "launch-path":
+        return !!state.launch_path_id;
+      case "basics":
+        return state.product_name.trim().length > 0 && state.one_liner.trim().length > 0;
+      case "brownfield":
+        // allow skipping if user doesn't know yet; we still store it if they do
+        return true;
+      case "palettes":
+        return state.palettes.length > 0;
+      case "design":
+        return state.actors.length > 0 && state.scenes.length > 0;
+      case "ai-connectors":
+        return true;
+      case "review":
+        return false;
     }
-    setStatus({ kind: "idle" });
-  }
+  }, [hydrated, props.activeStep, state]);
 
-  function togglePalette(id: string) {
-    setSelected((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
-    });
-  }
+  const canBack = useMemo(() => {
+    if (!hydrated) return false;
+    return steps.indexOf(props.activeStep) > 0;
+  }, [hydrated, props.activeStep, steps]);
 
-  function canNext(): boolean {
-    if (step === 1) return true;
-    if (step === 2) return productName.trim().length > 0;
-    if (step === 3) return selected.size > 0;
-    if (step === 4) return actors.filter(a => normalizeId(a.id) && a.label.trim()).length > 0
-                      && scenes.filter(s => normalizeId(s.id) && s.label.trim()).length > 0;
-    return true;
-  }
-
-  async function generateZip() {
-    setStatus({ kind: "working" });
-
-    const payload = {
-      launchPath,
-      productName: productName.trim(),
-      oneLiner: oneLiner.trim(),
-      palettes: Array.from(selected),
-      tradeoffs,
-      actors: actors
-        .map((a) => ({ id: normalizeId(a.id), label: a.label.trim() }))
-        .filter((a) => a.id && a.label),
-      scenes: scenes
-        .map((s) => ({ id: normalizeId(s.id), label: s.label.trim(), kind: s.kind }))
-        .filter((s) => s.id && s.label),
-      ai
-    };
-
-    try {
-      const res = await fetch("/api/spec-pack", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-
-      if (!res.ok) {
-        const text = await res.text();
-        throw new Error(`Server error (${res.status}): ${text}`);
-      }
-
-      const blob = await res.blob();
-      downloadBlob(blob, "sdde_spec_pack.zip");
-      setStatus({ kind: "done" });
-    } catch (e: any) {
-      setStatus({ kind: "error", message: e?.message ?? String(e) });
+  const title = useMemo(() => {
+    switch (props.activeStep) {
+      case "launch-path": return "Launch Path";
+      case "basics": return "Basics";
+      case "brownfield": return "Brownfield Target";
+      case "palettes": return "Palettes & Tradeoffs";
+      case "design": return "Design (Actors & Scenes)";
+      case "ai-connectors": return "AI Connectors";
+      case "review": return "Review & Export";
     }
-  }
+  }, [props.activeStep]);
 
-  function StepHeader() {
-    return (
-      <div className="card">
-        <div className="row" style={{ justifyContent: "space-between", alignItems: "center" }}>
+  return (
+    <main style={{ maxWidth: 920, margin: "0 auto", padding: 24 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 12 }}>
+        <div>
+          <h1 style={{ margin: 0 }}>SDDE Builder</h1>
+          <p style={{ marginTop: 8, opacity: 0.85 }}>
+            Page-by-page wizard. Your progress is saved automatically.
+          </p>
+        </div>
+        <button
+          onClick={resetAll}
+          style={{ border: "1px solid #ccc", padding: "8px 10px", borderRadius: 8, background: "white", cursor: "pointer" }}
+          aria-label="Start over"
+          title="Start over"
+        >
+          Start over
+        </button>
+      </div>
+
+      <div style={{ marginTop: 18, padding: 14, border: "1px solid #e5e5e5", borderRadius: 10 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
           <div>
-            <div style={{ fontWeight: 700 }}>Builder Wizard</div>
-            <div className="small">Step {step} of 6 • Offline-first • Deterministic export</div>
+            <div style={{ fontSize: 12, opacity: 0.7 }}>Step {stepNumber} of {steps.length}</div>
+            <div style={{ fontSize: 18, fontWeight: 600 }}>{title}</div>
           </div>
-          <button
-            className="btn"
-            onClick={() => {
-              setStep(1);
-              resetForLaunchPath(fallback);
-              setProductName("My Project");
-              setOneLiner("A project generated via an offline, guided SDDE builder.");
-              setActors([
-                { id: "visitor", label: "Visitor" },
-                { id: "member", label: "Member" },
-                { id: "admin", label: "Admin" },
-                { id: "system", label: "System" }
-              ]);
-              setScenes([
-                { id: "landing", label: "Landing", kind: "page" },
-                { id: "builder", label: "Builder", kind: "page" }
-              ]);
-              setAi({
-                mode: "offline",
-                hosted: { base_url: "https://api.openai.com/v1", default_model: "gpt-4.1-mini" },
-                local: { base_url: "http://localhost:11434/v1", default_model: "llama3.1" },
-                policy: { confirm_before_spend: true, daily_spend_cap_usd: null }
-              });
-              setStatus({ kind: "idle" });
-            }}
-          >
-            Start over
-          </button>
+          <div style={{ fontSize: 12, opacity: 0.7 }}>
+            {hydrated ? "Saved" : "Loading…"}
+          </div>
         </div>
       </div>
-    );
-  }
 
-  function Step1LaunchPath() {
-    return (
-      <div className="card">
-        <h2>Choose a Launch Path</h2>
-        <p className="small">This sets defaults. You refine design and connectors later.</p>
+      {/* Step content */}
+      <section style={{ marginTop: 18 }}>
+        {props.activeStep === "launch-path" && (
+          <div style={{ display: "grid", gap: 12 }}>
+            <p style={{ opacity: 0.85 }}>
+              Choose what you want to build. This choice determines which steps appear next.
+            </p>
 
-        <div style={{ display: "grid", gap: 16 }}>
-          {categories.map(([cat, items]) => (
-            <div key={cat} className="card">
-              <h3 style={{ marginTop: 0 }}>{cat}</h3>
-              <div style={{ display: "grid", gap: 12 }}>
-                {items.map((lp) => (
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 12 }}>
+              {[
+                { id: "quick_saas_v1", label: "Quick SaaS", help: "Ship a small SaaS with clear surfaces, actors, and flows." },
+                { id: "website_rebuild_greenfield_v1", label: "Website (Greenfield)", help: "Design a new website from scratch." },
+                { id: "website_upgrade_brownfield_v1", label: "Upgrade Existing Website (Brownfield)", help: "Start from an existing repo and upgrade it." }
+              ].map((lp) => {
+                const selected = state.launch_path_id === lp.id;
+                return (
                   <button
                     key={lp.id}
-                    className="btn"
-                    onClick={() => resetForLaunchPath(lp.id)}
+                    onClick={() => setState((s) => ({ ...s, launch_path_id: lp.id, updated_at_utc: nowUtcIso() }))}
                     style={{
                       textAlign: "left",
-                      border: launchPath === lp.id ? "1px solid rgba(255,255,255,0.30)" : undefined
+                      padding: 14,
+                      borderRadius: 10,
+                      border: selected ? "2px solid #111" : "1px solid #ddd",
+                      background: "white",
+                      cursor: "pointer"
                     }}
                   >
                     <div style={{ fontWeight: 700 }}>{lp.label}</div>
-                    <div className="small">{lp.desc}</div>
+                    <div style={{ marginTop: 6, opacity: 0.8, fontSize: 13 }}>{lp.help}</div>
                   </button>
+                );
+              })}
+            </div>
+
+            <div style={{ marginTop: 10, fontSize: 12, opacity: 0.75 }}>
+              Tip: selecting a brownfield path adds a “Brownfield Target” step automatically.
+            </div>
+          </div>
+        )}
+
+        {props.activeStep === "basics" && (
+          <div style={{ display: "grid", gap: 12 }}>
+            <label style={{ display: "grid", gap: 6 }}>
+              <span style={{ fontWeight: 600 }}>Product name</span>
+              <input
+                value={state.product_name}
+                onChange={(e) => setState((s) => ({ ...s, product_name: e.target.value }))}
+                placeholder="e.g., Kindred Builders"
+                style={{ padding: 10, borderRadius: 8, border: "1px solid #ccc" }}
+              />
+            </label>
+
+            <label style={{ display: "grid", gap: 6 }}>
+              <span style={{ fontWeight: 600 }}>One-liner</span>
+              <input
+                value={state.one_liner}
+                onChange={(e) => setState((s) => ({ ...s, one_liner: e.target.value }))}
+                placeholder="What does it do, in one sentence?"
+                style={{ padding: 10, borderRadius: 8, border: "1px solid #ccc" }}
+              />
+            </label>
+
+            <div style={{ fontSize: 12, opacity: 0.75 }}>
+              These fields become part of the deterministic Spec Pack.
+            </div>
+          </div>
+        )}
+
+        {props.activeStep === "brownfield" && (
+          <div style={{ display: "grid", gap: 12 }}>
+            <p style={{ opacity: 0.85 }}>
+              This step only exists for brownfield launch paths. Provide the repo URL you plan to upgrade.
+            </p>
+
+            <label style={{ display: "grid", gap: 6 }}>
+              <span style={{ fontWeight: 600 }}>GitHub repo URL (optional for now)</span>
+              <input
+                value={state.brownfield_repo_url}
+                onChange={(e) => setState((s) => ({ ...s, brownfield_repo_url: e.target.value }))}
+                placeholder="e.g., https://github.com/Kindred-Digital/Kindred-official.git"
+                style={{ padding: 10, borderRadius: 8, border: "1px solid #ccc" }}
+              />
+            </label>
+
+            <div style={{ fontSize: 12, opacity: 0.75 }}>
+              Next phase will scan the repo and generate an Inventory Pack automatically.
+            </div>
+          </div>
+        )}
+
+        {props.activeStep === "palettes" && (
+          <div style={{ display: "grid", gap: 18 }}>
+            <div>
+              <div style={{ fontWeight: 700, marginBottom: 8 }}>Select Palettes</div>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 10 }}>
+                {PALETTES.map((p) => {
+                  const checked = state.palettes.includes(p.id);
+                  return (
+                    <label key={p.id} style={{ border: "1px solid #e5e5e5", borderRadius: 10, padding: 12, display: "grid", gap: 6 }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                        <input
+                          type="checkbox"
+                          checked={checked}
+                          onChange={(e) => {
+                            const on = e.target.checked;
+                            setState((s) => {
+                              const next = on ? Array.from(new Set([...s.palettes, p.id])) : s.palettes.filter((x) => x !== p.id);
+                              return { ...s, palettes: next };
+                            });
+                          }}
+                        />
+                        <div style={{ fontWeight: 600 }}>{p.label}</div>
+                      </div>
+                      <div style={{ fontSize: 12, opacity: 0.75 }}>{p.help}</div>
+                    </label>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div>
+              <div style={{ fontWeight: 700, marginBottom: 8 }}>Tradeoffs (-5..+5)</div>
+              <div style={{ display: "grid", gap: 12 }}>
+                {(
+                  [
+                    ["speed_vs_quality", "Speed ↔ Quality"],
+                    ["simple_vs_powerful", "Simple ↔ Powerful"],
+                    ["cheap_vs_reliable", "Cheap ↔ Reliable"],
+                    ["flexible_vs_safe", "Flexible ↔ Safe"]
+                  ] as const
+                ).map(([k, label]) => (
+                  <label key={k} style={{ display: "grid", gap: 6 }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", gap: 10 }}>
+                      <span style={{ fontWeight: 600 }}>{label}</span>
+                      <span style={{ fontFamily: "monospace" }}>{state.tradeoffs[k]}</span>
+                    </div>
+                    <input
+                      type="range"
+                      min={-5}
+                      max={5}
+                      step={1}
+                      value={state.tradeoffs[k]}
+                      onChange={(e) => {
+                        const v = clampTradeoff(parseInt(e.target.value, 10));
+                        setState((s) => ({ ...s, tradeoffs: { ...s.tradeoffs, [k]: v } }));
+                      }}
+                    />
+                  </label>
                 ))}
               </div>
             </div>
-          ))}
-        </div>
-      </div>
-    );
-  }
-
-  function Step2Basics() {
-    return (
-      <div className="card">
-        <h2>Basics</h2>
-        <div className="card">
-          <div className="small">Selected Launch Path: <b>{current?.label ?? launchPath}</b></div>
-          <div className="small">{current?.desc ?? ""}</div>
-        </div>
-
-        <div className="card">
-          <div className="row">
-            <label className="small" htmlFor="productName">Project name</label>
-            <input id="productName" className="btn" value={productName} onChange={(e) => setProductName(e.target.value)} />
           </div>
+        )}
 
-          <div className="row" style={{ marginTop: 10 }}>
-            <label className="small" htmlFor="oneLiner">One-liner</label>
-            <input id="oneLiner" className="btn" value={oneLiner} onChange={(e) => setOneLiner(e.target.value)} />
-          </div>
-        </div>
-      </div>
-    );
-  }
+        {props.activeStep === "design" && (
+          <div style={{ display: "grid", gap: 18 }}>
+            <div style={{ border: "1px solid #e5e5e5", borderRadius: 10, padding: 12 }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10 }}>
+                <div style={{ fontWeight: 700 }}>Actors</div>
+                <button
+                  onClick={() => {
+                    const id = `actor_${Math.random().toString(16).slice(2)}`;
+                    setState((s) => ({ ...s, actors: [...s.actors, { id, label: "New Actor" }] }));
+                  }}
+                  style={{ border: "1px solid #ccc", padding: "6px 10px", borderRadius: 8, background: "white", cursor: "pointer" }}
+                >
+                  Add actor
+                </button>
+              </div>
 
-  function Step3PalettesTradeoffs() {
-    const recommended = current?.recommendedPalettes ?? [];
-    return (
-      <div className="card">
-        <h2>Palettes & Tradeoffs</h2>
-
-        <div className="card">
-          <h3>Pick Interaction Palettes</h3>
-          <div style={{ display: "grid", gap: 10 }}>
-            {ALL_PALETTES.map((p) => {
-              const isRec = recommended.includes(p.id);
-              const isOn = selected.has(p.id);
-              return (
-                <label key={p.id} className="card" style={{ cursor: "pointer" }}>
-                  <div className="row">
-                    <input type="checkbox" checked={isOn} onChange={() => togglePalette(p.id)} />
-                    <div>
-                      <div style={{ fontWeight: 600 }}>
-                        {p.label} {isRec ? <span className="small">• recommended</span> : null}
-                      </div>
-                      <div className="small">{p.desc}</div>
-                    </div>
+              <div style={{ marginTop: 12, display: "grid", gap: 10 }}>
+                {state.actors.map((a, idx) => (
+                  <div key={a.id} style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 10 }}>
+                    <input
+                      value={a.label}
+                      onChange={(e) => {
+                        const label = e.target.value;
+                        setState((s) => {
+                          const next = [...s.actors];
+                          next[idx] = { ...next[idx], label };
+                          return { ...s, actors: next };
+                        });
+                      }}
+                      style={{ padding: 10, borderRadius: 8, border: "1px solid #ccc" }}
+                    />
+                    <button
+                      onClick={() => {
+                        setState((s) => ({
+                          ...s,
+                          actors: s.actors.filter((x) => x.id !== a.id),
+                          scenes: s.scenes.filter((sc) => sc.actor_id !== a.id)
+                        }));
+                      }}
+                      style={{ border: "1px solid #ccc", padding: "6px 10px", borderRadius: 8, background: "white", cursor: "pointer" }}
+                      aria-label="Remove actor"
+                    >
+                      Remove
+                    </button>
                   </div>
+                ))}
+              </div>
+            </div>
+
+            <div style={{ border: "1px solid #e5e5e5", borderRadius: 10, padding: 12 }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10 }}>
+                <div style={{ fontWeight: 700 }}>Scenes</div>
+                <button
+                  onClick={() => {
+                    const id = `scene_${Math.random().toString(16).slice(2)}`;
+                    const actor_id = state.actors[0]?.id ?? "actor_user";
+                    setState((s) => ({ ...s, scenes: [...s.scenes, { id, label: "New Scene", actor_id }] }));
+                  }}
+                  style={{ border: "1px solid #ccc", padding: "6px 10px", borderRadius: 8, background: "white", cursor: "pointer" }}
+                >
+                  Add scene
+                </button>
+              </div>
+
+              <div style={{ marginTop: 12, display: "grid", gap: 10 }}>
+                {state.scenes.map((sc, idx) => (
+                  <div key={sc.id} style={{ display: "grid", gridTemplateColumns: "2fr 2fr auto", gap: 10 }}>
+                    <input
+                      value={sc.label}
+                      onChange={(e) => {
+                        const label = e.target.value;
+                        setState((s) => {
+                          const next = [...s.scenes];
+                          next[idx] = { ...next[idx], label };
+                          return { ...s, scenes: next };
+                        });
+                      }}
+                      style={{ padding: 10, borderRadius: 8, border: "1px solid #ccc" }}
+                    />
+                    <select
+                      value={sc.actor_id}
+                      onChange={(e) => {
+                        const actor_id = e.target.value;
+                        setState((s) => {
+                          const next = [...s.scenes];
+                          next[idx] = { ...next[idx], actor_id };
+                          return { ...s, scenes: next };
+                        });
+                      }}
+                      style={{ padding: 10, borderRadius: 8, border: "1px solid #ccc", background: "white" }}
+                    >
+                      {state.actors.map((a) => (
+                        <option key={a.id} value={a.id}>{a.label}</option>
+                      ))}
+                    </select>
+                    <button
+                      onClick={() => setState((s) => ({ ...s, scenes: s.scenes.filter((x) => x.id !== sc.id) }))}
+                      style={{ border: "1px solid #ccc", padding: "6px 10px", borderRadius: 8, background: "white", cursor: "pointer" }}
+                      aria-label="Remove scene"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div style={{ fontSize: 12, opacity: 0.75 }}>
+              Actors + Scenes are your core “experience skeleton”. Next cycles will expand Scenes into flows, rules, and policies.
+            </div>
+          </div>
+        )}
+
+        {props.activeStep === "ai-connectors" && (
+          <div style={{ display: "grid", gap: 16 }}>
+            <p style={{ opacity: 0.85 }}>
+              Choose how SDDE will access AI. We do not store keys in the browser. Hosted keys live in environment variables.
+            </p>
+
+            <div style={{ display: "grid", gap: 10 }}>
+              <label style={{ display: "flex", gap: 10, alignItems: "center" }}>
+                <input
+                  type="radio"
+                  name="ai_mode"
+                  value="offline"
+                  checked={state.ai.mode === "offline"}
+                  onChange={() => setState((s) => ({ ...s, ai: { ...s.ai, mode: "offline" } }))}
+                />
+                <div>
+                  <div style={{ fontWeight: 700 }}>Offline</div>
+                  <div style={{ fontSize: 12, opacity: 0.75 }}>No network calls. Best for first-time users.</div>
+                </div>
+              </label>
+
+              <label style={{ display: "flex", gap: 10, alignItems: "center" }}>
+                <input
+                  type="radio"
+                  name="ai_mode"
+                  value="hosted"
+                  checked={state.ai.mode === "hosted"}
+                  onChange={() => setState((s) => ({ ...s, ai: { ...s.ai, mode: "hosted" } }))}
+                />
+                <div>
+                  <div style={{ fontWeight: 700 }}>Hosted (OpenAI-compatible)</div>
+                  <div style={{ fontSize: 12, opacity: 0.75 }}>
+                    Uses server environment variables (e.g. OPENAI_API_KEY). No keys in browser.
+                  </div>
+                </div>
+              </label>
+
+              {state.ai.mode === "hosted" && (
+                <label style={{ display: "grid", gap: 6, marginLeft: 28 }}>
+                  <span style={{ fontWeight: 600 }}>Model</span>
+                  <input
+                    value={state.ai.hosted_model}
+                    onChange={(e) => setState((s) => ({ ...s, ai: { ...s.ai, hosted_model: e.target.value } }))}
+                    style={{ padding: 10, borderRadius: 8, border: "1px solid #ccc" }}
+                  />
+                  <span style={{ fontSize: 12, opacity: 0.75 }}>
+                    Later we’ll add a guided connector wizard with “test” and “spend cap” gates.
+                  </span>
                 </label>
-              );
-            })}
-          </div>
-        </div>
+              )}
 
-        <div className="card">
-          <h3>Tradeoffs</h3>
-          <p className="small">-2 = left, +2 = right.</p>
+              <label style={{ display: "flex", gap: 10, alignItems: "center" }}>
+                <input
+                  type="radio"
+                  name="ai_mode"
+                  value="local"
+                  checked={state.ai.mode === "local"}
+                  onChange={() => setState((s) => ({ ...s, ai: { ...s.ai, mode: "local" } }))}
+                />
+                <div>
+                  <div style={{ fontWeight: 700 }}>Local</div>
+                  <div style={{ fontSize: 12, opacity: 0.75 }}>Use a local OpenAI-compatible endpoint (e.g. LM Studio).</div>
+                </div>
+              </label>
 
-          <div className="card">
-            <div className="small">Speed (-2) ↔ Quality (+2): {tradeoffs.speedVsQuality}</div>
-            <input
-              type="range"
-              min={-2}
-              max={2}
-              step={1}
-              value={tradeoffs.speedVsQuality}
-              onChange={(e) => setTradeoffs((t) => ({ ...t, speedVsQuality: Number(e.target.value) }))}
-              style={{ width: "100%" }}
-            />
-          </div>
-
-          <div className="card">
-            <div className="small">Simplicity (-2) ↔ Power (+2): {tradeoffs.simplicityVsPower}</div>
-            <input
-              type="range"
-              min={-2}
-              max={2}
-              step={1}
-              value={tradeoffs.simplicityVsPower}
-              onChange={(e) => setTradeoffs((t) => ({ ...t, simplicityVsPower: Number(e.target.value) }))}
-              style={{ width: "100%" }}
-            />
-          </div>
-
-          <div className="card">
-            <div className="small">Safety (-2) ↔ Freedom (+2): {tradeoffs.safetyVsFreedom}</div>
-            <input
-              type="range"
-              min={-2}
-              max={2}
-              step={1}
-              value={tradeoffs.safetyVsFreedom}
-              onChange={(e) => setTradeoffs((t) => ({ ...t, safetyVsFreedom: Number(e.target.value) }))}
-              style={{ width: "100%" }}
-            />
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  function Step4DesignStudio() {
-    return (
-      <div className="card">
-        <h2>Design Studio v0</h2>
-        <p className="small">
-          Define Actors and Scenes. This is the beginning of “specific design” without ambiguity.
-        </p>
-
-        <div className="card">
-          <h3>Actors</h3>
-          {actors.map((a, idx) => (
-            <div key={idx} className="row" style={{ gap: 8, marginTop: 8 }}>
-              <input
-                className="btn"
-                value={a.id}
-                onChange={(e) => {
-                  const next = [...actors];
-                  next[idx] = { ...next[idx], id: e.target.value };
-                  setActors(next);
-                }}
-                placeholder="actor_id"
-              />
-              <input
-                className="btn"
-                value={a.label}
-                onChange={(e) => {
-                  const next = [...actors];
-                  next[idx] = { ...next[idx], label: e.target.value };
-                  setActors(next);
-                }}
-                placeholder="Label"
-              />
-              <button className="btn" onClick={() => setActors(actors.filter((_, i) => i !== idx))}>Remove</button>
+              {state.ai.mode === "local" && (
+                <div style={{ marginLeft: 28, display: "grid", gap: 10 }}>
+                  <label style={{ display: "grid", gap: 6 }}>
+                    <span style={{ fontWeight: 600 }}>Base URL</span>
+                    <input
+                      value={state.ai.local_base_url}
+                      onChange={(e) => setState((s) => ({ ...s, ai: { ...s.ai, local_base_url: e.target.value } }))}
+                      style={{ padding: 10, borderRadius: 8, border: "1px solid #ccc" }}
+                    />
+                  </label>
+                  <label style={{ display: "grid", gap: 6 }}>
+                    <span style={{ fontWeight: 600 }}>Model</span>
+                    <input
+                      value={state.ai.local_model}
+                      onChange={(e) => setState((s) => ({ ...s, ai: { ...s.ai, local_model: e.target.value } }))}
+                      style={{ padding: 10, borderRadius: 8, border: "1px solid #ccc" }}
+                    />
+                  </label>
+                </div>
+              )}
             </div>
-          ))}
-          <button className="btn" onClick={() => setActors([...actors, { id: "new_actor", label: "New Actor" }])} style={{ marginTop: 10 }}>
-            Add Actor
-          </button>
-        </div>
+          </div>
+        )}
 
-        <div className="card">
-          <h3>Scenes</h3>
-          {scenes.map((s, idx) => (
-            <div key={idx} className="row" style={{ gap: 8, marginTop: 8 }}>
-              <input
-                className="btn"
-                value={s.id}
-                onChange={(e) => {
-                  const next = [...scenes];
-                  next[idx] = { ...next[idx], id: e.target.value };
-                  setScenes(next);
-                }}
-                placeholder="scene_id"
-              />
-              <input
-                className="btn"
-                value={s.label}
-                onChange={(e) => {
-                  const next = [...scenes];
-                  next[idx] = { ...next[idx], label: e.target.value };
-                  setScenes(next);
-                }}
-                placeholder="Label"
-              />
-              <select
-                className="btn"
-                value={s.kind}
-                onChange={(e) => {
-                  const next = [...scenes];
-                  const kind = e.target.value === "state" ? "state" : "page";
-                  next[idx] = { ...next[idx], kind };
-                  setScenes(next);
-                }}
-              >
-                <option value="page">page</option>
-                <option value="state">state</option>
-              </select>
-              <button className="btn" onClick={() => setScenes(scenes.filter((_, i) => i !== idx))}>Remove</button>
+        {props.activeStep === "review" && (
+          <div style={{ display: "grid", gap: 16 }}>
+            <div style={{ border: "1px solid #e5e5e5", borderRadius: 10, padding: 12 }}>
+              <div style={{ fontWeight: 700, marginBottom: 8 }}>Summary</div>
+              <pre style={{ margin: 0, whiteSpace: "pre-wrap" }}>
+{JSON.stringify(
+  {
+    launch_path_id: state.launch_path_id,
+    product_name: state.product_name,
+    one_liner: state.one_liner,
+    brownfield_repo_url: state.brownfield_repo_url || undefined,
+    palettes: state.palettes,
+    tradeoffs: state.tradeoffs,
+    actors: state.actors,
+    scenes: state.scenes,
+    ai: state.ai
+  },
+  null,
+  2
+)}
+              </pre>
             </div>
-          ))}
-          <button className="btn" onClick={() => setScenes([...scenes, { id: "new_scene", label: "New Scene", kind: "page" }])} style={{ marginTop: 10 }}>
-            Add Scene
-          </button>
-        </div>
-      </div>
-    );
-  }
 
-  function Step5AiConnectors() {
-    return (
-      <div className="card">
-        <h2>AI Connectors</h2>
-        <AiConnectorsWizard value={ai} onChange={setAi} />
-      </div>
-    );
-  }
+            <button
+              onClick={async () => {
+                const payload = {
+                  launchPathId: state.launch_path_id,
+                  productName: state.product_name,
+                  oneLiner: state.one_liner,
+                  palettes: state.palettes,
+                  tradeoffs: state.tradeoffs,
+                  actors: state.actors,
+                  scenes: state.scenes,
+                  ai: state.ai,
+                  brownfieldRepoUrl: state.brownfield_repo_url
+                };
 
-  function Step6ReviewDownload() {
-    return (
-      <div className="card">
-        <h2>Review → Download</h2>
+                await downloadSpecPack(payload);
+              }}
+              style={{
+                padding: "12px 14px",
+                borderRadius: 10,
+                border: "1px solid #111",
+                background: "#111",
+                color: "white",
+                cursor: "pointer",
+                fontWeight: 700
+              }}
+            >
+              Download Spec Pack (ZIP)
+            </button>
 
-        <div className="card">
-          <div><span className="small">Launch Path:</span> <b>{launchPath}</b></div>
-          <div><span className="small">Project:</span> <b>{productName.trim() || "(missing)"}</b></div>
-          <div className="small" style={{ marginTop: 6 }}>{oneLiner.trim()}</div>
+            <div style={{ fontSize: 12, opacity: 0.75 }}>
+              Next phase: import a repo and generate an Inventory Pack, then compile Inventory + Spec Pack into SDDL.
+            </div>
+          </div>
+        )}
+      </section>
 
-          <div className="small" style={{ marginTop: 10 }}>Palettes: {Array.from(selected).join(", ")}</div>
-          <div className="small" style={{ marginTop: 10 }}>Actors: {actors.map((a) => normalizeId(a.id)).filter(Boolean).join(", ")}</div>
-          <div className="small" style={{ marginTop: 10 }}>Scenes: {scenes.map((s) => normalizeId(s.id)).filter(Boolean).join(", ")}</div>
-          <div className="small" style={{ marginTop: 10 }}>AI mode: {ai.mode}</div>
-        </div>
-
-        <div className="row">
-          <button className="btn" onClick={generateZip} disabled={status.kind === "working" || !productName.trim()}>
-            {status.kind === "working" ? "Generating…" : "Download Spec Pack (.zip)"}
-          </button>
-          {status.kind === "done" && <span className="small">Downloaded ✅</span>}
-          {status.kind === "error" && <span className="small">Error: {status.message}</span>}
-        </div>
-
-        <p className="small" style={{ marginTop: 10 }}>
-          The ZIP includes blueprint JSON files plus a secrets placement guide. Secrets are never stored in project files.
-        </p>
-      </div>
-    );
-  }
-
-  function NavButtons() {
-    return (
-      <div className="row" style={{ justifyContent: "space-between" }}>
-        <button className="btn" onClick={() => setStep((s) => (s > 1 ? ((s - 1) as Step) : s))} disabled={step === 1}>
+      {/* Nav */}
+      <div style={{ marginTop: 22, display: "flex", justifyContent: "space-between", gap: 10 }}>
+        <button
+          onClick={goBack}
+          disabled={!canBack}
+          style={{
+            padding: "10px 12px",
+            borderRadius: 10,
+            border: "1px solid #ccc",
+            background: canBack ? "white" : "#f5f5f5",
+            cursor: canBack ? "pointer" : "not-allowed"
+          }}
+        >
           Back
         </button>
-        <button className="btn" onClick={() => setStep((s) => (s < 6 ? ((s + 1) as Step) : s))} disabled={step === 6 || !canNext()}>
-          Next
-        </button>
-      </div>
-    );
-  }
 
-  return (
-    <div className="card">
-      <StepHeader />
-      {step === 1 && <Step1LaunchPath />}
-      {step === 2 && <Step2Basics />}
-      {step === 3 && <Step3PalettesTradeoffs />}
-      {step === 4 && <Step4DesignStudio />}
-      {step === 5 && <Step5AiConnectors />}
-      {step === 6 && <Step6ReviewDownload />}
-      <NavButtons />
-    </div>
+        {props.activeStep !== "review" ? (
+          <button
+            onClick={goNext}
+            disabled={!canNext}
+            style={{
+              padding: "10px 12px",
+              borderRadius: 10,
+              border: "1px solid #111",
+              background: canNext ? "#111" : "#f5f5f5",
+              color: canNext ? "white" : "#777",
+              cursor: canNext ? "pointer" : "not-allowed",
+              fontWeight: 700
+            }}
+          >
+            Next
+          </button>
+        ) : (
+          <button
+            onClick={() => go("launch-path")}
+            style={{
+              padding: "10px 12px",
+              borderRadius: 10,
+              border: "1px solid #ccc",
+              background: "white",
+              cursor: "pointer"
+            }}
+          >
+            Edit launch path
+          </button>
+        )}
+      </div>
+    </main>
   );
 }

@@ -1,14 +1,5 @@
-import SpecPackBuilder from "@/components/SpecPackBuilder";
+import { redirect } from "next/navigation";
 
-export default function BuilderPage() {
-  return (
-    <>
-      <h1>Builder</h1>
-      <p className="small">
-        A page-by-page wizard that generates a deterministic Spec Pack ZIP.
-        Offline is the default. Hosted/Local AI connectors are optional.
-      </p>
-      <SpecPackBuilder />
-    </>
-  );
+export default function Page() {
+  redirect("/builder/launch-path");
 }
