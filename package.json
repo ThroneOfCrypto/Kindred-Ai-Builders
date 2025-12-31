@@ -15,5 +15,10 @@
   },
   "engines": {
     "node": ">=20.11.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.3",
+    "@types/react": "^19.2.7",
+    "typescript": "^5.9.3"
   }
 }
