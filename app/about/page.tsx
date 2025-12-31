@@ -3,12 +3,12 @@ export default function AboutPage() {
     <>
       <h1>About</h1>
       <div className="card">
-        <p>
-          This is a minimal greenfield web app intended to become the public
-          “builder-first” surface for SDDE OS.
+        <p className="small">
+          This is an offline-first, beginner-friendly builder. It exports a Spec Pack ZIP containing canonical JSON
+          blueprints (intake, palettes, tradeoffs, design primitives, optional AI connector config).
         </p>
         <p className="small">
-          v0 intentionally avoids auth providers, databases, and complex infra.
+          Wallet login and any chain-specific logic should be added later. This repo is designed to keep early work simple and deployable.
         </p>
       </div>
     </>

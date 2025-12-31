@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import launchPaths from "@/sdde/contracts/launch_paths.json";
+import AiConnectorsWizard, { AiConnector } from "@/components/AiConnectorsWizard";
 
 type Tradeoffs = {
   speedVsQuality: number;
@@ -9,7 +10,8 @@ type Tradeoffs = {
   safetyVsFreedom: number;
 };
 
-type Palette = { id: string; label: string; desc: string };
+type Actor = { id: string; label: string };
+type Scene = { id: string; label: string; kind: "page" | "state" };
 
 type LaunchPathDef = {
   id: string;
@@ -19,6 +21,8 @@ type LaunchPathDef = {
   recommendedPalettes: string[];
   defaultTradeoffs: Tradeoffs;
 };
+
+type Palette = { id: string; label: string; desc: string };
 
 const ALL_PALETTES: Palette[] = [
   { id: "identity_access", label: "Identity & Access", desc: "Roles, permissions, sessions (wallet later)." },
@@ -37,6 +41,10 @@ const ALL_PALETTES: Palette[] = [
   { id: "connection_integration", label: "Connection / Integration", desc: "APIs, webhooks, integrations, connectors." }
 ];
 
+function normalizeId(raw: string): string {
+  return raw.trim().toLowerCase().replace(/[^a-z0-9_]+/g, "_").replace(/^_+|_+$/g, "");
+}
+
 function downloadBlob(blob: Blob, filename: string) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
@@ -48,7 +56,7 @@ function downloadBlob(blob: Blob, filename: string) {
   URL.revokeObjectURL(url);
 }
 
-type Step = 1 | 2 | 3 | 4;
+type Step = 1 | 2 | 3 | 4 | 5 | 6;
 
 export default function SpecPackBuilder() {
   const catalog = (launchPaths as unknown as LaunchPathDef[]);
@@ -58,29 +66,8 @@ export default function SpecPackBuilder() {
   const [launchPath, setLaunchPath] = useState<string>(fallback);
 
   const current = useMemo(() => {
-    const found = catalog.find((x) => x.id === launchPath);
-    return found ?? catalog[0] ?? {
-      id: "quick_saas_v1",
-      category: "Build new",
-      label: "Quick SaaS",
-      desc: "Fallback launch path.",
-      recommendedPalettes: ["content_media"],
-      defaultTradeoffs: { speedVsQuality: 0, simplicityVsPower: 0, safetyVsFreedom: 0 }
-    };
+    return catalog.find((x) => x.id === launchPath) ?? catalog[0];
   }, [catalog, launchPath]);
-
-  const [productName, setProductName] = useState("My Project");
-  const [oneLiner, setOneLiner] = useState("A project generated via an offline, guided SDDE builder.");
-
-  const [selected, setSelected] = useState<Set<string>>(new Set(current.recommendedPalettes));
-  const [tradeoffs, setTradeoffs] = useState<Tradeoffs>({ ...current.defaultTradeoffs });
-
-  const [status, setStatus] = useState<
-    | { kind: "idle" }
-    | { kind: "working" }
-    | { kind: "done" }
-    | { kind: "error"; message: string }
-  >({ kind: "idle" });
 
   const categories = useMemo(() => {
     const m = new Map<string, LaunchPathDef[]>();
@@ -92,11 +79,45 @@ export default function SpecPackBuilder() {
     return Array.from(m.entries());
   }, [catalog]);
 
+  const [productName, setProductName] = useState("My Project");
+  const [oneLiner, setOneLiner] = useState("A project generated via an offline, guided SDDE builder.");
+
+  const [selected, setSelected] = useState<Set<string>>(new Set(current?.recommendedPalettes ?? ["content_media"]));
+  const [tradeoffs, setTradeoffs] = useState<Tradeoffs>({ ...(current?.defaultTradeoffs ?? { speedVsQuality: 0, simplicityVsPower: 0, safetyVsFreedom: 0 }) });
+
+  const [actors, setActors] = useState<Actor[]>([
+    { id: "visitor", label: "Visitor" },
+    { id: "member", label: "Member" },
+    { id: "admin", label: "Admin" },
+    { id: "system", label: "System" }
+  ]);
+
+  const [scenes, setScenes] = useState<Scene[]>([
+    { id: "landing", label: "Landing", kind: "page" },
+    { id: "builder", label: "Builder", kind: "page" }
+  ]);
+
+  const [ai, setAi] = useState<AiConnector>({
+    mode: "offline",
+    hosted: { base_url: "https://api.openai.com/v1", default_model: "gpt-4.1-mini" },
+    local: { base_url: "http://localhost:11434/v1", default_model: "llama3.1" },
+    policy: { confirm_before_spend: true, daily_spend_cap_usd: null }
+  });
+
+  const [status, setStatus] = useState<
+    | { kind: "idle" }
+    | { kind: "working" }
+    | { kind: "done" }
+    | { kind: "error"; message: string }
+  >({ kind: "idle" });
+
   function resetForLaunchPath(nextId: string) {
     setLaunchPath(nextId);
     const lp = catalog.find((x) => x.id === nextId) ?? current;
-    setSelected(new Set(lp.recommendedPalettes));
-    setTradeoffs({ ...lp.defaultTradeoffs });
+    if (lp) {
+      setSelected(new Set(lp.recommendedPalettes));
+      setTradeoffs({ ...lp.defaultTradeoffs });
+    }
     setStatus({ kind: "idle" });
   }
 
@@ -113,6 +134,8 @@ export default function SpecPackBuilder() {
     if (step === 1) return true;
     if (step === 2) return productName.trim().length > 0;
     if (step === 3) return selected.size > 0;
+    if (step === 4) return actors.filter(a => normalizeId(a.id) && a.label.trim()).length > 0
+                      && scenes.filter(s => normalizeId(s.id) && s.label.trim()).length > 0;
     return true;
   }
 
@@ -124,7 +147,14 @@ export default function SpecPackBuilder() {
       productName: productName.trim(),
       oneLiner: oneLiner.trim(),
       palettes: Array.from(selected),
-      tradeoffs
+      tradeoffs,
+      actors: actors
+        .map((a) => ({ id: normalizeId(a.id), label: a.label.trim() }))
+        .filter((a) => a.id && a.label),
+      scenes: scenes
+        .map((s) => ({ id: normalizeId(s.id), label: s.label.trim(), kind: s.kind }))
+        .filter((s) => s.id && s.label),
+      ai
     };
 
     try {
@@ -152,8 +182,8 @@ export default function SpecPackBuilder() {
       <div className="card">
         <div className="row" style={{ justifyContent: "space-between", alignItems: "center" }}>
           <div>
-            <div style={{ fontWeight: 700 }}>Offline Builder Wizard</div>
-            <div className="small">Step {step} of 4 • No wallet • No keys • No database</div>
+            <div style={{ fontWeight: 700 }}>Builder Wizard</div>
+            <div className="small">Step {step} of 6 • Offline-first • Deterministic export</div>
           </div>
           <button
             className="btn"
@@ -162,6 +192,23 @@ export default function SpecPackBuilder() {
               resetForLaunchPath(fallback);
               setProductName("My Project");
               setOneLiner("A project generated via an offline, guided SDDE builder.");
+              setActors([
+                { id: "visitor", label: "Visitor" },
+                { id: "member", label: "Member" },
+                { id: "admin", label: "Admin" },
+                { id: "system", label: "System" }
+              ]);
+              setScenes([
+                { id: "landing", label: "Landing", kind: "page" },
+                { id: "builder", label: "Builder", kind: "page" }
+              ]);
+              setAi({
+                mode: "offline",
+                hosted: { base_url: "https://api.openai.com/v1", default_model: "gpt-4.1-mini" },
+                local: { base_url: "http://localhost:11434/v1", default_model: "llama3.1" },
+                policy: { confirm_before_spend: true, daily_spend_cap_usd: null }
+              });
+              setStatus({ kind: "idle" });
             }}
           >
             Start over
@@ -175,10 +222,7 @@ export default function SpecPackBuilder() {
     return (
       <div className="card">
         <h2>Choose a Launch Path</h2>
-        <p className="small">
-          Launch Path sets defaults (recommended palettes + tradeoffs) and tells SDDE what kind of build you want.
-          This is how we cover everything in the book, including upgrading an existing site.
-        </p>
+        <p className="small">This sets defaults. You refine design and connectors later.</p>
 
         <div style={{ display: "grid", gap: 16 }}>
           {categories.map(([cat, items]) => (
@@ -192,14 +236,11 @@ export default function SpecPackBuilder() {
                     onClick={() => resetForLaunchPath(lp.id)}
                     style={{
                       textAlign: "left",
-                      border: launchPath === lp.id ? "1px solid rgba(255,255,255,0.6)" : undefined
+                      border: launchPath === lp.id ? "1px solid rgba(255,255,255,0.30)" : undefined
                     }}
                   >
                     <div style={{ fontWeight: 700 }}>{lp.label}</div>
                     <div className="small">{lp.desc}</div>
-                    <div className="small" style={{ marginTop: 6 }}>
-                      Recommended: {lp.recommendedPalettes.join(", ")}
-                    </div>
                   </button>
                 ))}
               </div>
@@ -214,54 +255,34 @@ export default function SpecPackBuilder() {
     return (
       <div className="card">
         <h2>Basics</h2>
-        <p className="small">Give the system enough signal to generate a meaningful spec pack.</p>
-
         <div className="card">
-          <div className="small">Selected Launch Path: <b>{current.label}</b></div>
-          <div className="small">{current.desc}</div>
+          <div className="small">Selected Launch Path: <b>{current?.label ?? launchPath}</b></div>
+          <div className="small">{current?.desc ?? ""}</div>
         </div>
 
         <div className="card">
           <div className="row">
             <label className="small" htmlFor="productName">Project name</label>
-            <input
-              id="productName"
-              className="btn"
-              value={productName}
-              onChange={(e) => setProductName(e.target.value)}
-              placeholder="My Project"
-            />
+            <input id="productName" className="btn" value={productName} onChange={(e) => setProductName(e.target.value)} />
           </div>
 
           <div className="row" style={{ marginTop: 10 }}>
             <label className="small" htmlFor="oneLiner">One-liner</label>
-            <input
-              id="oneLiner"
-              className="btn"
-              value={oneLiner}
-              onChange={(e) => setOneLiner(e.target.value)}
-              placeholder="What does it do?"
-            />
+            <input id="oneLiner" className="btn" value={oneLiner} onChange={(e) => setOneLiner(e.target.value)} />
           </div>
         </div>
       </div>
     );
   }
 
-  function Step3PalettesAndTradeoffs() {
-    const recommended = current.recommendedPalettes;
-
+  function Step3PalettesTradeoffs() {
+    const recommended = current?.recommendedPalettes ?? [];
     return (
       <div className="card">
         <h2>Palettes & Tradeoffs</h2>
-        <p className="small">
-          These defaults come from the Launch Path. Keep it small to ship the first slice.
-        </p>
 
         <div className="card">
           <h3>Pick Interaction Palettes</h3>
-          <p className="small">Recommended palettes are pre-checked.</p>
-
           <div style={{ display: "grid", gap: 10 }}>
             {ALL_PALETTES.map((p) => {
               const isRec = recommended.includes(p.id);
@@ -269,11 +290,7 @@ export default function SpecPackBuilder() {
               return (
                 <label key={p.id} className="card" style={{ cursor: "pointer" }}>
                   <div className="row">
-                    <input
-                      type="checkbox"
-                      checked={isOn}
-                      onChange={() => togglePalette(p.id)}
-                    />
+                    <input type="checkbox" checked={isOn} onChange={() => togglePalette(p.id)} />
                     <div>
                       <div style={{ fontWeight: 600 }}>
                         {p.label} {isRec ? <span className="small">• recommended</span> : null}
@@ -289,7 +306,7 @@ export default function SpecPackBuilder() {
 
         <div className="card">
           <h3>Tradeoffs</h3>
-          <p className="small">-2 = left, +2 = right. Defaults come from the Launch Path.</p>
+          <p className="small">-2 = left, +2 = right.</p>
 
           <div className="card">
             <div className="small">Speed (-2) ↔ Quality (+2): {tradeoffs.speedVsQuality}</div>
@@ -334,22 +351,117 @@ export default function SpecPackBuilder() {
     );
   }
 
-  function Step4ReviewAndDownload() {
+  function Step4DesignStudio() {
+    return (
+      <div className="card">
+        <h2>Design Studio v0</h2>
+        <p className="small">
+          Define Actors and Scenes. This is the beginning of “specific design” without ambiguity.
+        </p>
+
+        <div className="card">
+          <h3>Actors</h3>
+          {actors.map((a, idx) => (
+            <div key={idx} className="row" style={{ gap: 8, marginTop: 8 }}>
+              <input
+                className="btn"
+                value={a.id}
+                onChange={(e) => {
+                  const next = [...actors];
+                  next[idx] = { ...next[idx], id: e.target.value };
+                  setActors(next);
+                }}
+                placeholder="actor_id"
+              />
+              <input
+                className="btn"
+                value={a.label}
+                onChange={(e) => {
+                  const next = [...actors];
+                  next[idx] = { ...next[idx], label: e.target.value };
+                  setActors(next);
+                }}
+                placeholder="Label"
+              />
+              <button className="btn" onClick={() => setActors(actors.filter((_, i) => i !== idx))}>Remove</button>
+            </div>
+          ))}
+          <button className="btn" onClick={() => setActors([...actors, { id: "new_actor", label: "New Actor" }])} style={{ marginTop: 10 }}>
+            Add Actor
+          </button>
+        </div>
+
+        <div className="card">
+          <h3>Scenes</h3>
+          {scenes.map((s, idx) => (
+            <div key={idx} className="row" style={{ gap: 8, marginTop: 8 }}>
+              <input
+                className="btn"
+                value={s.id}
+                onChange={(e) => {
+                  const next = [...scenes];
+                  next[idx] = { ...next[idx], id: e.target.value };
+                  setScenes(next);
+                }}
+                placeholder="scene_id"
+              />
+              <input
+                className="btn"
+                value={s.label}
+                onChange={(e) => {
+                  const next = [...scenes];
+                  next[idx] = { ...next[idx], label: e.target.value };
+                  setScenes(next);
+                }}
+                placeholder="Label"
+              />
+              <select
+                className="btn"
+                value={s.kind}
+                onChange={(e) => {
+                  const next = [...scenes];
+                  const kind = e.target.value === "state" ? "state" : "page";
+                  next[idx] = { ...next[idx], kind };
+                  setScenes(next);
+                }}
+              >
+                <option value="page">page</option>
+                <option value="state">state</option>
+              </select>
+              <button className="btn" onClick={() => setScenes(scenes.filter((_, i) => i !== idx))}>Remove</button>
+            </div>
+          ))}
+          <button className="btn" onClick={() => setScenes([...scenes, { id: "new_scene", label: "New Scene", kind: "page" }])} style={{ marginTop: 10 }}>
+            Add Scene
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  function Step5AiConnectors() {
+    return (
+      <div className="card">
+        <h2>AI Connectors</h2>
+        <AiConnectorsWizard value={ai} onChange={setAi} />
+      </div>
+    );
+  }
+
+  function Step6ReviewDownload() {
     return (
       <div className="card">
         <h2>Review → Download</h2>
-        <p className="small">This generates a ZIP you can later import into SDDE tools.</p>
 
         <div className="card">
           <div><span className="small">Launch Path:</span> <b>{launchPath}</b></div>
           <div><span className="small">Project:</span> <b>{productName.trim() || "(missing)"}</b></div>
           <div className="small" style={{ marginTop: 6 }}>{oneLiner.trim()}</div>
-          <div className="small" style={{ marginTop: 10 }}>
-            Palettes: {Array.from(selected).join(", ")}
-          </div>
-          <div className="small" style={{ marginTop: 10 }}>
-            Tradeoffs: speed_vs_quality={tradeoffs.speedVsQuality}, simplicity_vs_power={tradeoffs.simplicityVsPower}, safety_vs_freedom={tradeoffs.safetyVsFreedom}
-          </div>
+
+          <div className="small" style={{ marginTop: 10 }}>Palettes: {Array.from(selected).join(", ")}</div>
+          <div className="small" style={{ marginTop: 10 }}>Actors: {actors.map((a) => normalizeId(a.id)).filter(Boolean).join(", ")}</div>
+          <div className="small" style={{ marginTop: 10 }}>Scenes: {scenes.map((s) => normalizeId(s.id)).filter(Boolean).join(", ")}</div>
+          <div className="small" style={{ marginTop: 10 }}>AI mode: {ai.mode}</div>
         </div>
 
         <div className="row">
@@ -361,7 +473,7 @@ export default function SpecPackBuilder() {
         </div>
 
         <p className="small" style={{ marginTop: 10 }}>
-          Next: add “Import Pack → Generate first slice” in the web app (still offline).
+          The ZIP includes blueprint JSON files plus a secrets placement guide. Secrets are never stored in project files.
         </p>
       </div>
     );
@@ -373,11 +485,7 @@ export default function SpecPackBuilder() {
         <button className="btn" onClick={() => setStep((s) => (s > 1 ? ((s - 1) as Step) : s))} disabled={step === 1}>
           Back
         </button>
-        <button
-          className="btn"
-          onClick={() => setStep((s) => (s < 4 ? ((s + 1) as Step) : s))}
-          disabled={step === 4 || !canNext()}
-        >
+        <button className="btn" onClick={() => setStep((s) => (s < 6 ? ((s + 1) as Step) : s))} disabled={step === 6 || !canNext()}>
           Next
         </button>
       </div>
@@ -387,12 +495,12 @@ export default function SpecPackBuilder() {
   return (
     <div className="card">
       <StepHeader />
-
       {step === 1 && <Step1LaunchPath />}
       {step === 2 && <Step2Basics />}
-      {step === 3 && <Step3PalettesAndTradeoffs />}
-      {step === 4 && <Step4ReviewAndDownload />}
-
+      {step === 3 && <Step3PalettesTradeoffs />}
+      {step === 4 && <Step4DesignStudio />}
+      {step === 5 && <Step5AiConnectors />}
+      {step === 6 && <Step6ReviewDownload />}
       <NavButtons />
     </div>
   );

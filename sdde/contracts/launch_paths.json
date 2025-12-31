@@ -3,7 +3,7 @@
     "id": "website_upgrade_brownfield_v1",
     "category": "Upgrade existing",
     "label": "Upgrade Existing Website (Brownfield)",
-    "desc": "Use SDDE to inventory your current site, then upgrade slice-by-slice without breaking production.",
+    "desc": "Inventory an existing site and upgrade slice-by-slice without breaking production.",
     "recommendedPalettes": [
       "content_media",
       "search_discovery",
@@ -11,20 +11,28 @@
       "infrastructure_data_files",
       "connection_integration"
     ],
-    "defaultTradeoffs": { "speedVsQuality": 0, "simplicityVsPower": 0, "safetyVsFreedom": -1 }
+    "defaultTradeoffs": {
+      "speedVsQuality": 0,
+      "simplicityVsPower": 0,
+      "safetyVsFreedom": -1
+    }
   },
   {
     "id": "website_rebuild_greenfield_v1",
     "category": "Upgrade existing",
     "label": "Rebuild Website (Greenfield v2)",
-    "desc": "Create a new v2 site under SDDE governance, then migrate the best parts from your old site.",
+    "desc": "Create a new v2 under SDDE governance, then migrate the best parts from the old site.",
     "recommendedPalettes": [
       "content_media",
       "knowledge_learning",
       "search_discovery",
       "governance_policy"
     ],
-    "defaultTradeoffs": { "speedVsQuality": 1, "simplicityVsPower": -1, "safetyVsFreedom": 0 }
+    "defaultTradeoffs": {
+      "speedVsQuality": 1,
+      "simplicityVsPower": -1,
+      "safetyVsFreedom": 0
+    }
   },
   {
     "id": "quick_saas_v1",
@@ -37,32 +45,11 @@
       "automation_agents",
       "infrastructure_data_files"
     ],
-    "defaultTradeoffs": { "speedVsQuality": 1, "simplicityVsPower": 0, "safetyVsFreedom": 0 }
-  },
-  {
-    "id": "content_site_v1",
-    "category": "Build new",
-    "label": "Content Site",
-    "desc": "Docs/blog/landing-first. Great for public visibility while you build.",
-    "recommendedPalettes": [
-      "content_media",
-      "search_discovery",
-      "knowledge_learning"
-    ],
-    "defaultTradeoffs": { "speedVsQuality": 0, "simplicityVsPower": -1, "safetyVsFreedom": 0 }
-  },
-  {
-    "id": "marketplace_v1",
-    "category": "Build new",
-    "label": "Marketplace",
-    "desc": "Two-sided marketplace foundations (trust, matching, value exchange).",
-    "recommendedPalettes": [
-      "matching_recommendation",
-      "commerce_value",
-      "reputation_trust_safety",
-      "governance_policy"
-    ],
-    "defaultTradeoffs": { "speedVsQuality": 0, "simplicityVsPower": 1, "safetyVsFreedom": -1 }
+    "defaultTradeoffs": {
+      "speedVsQuality": 1,
+      "simplicityVsPower": 0,
+      "safetyVsFreedom": 0
+    }
   },
   {
     "id": "community_v1",
@@ -75,54 +62,43 @@
       "governance_policy",
       "content_media"
     ],
-    "defaultTradeoffs": { "speedVsQuality": 0, "simplicityVsPower": 0, "safetyVsFreedom": -1 }
+    "defaultTradeoffs": {
+      "speedVsQuality": 0,
+      "simplicityVsPower": 0,
+      "safetyVsFreedom": -1
+    }
   },
   {
-    "id": "internal_tool_v1",
+    "id": "marketplace_v1",
     "category": "Build new",
-    "label": "Internal Tool",
-    "desc": "A simple internal dashboard/tooling surface (forms, approvals, reports).",
+    "label": "Marketplace",
+    "desc": "Two-sided marketplace foundations (trust, matching, value exchange).",
     "recommendedPalettes": [
-      "collaboration_work",
-      "governance_policy",
-      "infrastructure_data_files"
-    ],
-    "defaultTradeoffs": { "speedVsQuality": 1, "simplicityVsPower": -1, "safetyVsFreedom": 0 }
-  },
-  {
-    "id": "api_service_v1",
-    "category": "Build new",
-    "label": "API Service",
-    "desc": "A backend/API-first service that other apps or automations call.",
-    "recommendedPalettes": [
-      "connection_integration",
-      "infrastructure_data_files",
+      "matching_recommendation",
+      "commerce_value",
+      "reputation_trust_safety",
       "governance_policy"
     ],
-    "defaultTradeoffs": { "speedVsQuality": 0, "simplicityVsPower": 1, "safetyVsFreedom": -1 }
+    "defaultTradeoffs": {
+      "speedVsQuality": 0,
+      "simplicityVsPower": 1,
+      "safetyVsFreedom": -1
+    }
   },
   {
     "id": "automation_agent_v1",
     "category": "Build new",
     "label": "Automation / Agent Workflow",
-    "desc": "Offline-first automation workflows; add hosted/local AI later.",
+    "desc": "Offline-first automation workflows; enable hosted/local AI later.",
     "recommendedPalettes": [
       "automation_agents",
       "infrastructure_data_files",
       "governance_policy"
     ],
-    "defaultTradeoffs": { "speedVsQuality": 1, "simplicityVsPower": 0, "safetyVsFreedom": 0 }
-  },
-  {
-    "id": "knowledge_base_v1",
-    "category": "Build new",
-    "label": "Knowledge Base",
-    "desc": "Structured knowledge, onboarding, and search-first documentation UX.",
-    "recommendedPalettes": [
-      "knowledge_learning",
-      "search_discovery",
-      "content_media"
-    ],
-    "defaultTradeoffs": { "speedVsQuality": 0, "simplicityVsPower": -1, "safetyVsFreedom": 0 }
+    "defaultTradeoffs": {
+      "speedVsQuality": 1,
+      "simplicityVsPower": 0,
+      "safetyVsFreedom": 0
+    }
   }
 ]

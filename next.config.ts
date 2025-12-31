@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Keep defaults. Vercel deploy should work out of the box.
+  reactStrictMode: true
 };
 
 export default nextConfig;

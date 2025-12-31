@@ -1,33 +1,45 @@
-# Kindred Official v2 (Greenfield)
+# Kindred AI Builders (Offline-first)
 
-A minimal, Vercel-friendly Next.js app intended to become the SDDE-governed “builder-first” experience.
+A deployable Next.js app that provides a page-by-page wizard and exports a deterministic **Spec Pack ZIP**.
 
-## Goals (v0)
-- Deploy cleanly on Vercel with **no database** and **no required env vars**.
-- Wallet-first “login” (client-side CIP-30 connect) for the Builder screen.
-- A safe “AI status” endpoint that never calls external services (no keys required).
+## Quick start (local / Codespaces)
 
-## Run locally (Codespaces / local)
 ```bash
 npm install
 npm run dev
 ```
 
-Open: http://localhost:3000
+Open the Builder:
+- http://localhost:3000/builder
 
-## Deploy on Vercel
-- Import the repo in Vercel.
-- Build command: `npm run build` (default)
-- Output: Next.js (default)
+## Deploy to Vercel
 
-### Optional env vars (for future SDDE / AI wiring)
-Create these only when you are ready:
-- `AI_MODE` = `offline` | `hosted` | `local`
-- `OPENAI_API_KEY` (hosted)
-- `OPENAI_COMPAT_BASE_URL` (local)
+- Import the GitHub repo into Vercel
+- Framework preset: **Next.js**
+- Build command: `npm run build`
+- Output: default
+- No environment variables required for Offline mode
 
-No env vars are required for a successful deploy.
+If you enable Hosted AI:
+- `AI_MODE=hosted`
+- `OPENAI_API_KEY=...`
 
-## Notes
-This repo intentionally avoids NextAuth, Prisma, and any server-side state in v0.
-Add complexity only after the “builder-first” UX is nailed.
+## What the Builder exports
+
+The ZIP contains:
+
+- `blueprint/intake.json`
+- `blueprint/palettes.json`
+- `blueprint/tradeoffs.json`
+- `blueprint/actors.json`
+- `blueprint/scenes.json`
+- `blueprint/ai_connector.json` (no secrets)
+- `blueprint/secrets_instructions.md`
+- `manifest.json`
+
+## Editing launch paths
+
+Edit:
+- `sdde/contracts/launch_paths.json`
+
+This file controls the “Launch Path” catalog shown in Step 1.
