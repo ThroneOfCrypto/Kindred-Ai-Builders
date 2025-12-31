@@ -1,4 +1,5 @@
 import JSZip from "jszip";
+import launchPaths from "@/sdde/contracts/launch_paths.json";
 
 export const runtime = "nodejs";
 
@@ -6,6 +7,15 @@ type Tradeoffs = {
   speedVsQuality: number;     // -2..2
   simplicityVsPower: number;  // -2..2
   safetyVsFreedom: number;    // -2..2
+};
+
+type LaunchPathDef = {
+  id: string;
+  category: string;
+  label: string;
+  desc: string;
+  recommendedPalettes: string[];
+  defaultTradeoffs: Tradeoffs;
 };
 
 type Payload = {
@@ -16,12 +26,9 @@ type Payload = {
   tradeoffs: Tradeoffs;
 };
 
-const ALLOWED_LAUNCH_PATHS = new Set([
-  "quick_saas_v1",
-  "content_site_v1",
-  "marketplace_v1",
-  "community_v1",
-]);
+const CATALOG = (launchPaths as unknown as LaunchPathDef[]);
+const DEFAULT_LAUNCH_PATH = CATALOG.length > 0 ? CATALOG[0].id : "quick_saas_v1";
+const ALLOWED_LAUNCH_PATHS = new Set(CATALOG.map((lp) => lp.id));
 
 function clampInt(n: unknown, min: number, max: number, fallback: number): number {
   const x = typeof n === "number" ? n : Number(n);
@@ -52,8 +59,8 @@ export async function POST(req: Request) {
 
   const p = body as Partial<Payload>;
 
-  const launchPathRaw = asString(p.launchPath, "quick_saas_v1").trim();
-  const launchPath = ALLOWED_LAUNCH_PATHS.has(launchPathRaw) ? launchPathRaw : "quick_saas_v1";
+  const launchPathRaw = asString(p.launchPath, DEFAULT_LAUNCH_PATH).trim();
+  const launchPath = ALLOWED_LAUNCH_PATHS.has(launchPathRaw) ? launchPathRaw : DEFAULT_LAUNCH_PATH;
 
   const productName = asString(p.productName).trim();
   const oneLiner = asString(p.oneLiner).trim();

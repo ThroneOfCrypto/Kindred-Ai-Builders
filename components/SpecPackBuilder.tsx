@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import launchPaths from "@/sdde/contracts/launch_paths.json";
 
 type Tradeoffs = {
   speedVsQuality: number;
@@ -10,8 +11,9 @@ type Tradeoffs = {
 
 type Palette = { id: string; label: string; desc: string };
 
-type LaunchPath = {
-  id: "quick_saas_v1" | "content_site_v1" | "marketplace_v1" | "community_v1";
+type LaunchPathDef = {
+  id: string;
+  category: string;
   label: string;
   desc: string;
   recommendedPalettes: string[];
@@ -32,38 +34,7 @@ const ALL_PALETTES: Palette[] = [
   { id: "game_incentives", label: "Game & Incentive Mechanics", desc: "Points, quests, incentives, reward loops." },
   { id: "automation_agents", label: "Automation / Agents / Workflows", desc: "Automations, agents, orchestration." },
   { id: "infrastructure_data_files", label: "Infrastructure / Data / Files", desc: "Storage, data models, files, backups." },
-  { id: "connection_integration", label: "Connection / Integration", desc: "APIs, webhooks, integrations, connectors." },
-];
-
-const LAUNCH_PATHS: LaunchPath[] = [
-  {
-    id: "quick_saas_v1",
-    label: "Quick SaaS",
-    desc: "Ship a simple subscription SaaS slice fast (offline-first).",
-    recommendedPalettes: ["content_media", "commerce_value", "automation_agents", "infrastructure_data_files"],
-    defaultTradeoffs: { speedVsQuality: 1, simplicityVsPower: 0, safetyVsFreedom: 0 },
-  },
-  {
-    id: "content_site_v1",
-    label: "Content Site",
-    desc: "Docs/blog/landing-first. Great for public visibility while you build.",
-    recommendedPalettes: ["content_media", "search_discovery", "knowledge_learning"],
-    defaultTradeoffs: { speedVsQuality: 0, simplicityVsPower: -1, safetyVsFreedom: 0 },
-  },
-  {
-    id: "marketplace_v1",
-    label: "Marketplace",
-    desc: "Two-sided marketplace foundations (trust, matching, value exchange).",
-    recommendedPalettes: ["matching_recommendation", "commerce_value", "reputation_trust_safety", "governance_policy"],
-    defaultTradeoffs: { speedVsQuality: 0, simplicityVsPower: 1, safetyVsFreedom: -1 },
-  },
-  {
-    id: "community_v1",
-    label: "Community",
-    desc: "Community + governance foundations (social surfaces, trust, rules).",
-    recommendedPalettes: ["communication_social", "reputation_trust_safety", "governance_policy", "content_media"],
-    defaultTradeoffs: { speedVsQuality: 0, simplicityVsPower: 0, safetyVsFreedom: -1 },
-  },
+  { id: "connection_integration", label: "Connection / Integration", desc: "APIs, webhooks, integrations, connectors." }
 ];
 
 function downloadBlob(blob: Blob, filename: string) {
@@ -80,24 +51,29 @@ function downloadBlob(blob: Blob, filename: string) {
 type Step = 1 | 2 | 3 | 4;
 
 export default function SpecPackBuilder() {
+  const catalog = (launchPaths as unknown as LaunchPathDef[]);
+  const fallback = catalog.length > 0 ? catalog[0].id : "quick_saas_v1";
+
   const [step, setStep] = useState<Step>(1);
+  const [launchPath, setLaunchPath] = useState<string>(fallback);
 
-  const [launchPath, setLaunchPath] = useState<LaunchPath["id"]>("quick_saas_v1");
-  const [productName, setProductName] = useState("My SaaS");
-  const [oneLiner, setOneLiner] = useState("A beginner-friendly builder that ships a first slice fast.");
+  const current = useMemo(() => {
+    const found = catalog.find((x) => x.id === launchPath);
+    return found ?? catalog[0] ?? {
+      id: "quick_saas_v1",
+      category: "Build new",
+      label: "Quick SaaS",
+      desc: "Fallback launch path.",
+      recommendedPalettes: ["content_media"],
+      defaultTradeoffs: { speedVsQuality: 0, simplicityVsPower: 0, safetyVsFreedom: 0 }
+    };
+  }, [catalog, launchPath]);
 
-  const recommended = useMemo(() => {
-    const lp = LAUNCH_PATHS.find((x) => x.id === launchPath)!;
-    return lp.recommendedPalettes;
-  }, [launchPath]);
+  const [productName, setProductName] = useState("My Project");
+  const [oneLiner, setOneLiner] = useState("A project generated via an offline, guided SDDE builder.");
 
-  const defaultSelected = useMemo(() => new Set<string>(recommended), [recommended]);
-  const [selected, setSelected] = useState<Set<string>>(defaultSelected);
-
-  const [tradeoffs, setTradeoffs] = useState<Tradeoffs>(() => {
-    const lp = LAUNCH_PATHS.find((x) => x.id === launchPath)!;
-    return { ...lp.defaultTradeoffs };
-  });
+  const [selected, setSelected] = useState<Set<string>>(new Set(current.recommendedPalettes));
+  const [tradeoffs, setTradeoffs] = useState<Tradeoffs>({ ...current.defaultTradeoffs });
 
   const [status, setStatus] = useState<
     | { kind: "idle" }
@@ -106,9 +82,19 @@ export default function SpecPackBuilder() {
     | { kind: "error"; message: string }
   >({ kind: "idle" });
 
-  function resetForLaunchPath(next: LaunchPath["id"]) {
-    setLaunchPath(next);
-    const lp = LAUNCH_PATHS.find((x) => x.id === next)!;
+  const categories = useMemo(() => {
+    const m = new Map<string, LaunchPathDef[]>();
+    for (const lp of catalog) {
+      const arr = m.get(lp.category) ?? [];
+      arr.push(lp);
+      m.set(lp.category, arr);
+    }
+    return Array.from(m.entries());
+  }, [catalog]);
+
+  function resetForLaunchPath(nextId: string) {
+    setLaunchPath(nextId);
+    const lp = catalog.find((x) => x.id === nextId) ?? current;
     setSelected(new Set(lp.recommendedPalettes));
     setTradeoffs({ ...lp.defaultTradeoffs });
     setStatus({ kind: "idle" });
@@ -138,14 +124,14 @@ export default function SpecPackBuilder() {
       productName: productName.trim(),
       oneLiner: oneLiner.trim(),
       palettes: Array.from(selected),
-      tradeoffs,
+      tradeoffs
     };
 
     try {
       const res = await fetch("/api/spec-pack", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(payload)
       });
 
       if (!res.ok) {
@@ -173,9 +159,9 @@ export default function SpecPackBuilder() {
             className="btn"
             onClick={() => {
               setStep(1);
-              resetForLaunchPath("quick_saas_v1");
-              setProductName("My SaaS");
-              setOneLiner("A beginner-friendly builder that ships a first slice fast.");
+              resetForLaunchPath(fallback);
+              setProductName("My Project");
+              setOneLiner("A project generated via an offline, guided SDDE builder.");
             }}
           >
             Start over
@@ -190,26 +176,34 @@ export default function SpecPackBuilder() {
       <div className="card">
         <h2>Choose a Launch Path</h2>
         <p className="small">
-          This choice sets defaults (recommended palettes + tradeoffs). You can change them next.
+          Launch Path sets defaults (recommended palettes + tradeoffs) and tells SDDE what kind of build you want.
+          This is how we cover everything in the book, including upgrading an existing site.
         </p>
 
-        <div style={{ display: "grid", gap: 12 }}>
-          {LAUNCH_PATHS.map((lp) => (
-            <button
-              key={lp.id}
-              className="btn"
-              onClick={() => resetForLaunchPath(lp.id)}
-              style={{
-                textAlign: "left",
-                border: launchPath === lp.id ? "1px solid rgba(255,255,255,0.6)" : undefined,
-              }}
-            >
-              <div style={{ fontWeight: 700 }}>{lp.label}</div>
-              <div className="small">{lp.desc}</div>
-              <div className="small" style={{ marginTop: 6 }}>
-                Recommended: {lp.recommendedPalettes.join(", ")}
+        <div style={{ display: "grid", gap: 16 }}>
+          {categories.map(([cat, items]) => (
+            <div key={cat} className="card">
+              <h3 style={{ marginTop: 0 }}>{cat}</h3>
+              <div style={{ display: "grid", gap: 12 }}>
+                {items.map((lp) => (
+                  <button
+                    key={lp.id}
+                    className="btn"
+                    onClick={() => resetForLaunchPath(lp.id)}
+                    style={{
+                      textAlign: "left",
+                      border: launchPath === lp.id ? "1px solid rgba(255,255,255,0.6)" : undefined
+                    }}
+                  >
+                    <div style={{ fontWeight: 700 }}>{lp.label}</div>
+                    <div className="small">{lp.desc}</div>
+                    <div className="small" style={{ marginTop: 6 }}>
+                      Recommended: {lp.recommendedPalettes.join(", ")}
+                    </div>
+                  </button>
+                ))}
               </div>
-            </button>
+            </div>
           ))}
         </div>
       </div>
@@ -223,14 +217,19 @@ export default function SpecPackBuilder() {
         <p className="small">Give the system enough signal to generate a meaningful spec pack.</p>
 
         <div className="card">
+          <div className="small">Selected Launch Path: <b>{current.label}</b></div>
+          <div className="small">{current.desc}</div>
+        </div>
+
+        <div className="card">
           <div className="row">
-            <label className="small" htmlFor="productName">Product name</label>
+            <label className="small" htmlFor="productName">Project name</label>
             <input
               id="productName"
               className="btn"
               value={productName}
               onChange={(e) => setProductName(e.target.value)}
-              placeholder="My SaaS"
+              placeholder="My Project"
             />
           </div>
 
@@ -250,16 +249,18 @@ export default function SpecPackBuilder() {
   }
 
   function Step3PalettesAndTradeoffs() {
+    const recommended = current.recommendedPalettes;
+
     return (
       <div className="card">
         <h2>Palettes & Tradeoffs</h2>
         <p className="small">
-          Launch Path defaults are pre-selected. Keep it small to ship a first slice.
+          These defaults come from the Launch Path. Keep it small to ship the first slice.
         </p>
 
         <div className="card">
           <h3>Pick Interaction Palettes</h3>
-          <p className="small">Recommended palettes are the ones pre-checked.</p>
+          <p className="small">Recommended palettes are pre-checked.</p>
 
           <div style={{ display: "grid", gap: 10 }}>
             {ALL_PALETTES.map((p) => {
@@ -341,7 +342,7 @@ export default function SpecPackBuilder() {
 
         <div className="card">
           <div><span className="small">Launch Path:</span> <b>{launchPath}</b></div>
-          <div><span className="small">Product:</span> <b>{productName.trim() || "(missing)"}</b></div>
+          <div><span className="small">Project:</span> <b>{productName.trim() || "(missing)"}</b></div>
           <div className="small" style={{ marginTop: 6 }}>{oneLiner.trim()}</div>
           <div className="small" style={{ marginTop: 10 }}>
             Palettes: {Array.from(selected).join(", ")}
@@ -360,7 +361,7 @@ export default function SpecPackBuilder() {
         </div>
 
         <p className="small" style={{ marginTop: 10 }}>
-          Next: we’ll add “Import Pack → Generate first slice” inside this web app.
+          Next: add “Import Pack → Generate first slice” in the web app (still offline).
         </p>
       </div>
     );
