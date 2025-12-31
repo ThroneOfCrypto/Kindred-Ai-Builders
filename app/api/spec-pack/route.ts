@@ -6,9 +6,24 @@ type Tradeoffs = Record<string, number>;
 type Actor = { id: string; label: string };
 type Scene = { id: string; label: string; actor_id: string };
 
+type GateStatus = "pass" | "warn" | "fail";
+type Gate = { id: string; status: GateStatus; message: string };
+type GateReport = {
+  schema: "sdde.gate_report.v1";
+  created_at_utc: string;
+  failures: number;
+  warnings: number;
+  passes: number;
+  ok: boolean;
+  gates: Gate[];
+};
+
+function nowUtcIso(): string {
+  return new Date().toISOString();
+}
+
 function asString(v: unknown): string {
-  if (typeof v === "string") return v;
-  return "";
+  return typeof v === "string" ? v : "";
 }
 
 function asStringArray(v: unknown): string[] {
@@ -51,8 +66,79 @@ function asScenes(v: unknown): Scene[] {
   return out;
 }
 
+function isBrownfieldLaunchPath(launchPathId: string): boolean {
+  return (
+    launchPathId.includes("brownfield") ||
+    launchPathId.includes("upgrade") ||
+    launchPathId.includes("rebuild") ||
+    launchPathId.startsWith("website_")
+  );
+}
+
+function computeGateReport(input: {
+  launchPathId: string;
+  productName: string;
+  oneLiner: string;
+  palettes: string[];
+  actors: Actor[];
+  scenes: Scene[];
+  ai_mode: string;
+  brownfieldRepoUrl: string;
+}): GateReport {
+  const gates: Gate[] = [];
+  const add = (id: string, status: GateStatus, message: string) => gates.push({ id, status, message });
+
+  if (input.launchPathId.trim()) add("launch_path_selected", "pass", "Launch path selected.");
+  else add("launch_path_selected", "fail", "Choose a launch path.");
+
+  if (input.productName.trim()) add("product_name", "pass", "Product name set.");
+  else add("product_name", "fail", "Set a product name.");
+
+  if (input.oneLiner.trim()) add("one_liner", "pass", "One-liner set.");
+  else add("one_liner", "fail", "Set a one-liner.");
+
+  if (input.palettes.length > 0) add("palettes_selected", "pass", "At least one palette selected.");
+  else add("palettes_selected", "fail", "Select at least one palette.");
+
+  const actorIds = new Set(input.actors.map((a) => a.id));
+  if (input.actors.length > 0) add("actors_present", "pass", "At least one actor defined.");
+  else add("actors_present", "fail", "Add at least one actor.");
+
+  if (input.scenes.length > 0) add("scenes_present", "pass", "At least one scene defined.");
+  else add("scenes_present", "fail", "Add at least one scene.");
+
+  const badSceneRefs = input.scenes.filter((s) => !actorIds.has(s.actor_id));
+  if (badSceneRefs.length === 0) add("scene_actor_refs", "pass", "All scenes reference valid actors.");
+  else add("scene_actor_refs", "fail", "Some scenes reference missing actors.");
+
+  if (input.ai_mode === "offline" || input.ai_mode === "hosted" || input.ai_mode === "local") add("ai_mode_valid", "pass", "AI mode is valid.");
+  else add("ai_mode_valid", "fail", "AI mode is invalid.");
+
+  if (isBrownfieldLaunchPath(input.launchPathId)) {
+    if (input.brownfieldRepoUrl.trim()) add("brownfield_target", "pass", "Brownfield repo URL provided.");
+    else add("brownfield_target", "warn", "Brownfield selected: repo URL not provided yet.");
+  } else {
+    add("brownfield_target", "pass", "Not a brownfield launch path.");
+  }
+
+  const failures = gates.filter((g) => g.status === "fail").length;
+  const warnings = gates.filter((g) => g.status === "warn").length;
+  const passes = gates.filter((g) => g.status === "pass").length;
+
+  return {
+    schema: "sdde.gate_report.v1",
+    created_at_utc: nowUtcIso(),
+    failures,
+    warnings,
+    passes,
+    ok: failures === 0,
+    gates
+  };
+}
+
 export async function POST(req: Request) {
   const body = await req.json().catch(() => ({}));
+
   const launchPathId = asString((body as any).launchPathId) || "quick_saas_v1";
   const productName = asString((body as any).productName).trim();
   const oneLiner = asString((body as any).oneLiner).trim();
@@ -71,7 +157,18 @@ export async function POST(req: Request) {
 
   const brownfieldRepoUrl = asString((body as any).brownfieldRepoUrl).trim();
 
-  const created_at_utc = new Date().toISOString();
+  const created_at_utc = nowUtcIso();
+
+  const gateReport = computeGateReport({
+    launchPathId,
+    productName,
+    oneLiner,
+    palettes,
+    actors,
+    scenes,
+    ai_mode,
+    brownfieldRepoUrl
+  });
 
   const blueprint = {
     schema: "sdde.spec_pack.v1",
@@ -88,19 +185,13 @@ export async function POST(req: Request) {
     palettes,
     tradeoffs,
 
-    design: {
-      actors,
-      scenes
-    },
+    design: { actors, scenes },
 
     ai: {
       mode: ai_mode,
       hosted: ai_mode === "hosted" ? { model: hosted_model } : undefined,
       local: ai_mode === "local" ? { base_url: local_base_url, model: local_model } : undefined,
-      secrets_note:
-        ai_mode === "hosted"
-          ? "Set OPENAI_API_KEY (or compatible) as an environment variable on your server or platform."
-          : undefined
+      secrets_note: ai_mode === "hosted" ? "Set OPENAI_API_KEY (or compatible) as an environment variable." : undefined
     }
   };
 
@@ -111,11 +202,14 @@ export async function POST(req: Request) {
     created_at_utc,
     files: [
       "blueprint/spec_pack.json",
+      "gates/gate_report.json",
       "blueprint/secrets_instructions.md"
     ]
   }, null, 2));
 
   zip.folder("blueprint")?.file("spec_pack.json", JSON.stringify(blueprint, null, 2));
+  zip.folder("gates")?.file("gate_report.json", JSON.stringify(gateReport, null, 2));
+
   zip.folder("blueprint")?.file(
     "secrets_instructions.md",
     [
@@ -124,10 +218,10 @@ export async function POST(req: Request) {
       "This Spec Pack never contains secrets.",
       "",
       "## Hosted mode",
-      "- Set OPENAI_API_KEY in your hosting provider (Vercel / server env vars).",
+      "- Set OPENAI_API_KEY in your hosting provider environment variables.",
       "",
       "## Local mode",
-      "- Ensure your local OpenAI-compatible endpoint is reachable from the runtime.",
+      "- Ensure your local OpenAI-compatible endpoint is reachable.",
       "",
       "Created at: " + created_at_utc,
       ""
