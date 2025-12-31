@@ -6,27 +6,19 @@ export default function BuilderPage() {
     <>
       <h1>Builder</h1>
       <p className="small">
-        Offline-first builder: generate a Spec Pack ZIP with no wallet, no keys, no database.
-        AI + wallet come later.
+        This is an offline-first wizard. It unfolds step-by-step and generates a Spec Pack ZIP.
+        Wallet + AI come later.
       </p>
 
       <SpecPackBuilder />
 
       <details className="card" style={{ marginTop: 16 }}>
-        <summary style={{ cursor: "pointer", fontWeight: 600 }}>Optional: Wallet login (later)</summary>
+        <summary style={{ cursor: "pointer", fontWeight: 600 }}>Optional: Wallet (later)</summary>
         <p className="small">
-          Wallet is not required for the offline builder. We’ll attach wallet last.
+          Wallet is not part of the offline builder flow. We’ll attach it last.
         </p>
         <WalletConnect />
       </details>
-
-      <div className="card">
-        <h2>AI status</h2>
-        <p className="small">
-          The server reports AI wiring (mode + whether env vars exist). It does not call external services.
-        </p>
-        <a className="btn" href="/api/ai/status">Open /api/ai/status</a>
-      </div>
     </>
   );
 }
