@@ -4,3 +4,14 @@ out/
 dist/
 .vercel/
 .DS_Store
+
+# dependencies / build outputs
+node_modules/
+.next/
+out/
+dist/
+.vercel/
+*.log
+
+# large local artifacts
+*.zip
