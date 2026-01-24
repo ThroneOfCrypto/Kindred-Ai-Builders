@@ -1,0 +1,9 @@
+{
+  "elements": [
+    "wf.auth.did_binding"
+  ],
+  "id": "compound.neg_identity_did_missing_document",
+  "name": "NEG: DID binding missing DID document evidence",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1"
+}

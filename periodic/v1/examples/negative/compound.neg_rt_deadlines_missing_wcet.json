@@ -1,0 +1,9 @@
+{
+  "schema": "periodic.compound.v1",
+  "id": "compound.neg_rt_deadlines_missing_wcet",
+  "name": "NEGATIVE: hard real-time deadlines without WCET/budget evidence",
+  "domain": "hard_real_time",
+  "elements": [
+    "cap.rt.deadlines"
+  ]
+}

@@ -1,0 +1,277 @@
+{
+  "domains": [
+    {
+      "collapse_risk": "If collapsed into internet_app, compliance requirements become optional prose instead of enforceable obligations.",
+      "compose_tiebreak_strategy": null,
+      "id": "compliance_lite",
+      "name": "Compliance Lite",
+      "neutral": false,
+      "reason_for_existence": "Audit posture without full regulated burden; change control and traceability as obligations.",
+      "summary": "Enterprise compliance-lite: change control, traceability, and separation-of-duties evidence without full regulated burden.",
+      "unique_invariants": [
+        "approvals",
+        "change logs",
+        "access separation evidence"
+      ]
+    },
+    {
+      "collapse_risk": "If merged into internet_app, 'truth' collapses into a database assumption and proofs become incoherent.",
+      "compose_tiebreak_strategy": null,
+      "id": "distributed_truth",
+      "name": "Distributed Truth",
+      "neutral": false,
+      "reason_for_existence": "Coordination/truth under failure regime: consensus, partitions, forks, replication.",
+      "summary": "Consensus/replication/consistency/partition behavior; truth under failure and coordination.",
+      "unique_invariants": [
+        "consistency model",
+        "partition behavior",
+        "attestation/consensus evidence"
+      ]
+    },
+    {
+      "collapse_risk": "If merged, simulation-specific invariants become optional and correctness becomes untestable.",
+      "compose_tiebreak_strategy": null,
+      "id": "game_simulation",
+      "name": "Game/Simulation",
+      "neutral": false,
+      "reason_for_existence": "Simulation loop regime: deterministic ticks/frames, state rollback, netcode invariants.",
+      "summary": "Tick/frame budgets, deterministic simulation, asset pipelines, netcode invariants.",
+      "unique_invariants": [
+        "tick loop",
+        "state determinism",
+        "replay/rollback"
+      ]
+    },
+    {
+      "collapse_risk": "If merged, timing obligations become best-effort and correctness claims are false.",
+      "compose_tiebreak_strategy": null,
+      "id": "hard_real_time",
+      "name": "Hard Real-Time",
+      "neutral": false,
+      "reason_for_existence": "Deadline-correctness regime; timing/jitter constraints are part of correctness.",
+      "summary": "Deadline and jitter constrained systems; bounded time/space and scheduling physics.",
+      "unique_invariants": [
+        "bounded latency",
+        "deterministic scheduling",
+        "jitter budgets"
+      ]
+    },
+    {
+      "collapse_risk": "If collapsed into capability, access becomes feature-like rather than constraint-like and leaks occur.",
+      "compose_tiebreak_strategy": "safety_first_taint",
+      "id": "identity_access_lite",
+      "name": "Identity Access (Lite)",
+      "neutral": false,
+      "reason_for_existence": "Access control regime: identity binding and authorization receipts as first-class obligations.",
+      "remediation_any_of_strategy": "safety_first",
+      "summary": "Reusable identity/login physics: wallet signature auth, portable DID bindings, and agent-safe access receipts.",
+      "unique_invariants": [
+        "authZ boundaries",
+        "identity proofs",
+        "auditability"
+      ]
+    },
+    {
+      "collapse_risk": "Collapsing into other domains forces unrelated constraints onto everyday apps (or hides real ops obligations).",
+      "compose_tiebreak_strategy": null,
+      "id": "internet_app",
+      "name": "Internet App",
+      "neutral": false,
+      "reason_for_existence": "Baseline internet software regime: async IO + persistence + multi-tenant surfaces.",
+      "summary": "General internet software: CRUD/content/workflows/integrations with production-grade ops and evidence.",
+      "unique_invariants": [
+        "request/response",
+        "stateful sessions",
+        "operational evidence"
+      ]
+    },
+    {
+      "collapse_risk": "If merged into app domains, low-level safety constraints become invisible until catastrophic failures.",
+      "compose_tiebreak_strategy": null,
+      "id": "kernel_runtime",
+      "name": "Kernel/Runtime",
+      "neutral": false,
+      "reason_for_existence": "Runtime substrate regime: scheduling/memory/ABI/toolchain constraints and deep correctness evidence.",
+      "summary": "OS/runtime/toolchain physics: scheduling, memory management, ABI/toolchain constraints, deep correctness evidence.",
+      "unique_invariants": [
+        "resource isolation",
+        "runtime invariants",
+        "toolchain constraints"
+      ]
+    },
+    {
+      "collapse_risk": "Without a membrane domain, mixing becomes implicit and contradictions appear as waivers.",
+      "compose_tiebreak_strategy": null,
+      "id": "membrane",
+      "name": "Membrane",
+      "neutral": true,
+      "reason_for_existence": "Defines boundary physics for connecting immiscible domains without contaminating them.",
+      "summary": "Neutral interface boundary primitives used to connect immiscible domains without contaminating domain physics.",
+      "unique_invariants": [
+        "explicit boundary",
+        "declared crossings",
+        "endorsement/declassification semantics"
+      ]
+    },
+    {
+      "collapse_risk": "If collapsed, non-determinism and model risk are misrepresented as ordinary app behavior.",
+      "compose_tiebreak_strategy": null,
+      "id": "ml_platform",
+      "name": "ML Platform",
+      "neutral": false,
+      "reason_for_existence": "Probabilistic inference lifecycle regime: lineage, eval, drift, model governance.",
+      "summary": "Data lineage, training/eval/deploy lifecycle, drift, reproducibility and model governance.",
+      "unique_invariants": [
+        "training/eval split",
+        "dataset lineage",
+        "drift monitoring"
+      ]
+    },
+    {
+      "collapse_risk": "If removed, a whole class of 'domain enabled but empty' regressions can slip through.",
+      "compose_tiebreak_strategy": null,
+      "id": "no_pack_test",
+      "name": "No Pack Test",
+      "neutral": false,
+      "reason_for_existence": "Harness-only domain used to prove the checker catches missing domain packs.",
+      "summary": "Regression domain: intentionally has no bond pack; any compound using it must fail.",
+      "unique_invariants": [
+        "must fail",
+        "regression guard"
+      ]
+    },
+    {
+      "collapse_risk": "If merged into internet_app, privacy becomes a promise rather than a boundary-enforced constraint.",
+      "compose_tiebreak_strategy": "safety_first_taint",
+      "id": "privacy_compute",
+      "name": "Privacy Compute",
+      "neutral": false,
+      "reason_for_existence": "Information-flow and selective disclosure regime; prove properties without leaking payloads.",
+      "remediation_any_of_strategy": "safety_first",
+      "summary": "Selective disclosure, proof-carrying claims, and minimized disclosure verification physics.",
+      "unique_invariants": [
+        "minimal disclosure",
+        "proof-carrying claims",
+        "declassification controls"
+      ]
+    },
+    {
+      "collapse_risk": "If not isolated, proof claims become non-repeatable and verification becomes narrative.",
+      "compose_tiebreak_strategy": null,
+      "id": "proof_lane",
+      "name": "Proof Lane",
+      "neutral": true,
+      "reason_for_existence": "Deterministic verification regime: reproducible builds + receipts + independent re-checkability.",
+      "summary": "Deterministic receipts, reproducible builds, and independent verification workflows (proof as a first-class domain).",
+      "unique_invariants": [
+        "canonicalization",
+        "deterministic receipts",
+        "policy/verifier identity binding"
+      ]
+    },
+    {
+      "collapse_risk": "If merged with compliance_lite, safety requirements get treated as 'nice-to-have' checklists.",
+      "compose_tiebreak_strategy": "safety_first_taint",
+      "id": "regulated_safety",
+      "name": "Regulated Safety",
+      "neutral": false,
+      "reason_for_existence": "High-stakes correctness regime where failure is catastrophic/legal; safety-case evidence required.",
+      "remediation_any_of_strategy": "safety_first",
+      "summary": "External proof burdens: traceability, change control, safety case evidence, separation of duties.",
+      "unique_invariants": [
+        "safety case",
+        "traceability",
+        "independent review"
+      ]
+    }
+  ],
+  "immiscible": [
+    [
+      "compliance_lite",
+      "privacy_compute"
+    ],
+    [
+      "distributed_truth",
+      "hard_real_time"
+    ],
+    [
+      "distributed_truth",
+      "internet_app"
+    ],
+    [
+      "distributed_truth",
+      "privacy_compute"
+    ],
+    [
+      "distributed_truth",
+      "regulated_safety"
+    ],
+    [
+      "game_simulation",
+      "kernel_runtime"
+    ],
+    [
+      "game_simulation",
+      "privacy_compute"
+    ],
+    [
+      "hard_real_time",
+      "internet_app"
+    ],
+    [
+      "hard_real_time",
+      "ml_platform"
+    ],
+    [
+      "hard_real_time",
+      "privacy_compute"
+    ],
+    [
+      "hard_real_time",
+      "regulated_safety"
+    ],
+    [
+      "internet_app",
+      "kernel_runtime"
+    ],
+    [
+      "internet_app",
+      "privacy_compute"
+    ],
+    [
+      "internet_app",
+      "regulated_safety"
+    ],
+    [
+      "kernel_runtime",
+      "ml_platform"
+    ],
+    [
+      "kernel_runtime",
+      "privacy_compute"
+    ],
+    [
+      "kernel_runtime",
+      "regulated_safety"
+    ],
+    [
+      "ml_platform",
+      "privacy_compute"
+    ],
+    [
+      "no_pack_test",
+      "privacy_compute"
+    ],
+    [
+      "privacy_compute",
+      "regulated_safety"
+    ]
+  ],
+  "neutral_domain": "membrane",
+  "neutral_domains": [
+    "membrane",
+    "proof_lane"
+  ],
+  "schema": "periodic.domains.v1",
+  "version": "1"
+}

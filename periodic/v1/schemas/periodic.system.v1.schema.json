@@ -1,0 +1,131 @@
+{
+  "$id": "periodic.system.v1.schema",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "compounds": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "as": {
+            "pattern": "^[a-z0-9_]+$",
+            "type": "string"
+          },
+          "path": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "as",
+          "path"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "id": {
+      "pattern": "^system\\.[a-z0-9_]+$",
+      "type": "string"
+    },
+    "links": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "from": {
+            "pattern": "^[a-z0-9_]+$",
+            "type": "string"
+          },
+          "to": {
+            "pattern": "^[a-z0-9_]+$",
+            "type": "string"
+          },
+          "via": {
+            "additionalProperties": false,
+            "properties": {
+              "cap": {
+                "pattern": "^cap\\.membrane\\.[a-z0-9_]+$",
+                "type": "string"
+              },
+              "notes": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "cap"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "from",
+          "to",
+          "via"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "name": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema": {
+      "const": "periodic.system.v1"
+    },
+    "version": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "waivers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "rule_id",
+          "target",
+          "rationale",
+          "mitigations",
+          "expires_on"
+        ],
+        "properties": {
+          "rule_id": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string"
+          },
+          "rationale": {
+            "type": "string"
+          },
+          "mitigations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "expires_on": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "schema",
+    "id",
+    "name",
+    "version",
+    "compounds",
+    "links"
+  ],
+  "title": "Periodic System (system-of-compounds)",
+  "type": "object"
+}

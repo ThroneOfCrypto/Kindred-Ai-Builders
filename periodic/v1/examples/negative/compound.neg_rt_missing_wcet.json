@@ -1,0 +1,12 @@
+{
+  "elements": [
+    "cap.rt.deadlines",
+    "wf.rt.scheduler",
+    "ev.rt.latency_jitter_budget",
+    "pr.rt.deadline_safety_first"
+  ],
+  "id": "compound.neg_rt_missing_wcet",
+  "name": "NEG: real-time deadlines missing WCET analysis evidence",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1"
+}

@@ -1,0 +1,41 @@
+{
+  "schema": "periodic.system.v1",
+  "version": 1,
+  "id": "system.wallet_service_a_http_declass_precedence_deny_overrides",
+  "name": "Counterexample: declassification precedence (deny_overrides)",
+  "declassification_precedence_strategy": "deny_overrides",
+  "compounds": [
+    {
+      "as": "wallet",
+      "path": "periodic/v1/examples/compound.wallet_commitments_boundary.json"
+    },
+    {
+      "as": "service_a",
+      "path": "periodic/v1/examples/compound.saas_service_a_boundary.json"
+    }
+  ],
+  "links": [
+    {
+      "from": "wallet",
+      "to": "service_a",
+      "via": {
+        "cap": "cap.membrane.http_api",
+        "endorsement_id": "endorse.alpha",
+        "declassification_id": "declass.redact",
+        "declassification_effect": "PERMIT",
+        "notes": "Policy A: PERMIT declassification (redaction)."
+      }
+    },
+    {
+      "from": "wallet",
+      "to": "service_a",
+      "via": {
+        "cap": "cap.membrane.http_api",
+        "endorsement_id": "endorse.alpha",
+        "declassification_id": "declass.hash",
+        "declassification_effect": "DENY",
+        "notes": "Policy B: DENY declassification (conflicts with Policy A)."
+      }
+    }
+  ]
+}

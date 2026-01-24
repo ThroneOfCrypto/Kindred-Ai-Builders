@@ -1,0 +1,60 @@
+{
+  "schema": "periodic.golden_corpus.v1",
+  "version": "1",
+  "corpora": [
+    {
+      "id": "internet_app_top20",
+      "name": "Internet App Top 20 (Commercial Golden Corpus)",
+      "description": "The 20 archetypes treated as the regression spine for commercially viable internet apps. This corpus must always pass strict checks. If it fails, shipping quality is considered broken.",
+      "examples": [
+        "periodic/v1/examples/compound.analytics_dashboard_ops.json",
+        "periodic/v1/examples/compound.api_integration_client.json",
+        "periodic/v1/examples/compound.blog_basic.json",
+        "periodic/v1/examples/compound.community_moderation_heavy.json",
+        "periodic/v1/examples/compound.crm_lite.json",
+        "periodic/v1/examples/compound.crm_pipeline_with_activity_log.json",
+        "periodic/v1/examples/compound.file_upload_media.json",
+        "periodic/v1/examples/compound.marketplace_basic.json",
+        "periodic/v1/examples/compound.marketplace_with_escrow.json",
+        "periodic/v1/examples/compound.moderation_appeals.json",
+        "periodic/v1/examples/compound.notifications_basic.json",
+        "periodic/v1/examples/compound.oauth_sso_basic.json",
+        "periodic/v1/examples/compound.privacy_data_delete.json",
+        "periodic/v1/examples/compound.publish_paired.json",
+        "periodic/v1/examples/compound.saas_integrations_heavy.json",
+        "periodic/v1/examples/compound.saas_service_a_boundary.json",
+        "periodic/v1/examples/compound.saas_service_b_boundary.json",
+        "periodic/v1/examples/compound.security_rotation.json",
+        "periodic/v1/examples/compound.wallet_commitments.json",
+        "periodic/v1/examples/compound.wiki_basic.json"
+      ]
+    },
+    {
+      "id": "internet_app_top20_phase2",
+      "name": "Internet App Top 20 (Phase 2: Proof Lane Required)",
+      "description": "The commercial internet-app spine, but with Proof Lane receipts required. This corpus is enforced under profile=phase2.",
+      "examples": [
+        "periodic/v1/examples/compound.analytics_dashboard_ops.json",
+        "periodic/v1/examples/compound.api_integration_client.json",
+        "periodic/v1/examples/compound.blog_basic_phase2.json",
+        "periodic/v1/examples/compound.community_moderation_heavy.json",
+        "periodic/v1/examples/compound.crm_lite.json",
+        "periodic/v1/examples/compound.crm_pipeline_with_activity_log.json",
+        "periodic/v1/examples/compound.file_upload_media.json",
+        "periodic/v1/examples/compound.marketplace_basic.json",
+        "periodic/v1/examples/compound.marketplace_with_escrow.json",
+        "periodic/v1/examples/compound.moderation_appeals.json",
+        "periodic/v1/examples/compound.notifications_basic.json",
+        "periodic/v1/examples/compound.oauth_sso_basic.json",
+        "periodic/v1/examples/compound.privacy_data_delete.json",
+        "periodic/v1/examples/compound.publish_with_proof_receipts.json",
+        "periodic/v1/examples/compound.saas_integrations_heavy.json",
+        "periodic/v1/examples/compound.saas_service_a_boundary.json",
+        "periodic/v1/examples/compound.saas_service_b_boundary.json",
+        "periodic/v1/examples/compound.security_rotation.json",
+        "periodic/v1/examples/compound.wallet_commitments.json",
+        "periodic/v1/examples/compound.wiki_basic_phase2.json"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "schema": "periodic.golden_corpus.v1",
+  "version": "1",
+  "corpora": [
+    {
+      "id": "hard_realms_smoke_phase6",
+      "name": "Hard realms smoke (Phase 6)",
+      "description": "Minimal positive compounds for hard_real_time, game_simulation, and kernel_runtime. Not commercial defaults; used to keep domain physics from rotting.",
+      "examples": [
+        "periodic/v1/examples/compound.game_simulation_deterministic.json",
+        "periodic/v1/examples/compound.hard_real_time_controller.json",
+        "periodic/v1/examples/compound.kernel_runtime_sandbox.json"
+      ]
+    },
+    {
+      "id": "identity_access_smoke_phase8",
+      "name": "Identity access smoke (Phase 8)",
+      "description": "Minimal positive compound for wallet-based login and session receipts.",
+      "examples": [
+        "periodic/v1/examples/compound.identity_wallet_login.json"
+      ]
+    },
+    {
+      "id": "internet_app_top20_phase5",
+      "name": "Internet App Top 20 (Phase 5: proof receipts expected)",
+      "description": "The commercial internet-app spine under a proof-lane posture where publish/export flows pair with receipts.",
+      "examples": [
+        "periodic/v1/examples/compound.analytics_dashboard_ops.json",
+        "periodic/v1/examples/compound.api_integration_client.json",
+        "periodic/v1/examples/compound.blog_basic_phase2.json",
+        "periodic/v1/examples/compound.community_moderation_heavy.json",
+        "periodic/v1/examples/compound.crm_lite.json",
+        "periodic/v1/examples/compound.crm_pipeline_with_activity_log.json",
+        "periodic/v1/examples/compound.file_upload_media.json",
+        "periodic/v1/examples/compound.marketplace_basic.json",
+        "periodic/v1/examples/compound.marketplace_with_escrow.json",
+        "periodic/v1/examples/compound.moderation_appeals.json",
+        "periodic/v1/examples/compound.notifications_basic.json",
+        "periodic/v1/examples/compound.oauth_sso_basic.json",
+        "periodic/v1/examples/compound.privacy_data_delete.json",
+        "periodic/v1/examples/compound.publish_with_proof_receipts.json",
+        "periodic/v1/examples/compound.saas_integrations_heavy.json",
+        "periodic/v1/examples/compound.saas_service_a_boundary.json",
+        "periodic/v1/examples/compound.saas_service_b_boundary.json",
+        "periodic/v1/examples/compound.security_rotation.json",
+        "periodic/v1/examples/compound.wallet_commitments.json",
+        "periodic/v1/examples/compound.wiki_basic_phase2.json"
+      ]
+    },
+    {
+      "id": "privacy_compute_smoke_phase7",
+      "name": "Privacy compute smoke (Phase 7)",
+      "description": "Minimal positive compound for selective disclosure and replay-resistant verifier challenge.",
+      "examples": [
+        "periodic/v1/examples/compound.privacy_compute_selective_disclosure.json"
+      ]
+    }
+  ]
+}

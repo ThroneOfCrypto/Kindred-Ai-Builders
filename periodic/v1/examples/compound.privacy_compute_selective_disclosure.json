@@ -1,0 +1,24 @@
+{
+  "schema": "periodic.compound.v1",
+  "tables_version": "1",
+  "id": "compound.privacy_compute_selective_disclosure",
+  "name": "Selective disclosure with replay-resistant verifier challenge",
+  "elements": [
+    "cap.membrane.http_api",
+    "cap.privacy.proof_carrying_claim",
+    "cap.privacy.selective_disclosure",
+    "ev.membrane.interface_spec",
+    "ev.privacy.replay_protection_evidence",
+    "ev.privacy.verification_spec",
+    "ev.privacy.verification_tests",
+    "pr.membrane.backward_compat",
+    "pr.membrane.failure_isolation",
+    "pr.privacy.minimal_disclosure",
+    "wf.membrane.compatibility_tests",
+    "wf.membrane.contract_versioning",
+    "wf.privacy.presentation",
+    "wf.privacy.replay_protection",
+    "wf.privacy.verifier_challenge_nonce",
+    "wf.privacy.verify_presentation"
+  ]
+}

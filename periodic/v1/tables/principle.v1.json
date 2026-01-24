@@ -1,0 +1,551 @@
+{
+  "schema": "periodic.table.v1",
+  "table": "principle",
+  "elements": [
+    {
+      "domain": "identity_access_lite",
+      "group": "security",
+      "id": "pr.auth.challenge_response_only",
+      "name": "Challenge-response auth",
+      "schema": "periodic.element.v1",
+      "summary": "Auth must use explicit challenge-response signatures to prevent replay and ambiguous signing.",
+      "table": "principle",
+      "tags": [
+        "auth",
+        "security"
+      ]
+    },
+    {
+      "domain": "identity_access_lite",
+      "group": "security",
+      "id": "pr.auth.no_browser_secrets",
+      "name": "No browser secrets",
+      "schema": "periodic.element.v1",
+      "summary": "No long-lived secrets (API keys, private keys) may be persisted client-side in the browser.",
+      "table": "principle",
+      "tags": [
+        "auth",
+        "security"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.backpressure",
+      "table": "principle",
+      "group": "performance",
+      "name": "Backpressure",
+      "summary": "Protect systems under load.",
+      "tags": [
+        "performance"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.closed_keys_open_extensions",
+      "table": "principle",
+      "group": "architecture",
+      "name": "Closed keys, open extensions",
+      "summary": "Closed schema keys; x_* extension namespace.",
+      "tags": [
+        "design"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.comp.separation_of_duties",
+      "table": "principle",
+      "group": "enterprise",
+      "name": "Separation of duties",
+      "summary": "Critical actions require independent roles (e.g., author vs approver).",
+      "tags": [
+        "security",
+        "compliance",
+        "audit"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.composability",
+      "table": "principle",
+      "group": "architecture",
+      "name": "Composability",
+      "summary": "Small correct parts compose into large systems.",
+      "tags": [
+        "design"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.contracts_over_conventions",
+      "table": "principle",
+      "group": "architecture",
+      "name": "Contracts over conventions",
+      "summary": "Machine-checkable over \"everyone knows\".",
+      "tags": [
+        "design"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.cost_awareness",
+      "table": "principle",
+      "group": "economics",
+      "name": "Cost awareness",
+      "summary": "Expose ongoing costs and commitments.",
+      "tags": [
+        "economics"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.default_safe",
+      "table": "principle",
+      "group": "security",
+      "name": "Default safe",
+      "summary": "Safe defaults; opt-in risk.",
+      "tags": [
+        "security"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.determinism",
+      "table": "principle",
+      "group": "proof",
+      "name": "Determinism",
+      "summary": "Same input -> same output, with receipts.",
+      "tags": [
+        "proof"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.dist.idempotent_messages",
+      "table": "principle",
+      "group": "distributed_truth",
+      "name": "Idempotent messages",
+      "summary": "Messages and operations are designed to be safely replayed under retries/duplication.",
+      "tags": [
+        "resilience",
+        "quality",
+        "x.distributed"
+      ],
+      "domain": "distributed_truth"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.dist.safety_over_liveness",
+      "table": "principle",
+      "group": "distributed_truth",
+      "name": "Safety over liveness",
+      "summary": "Prefer correctness/safety over availability when forced by failure modes.",
+      "tags": [
+        "quality",
+        "resilience",
+        "x.distributed"
+      ],
+      "domain": "distributed_truth"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.explicitness",
+      "table": "principle",
+      "group": "clarity",
+      "name": "Make it explicit",
+      "summary": "Explicit contracts beat implicit magic.",
+      "tags": [
+        "design"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.forkability",
+      "table": "principle",
+      "group": "governance",
+      "name": "Forkability",
+      "summary": "Let communities fork overlays without breaking spine.",
+      "tags": [
+        "governance"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.graceful_degradation",
+      "table": "principle",
+      "group": "resilience",
+      "name": "Graceful degradation",
+      "summary": "Fail safely with useful UX.",
+      "tags": [
+        "resilience"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.human_readable_failures",
+      "table": "principle",
+      "group": "proof",
+      "name": "Human-readable failures",
+      "summary": "Gates fail with precise fix instructions.",
+      "tags": [
+        "proof"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.idempotence",
+      "table": "principle",
+      "group": "resilience",
+      "name": "Idempotence",
+      "summary": "Safe retries via idempotent operations.",
+      "tags": [
+        "resilience"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "principle",
+      "domain": "kernel_runtime",
+      "group": "kernel_runtime",
+      "id": "pr.kernel.isolation_first",
+      "name": "Isolation first",
+      "summary": "Isolation and containment come before convenience.",
+      "tags": [
+        "security",
+        "x.kernel"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "principle",
+      "domain": "kernel_runtime",
+      "group": "kernel_runtime",
+      "id": "pr.kernel.least_privilege",
+      "name": "Least privilege",
+      "summary": "Isolation boundaries follow least-privilege to minimize blast radius of faults and compromise.",
+      "tags": [
+        "security",
+        "x.runtime"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "principle",
+      "domain": "kernel_runtime",
+      "group": "runtime",
+      "id": "pr.kernel.least_privilege_runtime",
+      "name": "Least privilege runtime",
+      "summary": "Runtime privileges are minimized to reduce blast radius.",
+      "tags": [
+        "x.safety",
+        "x.runtime"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.least_privilege",
+      "table": "principle",
+      "group": "security",
+      "name": "Least privilege",
+      "summary": "Default-deny; grant minimal rights.",
+      "tags": [
+        "security"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.membrane.backward_compat",
+      "table": "principle",
+      "group": "membrane",
+      "name": "Backward compatibility",
+      "summary": "Boundary changes preserve compatibility within a declared window.",
+      "tags": [
+        "quality",
+        "change"
+      ],
+      "domain": "membrane"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.membrane.failure_isolation",
+      "table": "principle",
+      "group": "membrane",
+      "name": "Failure isolation",
+      "summary": "Boundary failures are isolated; upstream/downstream degradation is explicit and controlled.",
+      "tags": [
+        "resilience",
+        "quality"
+      ],
+      "domain": "membrane"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.monotonic_evidence",
+      "table": "principle",
+      "group": "proof",
+      "name": "Monotonic evidence",
+      "summary": "Evidence should accumulate, not disappear.",
+      "tags": [
+        "proof"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.no_blob_magnets",
+      "table": "principle",
+      "group": "quality",
+      "name": "No blob magnets",
+      "summary": "Avoid giant free-text fields as control planes.",
+      "tags": [
+        "quality"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.non_custodial_default",
+      "table": "principle",
+      "group": "sovereignty",
+      "name": "Non-custodial by default",
+      "summary": "User holds keys; kits are opt-in.",
+      "tags": [
+        "sovereignty"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.observability",
+      "table": "principle",
+      "group": "ops",
+      "name": "Observability",
+      "summary": "Measure what matters (golden signals).",
+      "tags": [
+        "ops"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.privacy.minimal_disclosure",
+      "table": "principle",
+      "group": "privacy",
+      "name": "Minimal disclosure",
+      "summary": "Only disclose what is necessary for the verifier to accept a claim; avoid oversharing by default.",
+      "tags": [
+        "privacy",
+        "sovereignty",
+        "identity"
+      ],
+      "domain": "privacy_compute"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.progressive_disclosure",
+      "table": "principle",
+      "group": "ux",
+      "name": "Progressive disclosure",
+      "summary": "Show complexity only when needed.",
+      "tags": [
+        "ux"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.reg.safety_case_integrity",
+      "table": "principle",
+      "group": "regulated_safety",
+      "name": "Safety case integrity",
+      "summary": "Safety/compliance evidence must be complete, traceable, and resistant to tampering.",
+      "tags": [
+        "governance",
+        "proof",
+        "x.audit",
+        "x.safety"
+      ],
+      "domain": "regulated_safety"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.reg.separation_of_duties",
+      "table": "principle",
+      "group": "regulated_safety",
+      "name": "Separation of duties",
+      "summary": "Critical actions require distinct roles to reduce fraud/accident risk.",
+      "tags": [
+        "governance",
+        "security",
+        "proof"
+      ],
+      "domain": "regulated_safety"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.reversible_by_default",
+      "table": "principle",
+      "group": "change",
+      "name": "Reversible by default",
+      "summary": "Prefer reversible changes; gate irreversible.",
+      "tags": [
+        "change"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "principle",
+      "domain": "hard_real_time",
+      "group": "hard_real_time",
+      "id": "pr.rt.bounded_time",
+      "name": "Bounded time",
+      "summary": "Time budgets are first-class invariants; missing deadlines is a correctness failure.",
+      "tags": [
+        "performance",
+        "x.real_time"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "principle",
+      "domain": "hard_real_time",
+      "group": "real_time",
+      "id": "pr.rt.deadline_safety_first",
+      "name": "Deadline safety first",
+      "summary": "Safety of deadlines takes precedence over throughput or convenience.",
+      "tags": [
+        "x.safety",
+        "x.time",
+        "x.real_time"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "principle",
+      "domain": "hard_real_time",
+      "group": "hard_real_time",
+      "id": "pr.rt.safety_over_features",
+      "name": "Safety over features",
+      "summary": "Prefer safety and bounded behavior over feature richness under time constraints.",
+      "tags": [
+        "x.timing",
+        "x.rt"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.separation_of_concerns",
+      "table": "principle",
+      "group": "architecture",
+      "name": "Separation of concerns",
+      "summary": "Different things change for different reasons.",
+      "tags": [
+        "design"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "principle",
+      "domain": "game_simulation",
+      "group": "game_simulation",
+      "id": "pr.sim.determinism_over_variance",
+      "name": "Determinism over variance",
+      "summary": "Prefer deterministic behavior for replay/debuggability.",
+      "tags": [
+        "determinism",
+        "x.sim"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "principle",
+      "domain": "game_simulation",
+      "group": "game_simulation",
+      "id": "pr.sim.determinism_over_vibes",
+      "name": "Determinism over vibes",
+      "summary": "Deterministic behavior is prioritized over non-replayable emergent variation in critical simulation paths.",
+      "tags": [
+        "determinism",
+        "x.simulation"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "principle",
+      "domain": "game_simulation",
+      "group": "simulation",
+      "id": "pr.sim.state_reproducible",
+      "name": "State must be reproducible",
+      "summary": "Simulation state evolution must be reproducible from declared inputs.",
+      "tags": [
+        "determinism",
+        "proof",
+        "x.simulation"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.single_source_of_truth",
+      "table": "principle",
+      "group": "data",
+      "name": "Single source of truth",
+      "summary": "One canonical record; normalize on write.",
+      "tags": [
+        "data"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.small_basis_set",
+      "table": "principle",
+      "group": "architecture",
+      "name": "Small basis set",
+      "summary": "Correctness first; breadth via bonding.",
+      "tags": [
+        "design"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.state_completeness",
+      "table": "principle",
+      "group": "ux",
+      "name": "State completeness",
+      "summary": "Every async path has pending/success/fail UX.",
+      "tags": [
+        "ux"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "pr.user_agency",
+      "table": "principle",
+      "group": "ux",
+      "name": "User agency",
+      "summary": "Users can understand and undo where possible.",
+      "tags": [
+        "ux"
+      ],
+      "domain": "internet_app"
+    }
+  ],
+  "version": "1"
+}

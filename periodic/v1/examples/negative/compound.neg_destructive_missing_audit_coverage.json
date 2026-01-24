@@ -1,0 +1,12 @@
+{
+  "schema": "periodic.compound.v1",
+  "id": "compound.neg_destructive_missing_audit_coverage",
+  "name": "NEGATIVE: destructive action missing audit coverage evidence",
+  "tables_version": "1",
+  "elements": [
+    "wf.privacy.data_delete",
+    "exp.feedback.modal_confirm",
+    "wf.audit.append_only_log",
+    "ev.audit.log_integrity"
+  ]
+}

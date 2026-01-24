@@ -1,0 +1,20 @@
+{
+  "elements": [
+    "cap.rt.deadlines",
+    "cap.rt.interrupts",
+    "ev.rt.latency_budget",
+    "ev.rt.latency_jitter_budget",
+    "ev.rt.priority_inversion_tests",
+    "ev.rt.wcet_analysis",
+    "pr.rt.bounded_time",
+    "pr.rt.deadline_safety_first",
+    "pr.rt.safety_over_features",
+    "wf.rt.priority_inversion_mitigation",
+    "wf.rt.scheduler",
+    "wf.rt.scheduling"
+  ],
+  "id": "compound.hard_real_time_controller",
+  "name": "Hard real-time controller (deadline constrained)",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1"
+}

@@ -1,0 +1,31 @@
+{
+  "schema": "periodic.system.v1",
+  "version": 1,
+  "id": "system.ifc_timing_channel_b.v1",
+  "name": "Counterexample: timing channel B",
+  "description": "Differs only by via.timing_id (aka timing side-channel policy identity).",
+  "compounds": [
+    {
+      "as": "wallet",
+      "path": "periodic/v1/examples/compound.wallet_commitments_boundary.json"
+    },
+    {
+      "as": "service_a",
+      "path": "periodic/v1/examples/compound.saas_service_a_boundary.json"
+    }
+  ],
+  "links": [
+    {
+      "from": "wallet",
+      "to": "service_a",
+      "via": {
+        "cap": "cap.membrane.http_api.taint_precise",
+        "endorsement_id": "endorse.alpha",
+        "control_flow_id": "ifc.guard.branchmask_v1",
+        "termination_id": "ifc.term.timeout_v1",
+        "timing_id": "ifc.time.bucket_v2",
+        "notes": "Timing-channel policy variant v2"
+      }
+    }
+  ]
+}

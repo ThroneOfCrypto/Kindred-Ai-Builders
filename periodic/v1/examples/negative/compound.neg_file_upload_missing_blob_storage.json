@@ -1,0 +1,9 @@
+{
+  "schema": "periodic.compound.v1",
+  "id": "compound.neg_file_upload_missing_blob_storage",
+  "name": "NEGATIVE: file upload without blob storage",
+  "tables_version": "1",
+  "elements": [
+    "exp.input.file_upload"
+  ]
+}

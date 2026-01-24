@@ -1,0 +1,29 @@
+{
+  "elements": [
+    "cap.auth.session",
+    "cap.observability.metrics",
+    "cap.security.rbac",
+    "cap.storage.sql",
+    "ev.audit.log_integrity",
+    "ev.backup.policy",
+    "ev.change.migration_plan",
+    "ev.data.constraints",
+    "ev.data.schema_versioning",
+    "ev.monitor.errors",
+    "ev.monitor.latency",
+    "ev.monitor.saturation",
+    "ev.monitor.traffic",
+    "ev.proof.receipts",
+    "exp.display.activity_log",
+    "exp.display.table",
+    "exp.feedback.permission_denied",
+    "exp.input.filters",
+    "wf.audit.append_only_log",
+    "wf.ops.backup_restore",
+    "wf.pipeline.stage_progression"
+  ],
+  "id": "compound.crm_pipeline_with_activity_log",
+  "name": "CRM-lite pipeline with activity log",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1"
+}

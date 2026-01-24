@@ -1,0 +1,61 @@
+{
+  "schema": "periodic.bond_ruleset.v1",
+  "version": "1",
+  "rules": [
+    {
+      "schema": "periodic.bond_rule.v1",
+      "id": "bond.privacy_selective_disclosure_requires_spec_and_verification",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "cap.privacy.selective_disclosure"
+        ]
+      },
+      "require": {
+        "all_of": [
+          "wf.privacy.presentation",
+          "wf.privacy.verify_presentation",
+          "ev.privacy.verification_spec",
+          "ev.privacy.verification_tests",
+          "pr.privacy.minimal_disclosure"
+        ]
+      },
+      "message": "Selective disclosure claim requires a defined verification protocol spec + verification tests, and a minimal-disclosure principle."
+    },
+    {
+      "schema": "periodic.bond_rule.v1",
+      "id": "bond.privacy_presentation_requires_nonce_and_replay_protection",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "wf.privacy.presentation"
+        ]
+      },
+      "require": {
+        "all_of": [
+          "wf.privacy.verifier_challenge_nonce",
+          "wf.privacy.replay_protection",
+          "ev.privacy.replay_protection_evidence"
+        ]
+      },
+      "message": "Proof presentations must be replay-resistant: verifier challenge/nonce workflow + replay protection evidence."
+    },
+    {
+      "schema": "periodic.bond_rule.v1",
+      "id": "bond.privacy_proof_carrying_claim_requires_replay_protection",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "cap.privacy.proof_carrying_claim"
+        ]
+      },
+      "require": {
+        "all_of": [
+          "wf.privacy.replay_protection",
+          "ev.privacy.replay_protection_evidence"
+        ]
+      },
+      "message": "Proof-carrying claims require replay protection (nonce/window strategy + evidence)."
+    }
+  ]
+}

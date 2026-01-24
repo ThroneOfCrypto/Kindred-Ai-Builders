@@ -1,0 +1,26 @@
+{
+  "elements": [
+    "cap.auth.oauth",
+    "cap.auth.session",
+    "cap.observability.metrics",
+    "cap.security.rbac",
+    "cap.storage.sql",
+    "ev.backup.policy",
+    "ev.change.migration_plan",
+    "ev.data.constraints",
+    "ev.data.schema_versioning",
+    "ev.monitor.errors",
+    "ev.monitor.latency",
+    "ev.monitor.saturation",
+    "ev.monitor.traffic",
+    "ev.proof.receipts",
+    "exp.display.profile",
+    "exp.display.settings",
+    "exp.feedback.permission_denied",
+    "wf.ops.backup_restore"
+  ],
+  "id": "compound.oauth_sso_basic",
+  "name": "OAuth SSO SaaS (session + OAuth)",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1"
+}

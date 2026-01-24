@@ -1,0 +1,16 @@
+{
+  "elements": [
+    "cap.ml_platform.lifecycle",
+    "ev.ml.drift_monitoring_evidence",
+    "ev.ml.model_registry_record",
+    "ev.ml.reproducibility_linkage",
+    "ev.proof.receipts.sha256_bytes",
+    "wf.ml.drift_monitoring",
+    "wf.ml.model_registry",
+    "wf.proof.verify_receipts"
+  ],
+  "id": "compound.ml_platform_lite_inference",
+  "name": "ML platform-lite inference service (registry + drift + proof linkage)",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1"
+}

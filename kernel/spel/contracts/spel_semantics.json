@@ -1,0 +1,7 @@
+{
+  "canonicalization": "required",
+  "equivalence_relation": "explicit",
+  "context_handling": "first_class",
+  "composition_rules": "explicit",
+  "explainability": "hostile_reader_safe"
+}

@@ -1,0 +1,29 @@
+{
+  "elements": [
+    "cap.auth.session",
+    "cap.observability.metrics",
+    "cap.security.rbac",
+    "cap.storage.sql",
+    "ev.audit.destructive_ops_audit",
+    "ev.audit.log_integrity",
+    "ev.backup.policy",
+    "ev.change.migration_plan",
+    "ev.data.constraints",
+    "ev.data.schema_versioning",
+    "ev.monitor.errors",
+    "ev.monitor.latency",
+    "ev.monitor.saturation",
+    "ev.monitor.traffic",
+    "ev.proof.receipts",
+    "exp.display.settings",
+    "exp.feedback.modal_confirm",
+    "exp.feedback.permission_denied",
+    "wf.audit.append_only_log",
+    "wf.ops.backup_restore",
+    "wf.security.rotation"
+  ],
+  "id": "compound.security_rotation",
+  "name": "Security rotation workflow (destructive ops)",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1"
+}

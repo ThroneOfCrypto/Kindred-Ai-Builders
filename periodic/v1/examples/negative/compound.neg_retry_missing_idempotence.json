@@ -1,0 +1,11 @@
+{
+  "schema": "periodic.compound.v1",
+  "id": "compound.neg_retry_missing_idempotence",
+  "name": "NEGATIVE: Retry without idempotence principle",
+  "tables_version": "1",
+  "elements": [
+    "wf.resilience.retry_backoff",
+    "cap.integrations.api_client",
+    "exp.feedback.retry_banner"
+  ]
+}

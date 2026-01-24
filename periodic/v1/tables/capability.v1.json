@@ -1,0 +1,635 @@
+{
+  "elements": [
+    {
+      "domain": "internet_app",
+      "group": "internal",
+      "id": "cap._internal.noop",
+      "name": "No-op internal marker",
+      "schema": "periodic.element.v1",
+      "summary": "Internal placeholder element used to keep base bond ruleset deterministically sorted; not used by examples.",
+      "table": "capability",
+      "tags": [
+        "x.internal"
+      ]
+    },
+    {
+      "domain": "internet_app",
+      "group": "auth",
+      "id": "cap.auth.oauth",
+      "name": "OAuth provider",
+      "schema": "periodic.element.v1",
+      "summary": "External auth provider integration.",
+      "table": "capability",
+      "tags": [
+        "auth",
+        "integration"
+      ]
+    },
+    {
+      "domain": "internet_app",
+      "group": "auth",
+      "id": "cap.auth.session",
+      "name": "Session auth",
+      "schema": "periodic.element.v1",
+      "summary": "Cookie/session-based auth boundary.",
+      "table": "capability",
+      "tags": [
+        "auth"
+      ]
+    },
+    {
+      "domain": "internet_app",
+      "group": "ops",
+      "id": "cap.cache.cdn",
+      "name": "CDN cache",
+      "schema": "periodic.element.v1",
+      "summary": "Edge caching for performance.",
+      "table": "capability",
+      "tags": [
+        "ops"
+      ]
+    },
+    {
+      "domain": "distributed_truth",
+      "group": "distributed_truth",
+      "id": "cap.dist.consensus",
+      "name": "Consensus",
+      "schema": "periodic.element.v1",
+      "summary": "Consensus capability for replicated state machines (e.g., leader election + log agreement).",
+      "table": "capability",
+      "tags": [
+        "resilience",
+        "determinism",
+        "proof",
+        "x.distributed"
+      ]
+    },
+    {
+      "domain": "distributed_truth",
+      "group": "distributed_truth",
+      "id": "cap.dist.replication",
+      "name": "Replication",
+      "schema": "periodic.element.v1",
+      "summary": "Replication of state/log across nodes with failure handling.",
+      "table": "capability",
+      "tags": [
+        "resilience",
+        "data",
+        "proof",
+        "x.distributed"
+      ]
+    },
+    {
+      "domain": "internet_app",
+      "group": "ops",
+      "id": "cap.feature_flags",
+      "name": "Feature flags",
+      "schema": "periodic.element.v1",
+      "summary": "Gate capabilities safely.",
+      "table": "capability",
+      "tags": [
+        "ops"
+      ]
+    },
+    {
+      "domain": "internet_app",
+      "group": "identity",
+      "id": "cap.identity.did",
+      "name": "Decentralized identity (DID)",
+      "schema": "periodic.element.v1",
+      "summary": "Optional DID support, non-custodial.",
+      "table": "capability",
+      "tags": [
+        "identity",
+        "noncustodial"
+      ]
+    },
+    {
+      "domain": "identity_access_lite",
+      "group": "auth",
+      "id": "cap.identity.reusable_account",
+      "name": "Reusable identity account",
+      "schema": "periodic.element.v1",
+      "summary": "Reusable account/login anchored in wallet signatures and/or portable identity bindings.",
+      "table": "capability",
+      "tags": [
+        "auth",
+        "identity"
+      ]
+    },
+    {
+      "domain": "internet_app",
+      "group": "integration",
+      "id": "cap.integrations.api_client",
+      "name": "API client",
+      "schema": "periodic.element.v1",
+      "summary": "Call third-party APIs with retries.",
+      "table": "capability",
+      "tags": [
+        "integration"
+      ]
+    },
+    {
+      "domain": "internet_app",
+      "group": "integration",
+      "id": "cap.integrations.webhooks",
+      "name": "Webhooks",
+      "schema": "periodic.element.v1",
+      "summary": "Outbound event delivery to external systems.",
+      "table": "capability",
+      "tags": [
+        "integration"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "capability",
+      "domain": "kernel_runtime",
+      "group": "kernel_runtime",
+      "id": "cap.kernel.abi_contract",
+      "name": "ABI/contract",
+      "summary": "Versioned ABI or runtime contract with compatibility guarantees.",
+      "tags": [
+        "x.stability",
+        "x.runtime"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "capability",
+      "domain": "kernel_runtime",
+      "group": "runtime",
+      "id": "cap.kernel.isolation",
+      "name": "Isolation model",
+      "summary": "Isolation between execution contexts (process/VM/container).",
+      "tags": [
+        "x.safety",
+        "resilience",
+        "x.runtime"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "capability",
+      "domain": "kernel_runtime",
+      "group": "runtime",
+      "id": "cap.kernel.sandbox",
+      "name": "Sandboxing",
+      "summary": "Sandbox environment enforcing least privilege and containment.",
+      "tags": [
+        "x.safety",
+        "resilience",
+        "x.runtime"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "capability",
+      "domain": "kernel_runtime",
+      "group": "kernel_runtime",
+      "id": "cap.kernel.toolchain",
+      "name": "Toolchain build",
+      "summary": "Build artifacts produced by toolchain with verification needs.",
+      "tags": [
+        "proof",
+        "x.kernel"
+      ]
+    },
+    {
+      "domain": "membrane",
+      "group": "membrane",
+      "id": "cap.membrane.breaking_change",
+      "name": "Breaking change at boundary",
+      "schema": "periodic.element.v1",
+      "summary": "A boundary change that breaks consumer compatibility. Requires a version bump and compatibility window discipline.",
+      "table": "capability",
+      "tags": [
+        "change",
+        "integration"
+      ]
+    },
+    {
+      "domain": "membrane",
+      "group": "membrane",
+      "id": "cap.membrane.event_stream",
+      "name": "Event stream boundary",
+      "schema": "periodic.element.v1",
+      "summary": "An event stream boundary (pub/sub). Requires schema/contract versioning and compatibility tests.",
+      "table": "capability",
+      "tags": [
+        "integration"
+      ]
+    },
+    {
+      "domain": "membrane",
+      "group": "membrane",
+      "id": "cap.membrane.file_artifact_exchange",
+      "name": "File/artifact exchange boundary",
+      "schema": "periodic.element.v1",
+      "summary": "Integration via files/artifacts (exports/imports). Requires schema/versioning discipline and integrity checks.",
+      "table": "capability",
+      "tags": [
+        "integration",
+        "data"
+      ]
+    },
+    {
+      "domain": "membrane",
+      "group": "membrane",
+      "id": "cap.membrane.http_api",
+      "name": "HTTP API boundary",
+      "schema": "periodic.element.v1",
+      "summary": "A network API boundary intended for inter-domain integration. Requires explicit interface spec, versioning, and compatibility tests.",
+      "table": "capability",
+      "tags": [
+        "integration"
+      ]
+    },
+    {
+      "domain": "membrane",
+      "group": "membrane",
+      "id": "cap.membrane.http_api.taint_all",
+      "name": "HTTP API boundary (taint all)",
+      "schema": "periodic.element.v1",
+      "summary": "HTTP API boundary that conservatively propagates taint across the membrane (sticky taint). Safety-first default for high-stakes domains; may reduce usability via over-tainting.",
+      "table": "capability",
+      "tags": [
+        "integration",
+        "x.ifc"
+      ]
+    },
+    {
+      "domain": "membrane",
+      "group": "membrane",
+      "id": "cap.membrane.http_api.taint_none",
+      "name": "HTTP API boundary (taint none)",
+      "schema": "periodic.element.v1",
+      "summary": "HTTP API boundary that drops taint at the membrane (fully de-tainting). High usability but risky for privacy/safety domains unless justified by evidence/declassification.",
+      "table": "capability",
+      "tags": [
+        "integration",
+        "x.ifc"
+      ]
+    },
+    {
+      "domain": "membrane",
+      "group": "membrane",
+      "id": "cap.membrane.http_api.taint_precise",
+      "name": "HTTP API boundary (taint precise)",
+      "schema": "periodic.element.v1",
+      "summary": "HTTP API boundary with precise taint propagation: taint is preserved until an explicit sanitizer/declassifier discharges it. Balanced correctness/usability.",
+      "table": "capability",
+      "tags": [
+        "integration",
+        "x.ifc"
+      ]
+    },
+    {
+      "domain": "membrane",
+      "group": "membrane",
+      "id": "cap.membrane.webhook_boundary",
+      "name": "Webhook boundary",
+      "schema": "periodic.element.v1",
+      "summary": "A webhook boundary (HTTP callbacks). Requires an explicit interface spec, contract versioning, and compatibility tests.",
+      "table": "capability",
+      "tags": [
+        "integration"
+      ]
+    },
+    {
+      "domain": "ml_platform",
+      "group": "ml_platform",
+      "id": "cap.ml_platform.lifecycle",
+      "name": "ML lifecycle surface",
+      "schema": "periodic.element.v1",
+      "summary": "System claims ML model training/evaluation/deploy lifecycle responsibility (even if externalized).",
+      "table": "capability",
+      "tags": [
+        "data",
+        "ops",
+        "proof",
+        "x.ml"
+      ]
+    },
+    {
+      "domain": "internet_app",
+      "group": "notify",
+      "id": "cap.notifications.email",
+      "name": "Email notifications",
+      "schema": "periodic.element.v1",
+      "summary": "Send email notifications via kit.",
+      "table": "capability",
+      "tags": [
+        "integration",
+        "notify"
+      ]
+    },
+    {
+      "domain": "internet_app",
+      "group": "notify",
+      "id": "cap.notifications.push",
+      "name": "Push notifications",
+      "schema": "periodic.element.v1",
+      "summary": "Mobile/web push channel.",
+      "table": "capability",
+      "tags": [
+        "integration",
+        "notify"
+      ]
+    },
+    {
+      "domain": "internet_app",
+      "group": "notify",
+      "id": "cap.notifications.sms",
+      "name": "SMS notifications",
+      "schema": "periodic.element.v1",
+      "summary": "SMS channel (cost + compliance).",
+      "table": "capability",
+      "tags": [
+        "integration",
+        "notify"
+      ]
+    },
+    {
+      "domain": "internet_app",
+      "group": "ops",
+      "id": "cap.observability.logging",
+      "name": "Structured logs",
+      "schema": "periodic.element.v1",
+      "summary": "Correlatable structured logging.",
+      "table": "capability",
+      "tags": [
+        "evidence",
+        "ops"
+      ]
+    },
+    {
+      "domain": "internet_app",
+      "group": "ops",
+      "id": "cap.observability.metrics",
+      "name": "Metrics",
+      "schema": "periodic.element.v1",
+      "summary": "Collect latency/traffic/error/saturation.",
+      "table": "capability",
+      "tags": [
+        "evidence",
+        "ops"
+      ]
+    },
+    {
+      "domain": "internet_app",
+      "group": "ops",
+      "id": "cap.observability.tracing",
+      "name": "Tracing",
+      "schema": "periodic.element.v1",
+      "summary": "Distributed tracing for latency diagnosis.",
+      "table": "capability",
+      "tags": [
+        "evidence",
+        "ops"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "cap.privacy.proof_carrying_claim",
+      "table": "capability",
+      "group": "privacy",
+      "name": "Proof-carrying claims",
+      "summary": "Claims are presented with verifiable proofs; verification does not require full disclosure.",
+      "tags": [
+        "privacy",
+        "proof",
+        "security"
+      ],
+      "domain": "privacy_compute"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "cap.privacy.selective_disclosure",
+      "table": "capability",
+      "group": "privacy",
+      "name": "Selective disclosure",
+      "summary": "Ability to prove a claim while revealing only the minimum necessary information.",
+      "tags": [
+        "privacy",
+        "proof",
+        "identity"
+      ],
+      "domain": "privacy_compute"
+    },
+    {
+      "domain": "internet_app",
+      "group": "jobs",
+      "id": "cap.queue.jobs",
+      "name": "Job queue",
+      "schema": "periodic.element.v1",
+      "summary": "Background job queue + workers.",
+      "table": "capability",
+      "tags": [
+        "jobs"
+      ]
+    },
+    {
+      "domain": "internet_app",
+      "group": "ops",
+      "id": "cap.rate_limit",
+      "name": "Rate limiting",
+      "schema": "periodic.element.v1",
+      "summary": "Protect services from abuse.",
+      "table": "capability",
+      "tags": [
+        "ops",
+        "security"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "capability",
+      "domain": "hard_real_time",
+      "group": "real_time",
+      "id": "cap.rt.deadlines",
+      "name": "Deadlines",
+      "summary": "Explicit deadline constraints on operations.",
+      "tags": [
+        "x.time",
+        "x.safety",
+        "x.real_time"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "capability",
+      "domain": "hard_real_time",
+      "group": "real_time",
+      "id": "cap.rt.interrupts",
+      "name": "Interrupt-driven execution",
+      "summary": "Interrupt sources drive scheduling and preemption behavior.",
+      "tags": [
+        "x.time",
+        "x.safety",
+        "x.real_time"
+      ]
+    },
+    {
+      "domain": "internet_app",
+      "group": "search",
+      "id": "cap.search.fulltext",
+      "name": "Full-text search",
+      "schema": "periodic.element.v1",
+      "summary": "Index for text search + filters.",
+      "table": "capability",
+      "tags": [
+        "search"
+      ]
+    },
+    {
+      "domain": "internet_app",
+      "group": "security",
+      "id": "cap.security.abac",
+      "name": "Attribute-based access control",
+      "schema": "periodic.element.v1",
+      "summary": "Policy rules based on attributes.",
+      "table": "capability",
+      "tags": [
+        "authz",
+        "security"
+      ]
+    },
+    {
+      "domain": "internet_app",
+      "group": "security",
+      "id": "cap.security.rbac",
+      "name": "Role-based access control",
+      "schema": "periodic.element.v1",
+      "summary": "Roles + permissions + guards.",
+      "table": "capability",
+      "tags": [
+        "authz",
+        "security"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "capability",
+      "domain": "game_simulation",
+      "group": "simulation",
+      "id": "cap.sim.deterministic_tick",
+      "name": "Deterministic tick",
+      "summary": "Fixed-step deterministic simulation tick for replayability.",
+      "tags": [
+        "determinism",
+        "x.time",
+        "x.simulation"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "capability",
+      "domain": "game_simulation",
+      "group": "simulation",
+      "id": "cap.sim.netcode",
+      "name": "Simulation netcode",
+      "summary": "Networked simulation requiring sync, reconciliation, or rollback strategies.",
+      "tags": [
+        "determinism",
+        "resilience",
+        "x.simulation"
+      ]
+    },
+    {
+      "domain": "internet_app",
+      "group": "storage",
+      "id": "cap.storage.blob",
+      "name": "Blob storage",
+      "schema": "periodic.element.v1",
+      "summary": "Object storage for user files.",
+      "table": "capability",
+      "tags": [
+        "blob",
+        "storage"
+      ]
+    },
+    {
+      "domain": "internet_app",
+      "group": "storage",
+      "id": "cap.storage.kv",
+      "name": "Key-value storage",
+      "schema": "periodic.element.v1",
+      "summary": "Fast key-based persistence.",
+      "table": "capability",
+      "tags": [
+        "data",
+        "storage"
+      ]
+    },
+    {
+      "domain": "internet_app",
+      "group": "storage",
+      "id": "cap.storage.sql",
+      "name": "SQL database",
+      "schema": "periodic.element.v1",
+      "summary": "Relational persistence for core records.",
+      "table": "capability",
+      "tags": [
+        "data",
+        "storage"
+      ]
+    },
+    {
+      "domain": "no_pack_test",
+      "group": "test",
+      "id": "cap.test.no_pack_dummy",
+      "name": "No-pack dummy capability",
+      "schema": "periodic.element.v1",
+      "summary": "Regression-only element in domain 'no_pack_test' to ensure pack completeness is enforced.",
+      "table": "capability",
+      "tags": [
+        "x.test"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "capability",
+      "domain": "kernel_runtime",
+      "group": "toolchain",
+      "id": "cap.toolchain.deterministic_builds",
+      "name": "Deterministic builds",
+      "summary": "Build outputs are reproducible under identical inputs/tooling.",
+      "tags": [
+        "proof",
+        "determinism",
+        "x.runtime"
+      ]
+    },
+    {
+      "domain": "internet_app",
+      "group": "value",
+      "id": "cap.value.escrow",
+      "name": "Escrow/conditional commitment",
+      "schema": "periodic.element.v1",
+      "summary": "Value locked under conditions (palette-selected).",
+      "table": "capability",
+      "tags": [
+        "irreversible.value",
+        "value"
+      ]
+    },
+    {
+      "domain": "internet_app",
+      "group": "value",
+      "id": "cap.value.wallet_tx",
+      "name": "Wallet transaction",
+      "schema": "periodic.element.v1",
+      "summary": "Non-custodial wallet signing + submit.",
+      "table": "capability",
+      "tags": [
+        "irreversible.value",
+        "value",
+        "wallet"
+      ]
+    }
+  ],
+  "schema": "periodic.table.v1",
+  "table": "capability",
+  "version": "1"
+}

@@ -1,0 +1,43 @@
+{
+  "schema": "periodic.bond_ruleset.v1",
+  "version": "1",
+  "rules": [
+    {
+      "schema": "periodic.bond_rule.v1",
+      "id": "bond.kernel_isolation_requires_boundary_tests",
+      "severity": "error",
+      "message": "Kernel/runtime isolation claims require explicit sandbox boundary tests and failure containment evidence.",
+      "when": {
+        "any_of": [
+          "cap.kernel.sandbox",
+          "cap.kernel.isolation"
+        ]
+      },
+      "require": {
+        "all_of": [
+          "ev.kernel.isolation_tests",
+          "pr.kernel.least_privilege_runtime"
+        ]
+      }
+    },
+    {
+      "schema": "periodic.bond_rule.v1",
+      "id": "bond.kernel_toolchain_requires_deterministic_receipts",
+      "severity": "error",
+      "message": "Toolchain/runtime build artifacts require deterministic receipts linkage to enable independent verification.",
+      "when": {
+        "any_of": [
+          "cap.kernel.toolchain"
+        ]
+      },
+      "require": {
+        "all_of": [
+          "wf.kernel.toolchain",
+          "cap.toolchain.deterministic_builds",
+          "ev.kernel.deterministic_build_evidence",
+          "ev.proof.receipts"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "schema": "periodic.bond_ruleset.v1",
+  "version": "1",
+  "rules": [
+    {
+      "schema": "periodic.bond_rule.v1",
+      "id": "bond.rt_deadlines_require_wcet_and_budget",
+      "severity": "error",
+      "message": "Hard real-time deadlines require explicit latency budget and WCET evidence to avoid unbounded timing failure.",
+      "when": {
+        "any_of": [
+          "cap.rt.deadlines",
+          "wf.rt.scheduling"
+        ]
+      },
+      "require": {
+        "all_of": [
+          "ev.rt.latency_budget",
+          "ev.rt.wcet_analysis",
+          "pr.rt.safety_over_features"
+        ]
+      }
+    },
+    {
+      "schema": "periodic.bond_rule.v1",
+      "id": "bond.rt_interrupts_require_priority_inversion_mitigation",
+      "severity": "error",
+      "message": "Interrupt-driven systems require explicit priority inversion mitigation workflow.",
+      "when": {
+        "any_of": [
+          "cap.rt.interrupts"
+        ]
+      },
+      "require": {
+        "all_of": [
+          "wf.rt.priority_inversion_mitigation"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "compound.neg_membrane_http_missing_compat_tests",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1",
+  "name": "NEGATIVE: membrane HTTP boundary missing compatibility tests",
+  "elements": [
+    "cap.membrane.http_api",
+    "ev.membrane.interface_spec",
+    "wf.membrane.contract_versioning",
+    "pr.membrane.backward_compat",
+    "pr.membrane.failure_isolation"
+  ]
+}

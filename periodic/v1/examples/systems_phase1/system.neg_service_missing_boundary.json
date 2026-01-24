@@ -1,0 +1,25 @@
+{
+  "schema": "periodic.system.v1",
+  "version": 1,
+  "id": "system.neg_service_missing_boundary",
+  "name": "NEGATIVE: link claims membrane but one compound lacks boundary element",
+  "compounds": [
+    {
+      "as": "a",
+      "path": "periodic/v1/examples/compound.saas_service_a_boundary.json"
+    },
+    {
+      "as": "b",
+      "path": "periodic/v1/examples/compound.saas_integrations_heavy.json"
+    }
+  ],
+  "links": [
+    {
+      "from": "a",
+      "to": "b",
+      "via": {
+        "cap": "cap.membrane.http_api"
+      }
+    }
+  ]
+}

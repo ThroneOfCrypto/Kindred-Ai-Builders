@@ -1,0 +1,17 @@
+{
+  "schema": "periodic.system.v1",
+  "id": "system.neg_alias_invalid",
+  "name": "NEGATIVE: System alias contains invalid characters",
+  "version": 1,
+  "compounds": [
+    {
+      "as": "content-api",
+      "path": "periodic/v1/examples/compound.wiki_basic.json"
+    },
+    {
+      "as": "wallet",
+      "path": "periodic/v1/examples/compound.wallet_commitments.json"
+    }
+  ],
+  "links": []
+}

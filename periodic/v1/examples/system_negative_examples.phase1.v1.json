@@ -1,0 +1,41 @@
+{
+  "schema": "periodic.system_negative_examples.v1",
+  "version": "1.0",
+  "cases": [
+    {
+      "id": "neg.system_alias_invalid",
+      "path": "periodic/v1/examples/systems_phase1/system.neg_alias_invalid.json",
+      "expect_errors": [
+        "system.alias.invalid"
+      ]
+    },
+    {
+      "id": "neg.system_waiver_bad_mitigation",
+      "path": "periodic/v1/examples/systems_phase1/system.neg_waiver_bad_mitigation.json",
+      "expect_errors": [
+        "system.waiver.mitigation.invalid"
+      ]
+    },
+    {
+      "id": "neg.system_waiver_bad_target",
+      "path": "periodic/v1/examples/systems_phase1/system.neg_waiver_bad_target.json",
+      "expect_errors": [
+        "system.waiver.target.invalid"
+      ]
+    },
+    {
+      "id": "neg.system_service_missing_boundary",
+      "path": "periodic/v1/examples/systems_phase1/system.neg_service_missing_boundary.json",
+      "expect_errors": [
+        "system.link.membrane_cap_missing_in_compound"
+      ]
+    },
+    {
+      "id": "neg.system_double_link_missing_endorsement_id",
+      "path": "periodic/v1/examples/systems_phase1/system.neg_wallet_service_a_double_link_missing_endorsement_id.json",
+      "expect_errors": [
+        "system.link.endorsement_id.required"
+      ]
+    }
+  ]
+}

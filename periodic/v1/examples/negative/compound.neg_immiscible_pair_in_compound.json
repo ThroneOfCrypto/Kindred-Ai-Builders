@@ -1,0 +1,10 @@
+{
+  "schema": "periodic.compound.v1",
+  "id": "compound.neg_immiscible_pair_in_compound",
+  "name": "NEGATIVE: Immiscible domains inside one compound",
+  "tables_version": "1",
+  "elements": [
+    "pr.idempotence",
+    "pr.dist.idempotent_messages"
+  ]
+}

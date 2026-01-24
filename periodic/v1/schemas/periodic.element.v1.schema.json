@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "periodic.element.v1.schema.json",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "table",
+    "group",
+    "name",
+    "summary"
+  ],
+  "properties": {
+    "schema": {
+      "const": "periodic.element.v1"
+    },
+    "id": {
+      "type": "string"
+    },
+    "table": {
+      "enum": [
+        "experience",
+        "workshop",
+        "capability",
+        "evidence",
+        "principle"
+      ]
+    },
+    "group": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "states_required": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "implies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requires": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "x_notes": {
+      "type": "string"
+    },
+    "domain": {
+      "type": "string",
+      "description": "Software domain this element belongs to (immiscible domains are prevented from mixing in a single compound, except via the neutral membrane domain)."
+    }
+  },
+  "additionalProperties": false
+}

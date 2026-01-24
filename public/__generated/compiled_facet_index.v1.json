@@ -1,0 +1,429 @@
+{
+  "schema": "kindred.compiled_facet_index.v1",
+  "tool": {
+    "rel": "tools/compile_facet_index.mjs",
+    "sha256": "ec7e264cf76d89c21bc040b4e1b4f538d5dd56f9a052b3da958747dd758d40ce"
+  },
+  "source": {
+    "rel": "blueprint/taxonomy/facet_registry.v1.json",
+    "sha256": "20b3e01eeec5243b296de94c1b846a806ca9a6c8f53da7474cef3a0d66b8c994"
+  },
+  "facets": [
+    {
+      "id": "palettes.select",
+      "owner_module_family": "kernel.palettes.manifest",
+      "visibility": "runtime",
+      "options": [
+        {
+          "id": "identity_access",
+          "label": "Identity & Access",
+          "ref": {
+            "kind": "palette_id",
+            "palette_id": "identity_access"
+          },
+          "meta": {
+            "title": "Identity & Access",
+            "description": "auth, roles, permissions, DID/VC hooks",
+            "tags": [
+              "auth",
+              "roles",
+              "DID/VC",
+              "accounts"
+            ]
+          }
+        },
+        {
+          "id": "communication_social",
+          "label": "Communication & Social",
+          "ref": {
+            "kind": "palette_id",
+            "palette_id": "communication_social"
+          },
+          "meta": {
+            "title": "Communication & Social",
+            "description": "messaging, notifications, comms surfaces",
+            "tags": [
+              "messaging",
+              "notifications",
+              "social",
+              "presence"
+            ]
+          }
+        },
+        {
+          "id": "content_media",
+          "label": "Content & Media",
+          "ref": {
+            "kind": "palette_id",
+            "palette_id": "content_media"
+          },
+          "meta": {
+            "title": "Content & Media",
+            "description": "microsites, pages, media, docs",
+            "tags": [
+              "pages",
+              "docs",
+              "media",
+              "publishing"
+            ]
+          }
+        },
+        {
+          "id": "knowledge_learning",
+          "label": "Knowledge & Learning",
+          "ref": {
+            "kind": "palette_id",
+            "palette_id": "knowledge_learning"
+          },
+          "meta": {
+            "title": "Knowledge & Learning",
+            "description": "docs, onboarding, education, knowledge bases",
+            "tags": [
+              "onboarding",
+              "tutorials",
+              "kb",
+              "curriculum"
+            ]
+          }
+        },
+        {
+          "id": "search_navigation",
+          "label": "Search & Navigation",
+          "ref": {
+            "kind": "palette_id",
+            "palette_id": "search_navigation"
+          },
+          "meta": {
+            "title": "Search & Navigation",
+            "description": "discovery, indexing policy, cross-platform search surfaces",
+            "tags": [
+              "search",
+              "indexing",
+              "taxonomy",
+              "routing"
+            ]
+          }
+        },
+        {
+          "id": "matching_recommendation",
+          "label": "Matching & Recommendation",
+          "ref": {
+            "kind": "palette_id",
+            "palette_id": "matching_recommendation"
+          },
+          "meta": {
+            "title": "Matching & Recommendation",
+            "description": "rankings, fit, relevance, recommendations",
+            "tags": [
+              "ranking",
+              "fit",
+              "relevance",
+              "recommendations"
+            ]
+          }
+        },
+        {
+          "id": "collaboration_work",
+          "label": "Collaboration & Work",
+          "ref": {
+            "kind": "palette_id",
+            "palette_id": "collaboration_work"
+          },
+          "meta": {
+            "title": "Collaboration & Work",
+            "description": "workflows, projects, tasks, multi-user coordination",
+            "tags": [
+              "tasks",
+              "workflows",
+              "teams",
+              "projects"
+            ]
+          }
+        },
+        {
+          "id": "commerce_value",
+          "label": "Commerce & Value",
+          "ref": {
+            "kind": "palette_id",
+            "palette_id": "commerce_value"
+          },
+          "meta": {
+            "title": "Commerce & Value",
+            "description": "payments, pricing, value exchange; Cardano-default via export kits",
+            "tags": [
+              "payments",
+              "pricing",
+              "value",
+              "checkout"
+            ]
+          }
+        },
+        {
+          "id": "governance_policy",
+          "label": "Governance & Policy",
+          "ref": {
+            "kind": "palette_id",
+            "palette_id": "governance_policy"
+          },
+          "meta": {
+            "title": "Governance & Policy",
+            "description": "rules, proposals, decision-making, authority models",
+            "tags": [
+              "proposals",
+              "rules",
+              "votes",
+              "policy"
+            ]
+          }
+        },
+        {
+          "id": "reputation_safety",
+          "label": "Reputation & Safety",
+          "ref": {
+            "kind": "palette_id",
+            "palette_id": "reputation_safety"
+          },
+          "meta": {
+            "title": "Reputation & Safety",
+            "description": "trust signals, moderation, safety constraints",
+            "tags": [
+              "moderation",
+              "trust",
+              "abuse",
+              "safety"
+            ]
+          }
+        },
+        {
+          "id": "game_incentives",
+          "label": "Game & Incentives",
+          "ref": {
+            "kind": "palette_id",
+            "palette_id": "game_incentives"
+          },
+          "meta": {
+            "title": "Game & Incentives",
+            "description": "rewards, staking-like incentives, engagement loops",
+            "tags": [
+              "rewards",
+              "loops",
+              "badges",
+              "staking-like"
+            ]
+          }
+        },
+        {
+          "id": "automation_workflows",
+          "label": "Automation & Workflows",
+          "ref": {
+            "kind": "palette_id",
+            "palette_id": "automation_workflows"
+          },
+          "meta": {
+            "title": "Automation & Workflows",
+            "description": "automations, agents, triggers, orchestration",
+            "tags": [
+              "triggers",
+              "agents",
+              "orchestration",
+              "schedules"
+            ]
+          }
+        },
+        {
+          "id": "infrastructure_data_files",
+          "label": "Infrastructure, Data & Files",
+          "ref": {
+            "kind": "palette_id",
+            "palette_id": "infrastructure_data_files"
+          },
+          "meta": {
+            "title": "Infrastructure, Data & Files",
+            "description": "storage, data sources, file systems, evidence bundles",
+            "tags": [
+              "storage",
+              "data",
+              "files",
+              "evidence"
+            ]
+          }
+        },
+        {
+          "id": "connection_integration",
+          "label": "Connections & Integrations",
+          "ref": {
+            "kind": "palette_id",
+            "palette_id": "connection_integration"
+          },
+          "meta": {
+            "title": "Connections & Integrations",
+            "description": "APIs, webhooks, external systems",
+            "tags": [
+              "APIs",
+              "webhooks",
+              "integrations",
+              "connectors"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "kit.auth.select",
+      "owner_module_family": "kit.kits.selection_refs",
+      "visibility": "runtime",
+      "options": [
+        {
+          "id": "none",
+          "label": "None",
+          "ref": {
+            "kind": "none"
+          },
+          "meta": null
+        },
+        {
+          "id": "kit__auth_stub",
+          "label": "Auth Stub",
+          "ref": {
+            "kind": "library_kit",
+            "slug": "kit__auth_stub"
+          },
+          "meta": {
+            "title": "",
+            "description": "An opt-in placeholder describing how an auth provider kit would be integrated (no custodial defaults).",
+            "tags": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "kit.db.select",
+      "owner_module_family": "kit.kits.selection_refs",
+      "visibility": "runtime",
+      "options": [
+        {
+          "id": "none",
+          "label": "None",
+          "ref": {
+            "kind": "none"
+          },
+          "meta": null
+        }
+      ]
+    },
+    {
+      "id": "kit.storage.select",
+      "owner_module_family": "kit.kits.selection_refs",
+      "visibility": "runtime",
+      "options": [
+        {
+          "id": "none",
+          "label": "None",
+          "ref": {
+            "kind": "none"
+          },
+          "meta": null
+        }
+      ]
+    },
+    {
+      "id": "kit.email.select",
+      "owner_module_family": "kit.kits.selection_refs",
+      "visibility": "runtime",
+      "options": [
+        {
+          "id": "none",
+          "label": "None",
+          "ref": {
+            "kind": "none"
+          },
+          "meta": null
+        },
+        {
+          "id": "kit__email_stub",
+          "label": "Email Stub",
+          "ref": {
+            "kind": "library_kit",
+            "slug": "kit__email_stub"
+          },
+          "meta": {
+            "title": "",
+            "description": "An opt-in placeholder describing how an email provider kit would be integrated (no custodial defaults).",
+            "tags": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "kit.payments.select",
+      "owner_module_family": "kit.kits.selection_refs",
+      "visibility": "runtime",
+      "options": [
+        {
+          "id": "none",
+          "label": "None",
+          "ref": {
+            "kind": "none"
+          },
+          "meta": null
+        }
+      ]
+    },
+    {
+      "id": "kit.search.select",
+      "owner_module_family": "kit.kits.selection_refs",
+      "visibility": "runtime",
+      "options": [
+        {
+          "id": "none",
+          "label": "None",
+          "ref": {
+            "kind": "none"
+          },
+          "meta": null
+        }
+      ]
+    },
+    {
+      "id": "kit.ops.select",
+      "owner_module_family": "kit.kits.selection_refs",
+      "visibility": "runtime",
+      "options": [
+        {
+          "id": "none",
+          "label": "None",
+          "ref": {
+            "kind": "none"
+          },
+          "meta": null
+        },
+        {
+          "id": "kit__local_env_stub",
+          "label": "Local Env Stub",
+          "ref": {
+            "kind": "library_kit",
+            "slug": "kit__local_env_stub"
+          },
+          "meta": {
+            "title": "",
+            "description": "An opt-in placeholder describing how an local environment kit would be integrated (no custodial defaults).",
+            "tags": []
+          }
+        },
+        {
+          "id": "kit__external_registry_stub",
+          "label": "External Registry Stub",
+          "ref": {
+            "kind": "library_kit",
+            "slug": "kit__external_registry_stub"
+          },
+          "meta": {
+            "title": "",
+            "description": "An opt-in placeholder describing how an external artifact registry kit would be integrated (no custodial defaults).",
+            "tags": []
+          }
+        }
+      ]
+    }
+  ]
+}

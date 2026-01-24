@@ -1,0 +1,26 @@
+{
+  "elements": [
+    "cap.observability.metrics",
+    "cap.value.wallet_tx",
+    "ev.monitor.errors",
+    "ev.monitor.latency",
+    "ev.monitor.saturation",
+    "ev.monitor.traffic",
+    "ev.proof.receipts",
+    "ev.resilience.idempotency_key",
+    "ev.security.secrets_never_client",
+    "exp.feedback.retry_banner",
+    "exp.value.commit_confirm",
+    "exp.value.tx_status",
+    "exp.value.wallet_connect",
+    "pr.idempotence",
+    "wf.resilience.idempotency_key",
+    "wf.resilience.retry_backoff",
+    "wf.tx.lifecycle",
+    "wf.value.commit_gate"
+  ],
+  "id": "compound.wallet_commitments",
+  "name": "Value commitments (wallet tx)",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1"
+}

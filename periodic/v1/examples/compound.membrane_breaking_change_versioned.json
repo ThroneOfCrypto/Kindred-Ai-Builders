@@ -1,0 +1,16 @@
+{
+  "id": "compound.membrane_breaking_change_versioned",
+  "name": "Membrane breaking change with explicit version bump",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1",
+  "elements": [
+    "cap.membrane.breaking_change",
+    "cap.membrane.http_api",
+    "ev.membrane.interface_spec",
+    "ev.membrane.version_bump",
+    "pr.membrane.backward_compat",
+    "pr.membrane.failure_isolation",
+    "wf.membrane.compatibility_tests",
+    "wf.membrane.contract_versioning"
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "schema": "periodic.domain_completion.v1",
+  "version": "1",
+  "packs": [
+    {
+      "pack_id": "compliance_lite",
+      "status": "complete",
+      "min_positive_examples": 1,
+      "min_negative_examples": 1
+    },
+    {
+      "pack_id": "distributed_truth",
+      "status": "complete",
+      "min_positive_examples": 1,
+      "min_negative_examples": 1
+    },
+    {
+      "pack_id": "game_simulation",
+      "status": "complete",
+      "min_positive_examples": 1,
+      "min_negative_examples": 1
+    },
+    {
+      "pack_id": "hard_real_time",
+      "status": "complete",
+      "min_positive_examples": 1,
+      "min_negative_examples": 1
+    },
+    {
+      "pack_id": "identity_access_lite",
+      "status": "complete",
+      "min_positive_examples": 1,
+      "min_negative_examples": 1
+    },
+    {
+      "pack_id": "internet_app",
+      "status": "complete",
+      "min_positive_examples": 8,
+      "min_negative_examples": 1
+    },
+    {
+      "pack_id": "kernel_runtime",
+      "status": "complete",
+      "min_positive_examples": 1,
+      "min_negative_examples": 1
+    },
+    {
+      "pack_id": "membrane",
+      "status": "complete",
+      "min_positive_examples": 2,
+      "min_negative_examples": 2
+    },
+    {
+      "pack_id": "ml_platform",
+      "status": "complete",
+      "min_positive_examples": 1,
+      "min_negative_examples": 1
+    },
+    {
+      "pack_id": "privacy_compute",
+      "status": "complete",
+      "min_positive_examples": 1,
+      "min_negative_examples": 1
+    },
+    {
+      "pack_id": "proof_lane",
+      "status": "complete",
+      "min_positive_examples": 1,
+      "min_negative_examples": 1
+    },
+    {
+      "pack_id": "regulated_safety",
+      "status": "complete",
+      "min_positive_examples": 1,
+      "min_negative_examples": 1
+    }
+  ]
+}

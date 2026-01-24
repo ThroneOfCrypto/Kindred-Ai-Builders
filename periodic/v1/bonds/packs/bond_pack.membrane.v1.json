@@ -1,0 +1,81 @@
+{
+  "rules": [
+    {
+      "id": "bond.membrane_boundary_requires_contract_and_tests",
+      "message": "Membrane boundaries require an explicit interface spec, contract versioning, compatibility tests, and backward compatibility.",
+      "require": {
+        "all_of": [
+          "ev.membrane.interface_spec",
+          "wf.membrane.contract_versioning",
+          "wf.membrane.compatibility_tests",
+          "pr.membrane.backward_compat"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "cap.membrane.http_api",
+          "cap.membrane.event_stream",
+          "cap.membrane.file_artifact_exchange",
+          "cap.membrane.webhook_boundary"
+        ]
+      }
+    },
+    {
+      "id": "bond.membrane_boundary_requires_failure_isolation",
+      "message": "Membrane boundaries must declare failure isolation so one domain\u2019s outage does not cascade across the boundary.",
+      "require": {
+        "all_of": [
+          "pr.membrane.failure_isolation"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "cap.membrane.http_api",
+          "cap.membrane.event_stream",
+          "cap.membrane.file_artifact_exchange",
+          "cap.membrane.webhook_boundary"
+        ]
+      }
+    },
+    {
+      "id": "bond.membrane_breaking_change_requires_version_bump",
+      "message": "Breaking boundary changes require a contract version bump and explicit evidence of that bump.",
+      "require": {
+        "all_of": [
+          "ev.membrane.interface_spec",
+          "wf.membrane.contract_versioning",
+          "ev.membrane.version_bump"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "cap.membrane.breaking_change"
+        ]
+      }
+    },
+    {
+      "id": "bond.membrane_compat_tests_require_spec",
+      "message": "Compatibility tests require an explicit interface specification.",
+      "require": {
+        "all_of": [
+          "ev.membrane.interface_spec"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "wf.membrane.compatibility_tests"
+        ]
+      }
+    }
+  ],
+  "schema": "periodic.bond_ruleset.v1",
+  "version": "1"
+}

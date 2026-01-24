@@ -1,0 +1,9 @@
+{
+  "schema": "spel.semantics.v1",
+  "version": 1,
+  "endorsement_semantics": "identity_bearing",
+  "declassification_semantics": "identity_bearing",
+  "control_flow_semantics": "identity_bearing",
+  "termination_semantics": "identity_bearing",
+  "timing_semantics": "identity_bearing"
+}

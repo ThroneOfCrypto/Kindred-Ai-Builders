@@ -1,0 +1,25 @@
+{
+  "compounds": [
+    {
+      "as": "wallet",
+      "path": "periodic/v1/examples/compound.wallet_commitments.json"
+    },
+    {
+      "as": "chain",
+      "path": "periodic/v1/examples/compound.distributed_truth_basic.json"
+    }
+  ],
+  "id": "system.neg_wallet_chain_missing_boundary",
+  "links": [
+    {
+      "from": "wallet",
+      "to": "chain",
+      "via": {
+        "cap": "cap.membrane.http_api"
+      }
+    }
+  ],
+  "name": "NEGATIVE: link claims membrane but compounds lack boundary elements",
+  "schema": "periodic.system.v1",
+  "version": 1
+}

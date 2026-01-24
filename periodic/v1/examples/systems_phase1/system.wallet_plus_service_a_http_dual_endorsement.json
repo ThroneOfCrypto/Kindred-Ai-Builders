@@ -1,0 +1,36 @@
+{
+  "schema": "periodic.system.v1",
+  "version": 1,
+  "id": "system.wallet_plus_service_a_http_dual_endorsement",
+  "name": "Wallet app (internet) + service_a service (internet) over HTTP membrane with two endorsement identities",
+  "compounds": [
+    {
+      "as": "wallet",
+      "path": "periodic/v1/examples/compound.wallet_commitments_boundary.json"
+    },
+    {
+      "as": "service_a",
+      "path": "periodic/v1/examples/compound.saas_service_a_boundary.json"
+    }
+  ],
+  "links": [
+    {
+      "from": "wallet",
+      "to": "service_a",
+      "via": {
+        "cap": "cap.membrane.http_api",
+        "endorsement_id": "endorse.alpha",
+        "notes": "First sanitizer identity (identity-bearing endorsement semantics)."
+      }
+    },
+    {
+      "from": "wallet",
+      "to": "service_a",
+      "via": {
+        "cap": "cap.membrane.http_api",
+        "endorsement_id": "endorse.beta",
+        "notes": "Second sanitizer identity (identity-bearing endorsement semantics)."
+      }
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "packs": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "default_enabled": {
+            "type": "boolean"
+          },
+          "description": {
+            "type": "string"
+          },
+          "id": {
+            "pattern": "^[a-z0-9_]+$",
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "domains": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9_]+$"
+            },
+            "minItems": 1
+          }
+        },
+        "required": [
+          "id",
+          "path",
+          "default_enabled",
+          "domains"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "schema": {
+      "const": "periodic.bond_packs.v1",
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema",
+    "version",
+    "packs"
+  ],
+  "schema": "http://json-schema.org/draft-07/schema#",
+  "title": "periodic.bond_packs.v1",
+  "type": "object"
+}

@@ -1,0 +1,14 @@
+{
+  "schema": "periodic.compound.v1",
+  "tables_version": "1",
+  "id": "compound.neg_privacy_missing_replay_protection",
+  "name": "NEG: privacy selective disclosure missing replay protection",
+  "elements": [
+    "cap.privacy.selective_disclosure",
+    "pr.privacy.minimal_disclosure",
+    "wf.privacy.presentation",
+    "wf.privacy.verify_presentation",
+    "ev.privacy.verification_spec",
+    "ev.privacy.verification_tests"
+  ]
+}

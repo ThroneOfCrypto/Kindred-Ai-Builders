@@ -1,0 +1,29 @@
+{
+  "schema": "periodic.system.v1",
+  "version": 1,
+  "id": "system.ifc_implicit_flow_guard_a.v1",
+  "name": "Counterexample: implicit flow guard A (same obligations, different control-flow meaning)",
+  "description": "This system differs only by control-flow guard identity (via.control_flow_id). Weak meaning (obligations-only) stays the same. Strong meaning changes because membrane meaning includes control-flow identities unless explicitly collapsed.",
+  "compounds": [
+    {
+      "as": "wallet",
+      "path": "periodic/v1/examples/compound.wallet_commitments_boundary.json"
+    },
+    {
+      "as": "service_a",
+      "path": "periodic/v1/examples/compound.saas_service_a_boundary.json"
+    }
+  ],
+  "links": [
+    {
+      "from": "wallet",
+      "to": "service_a",
+      "via": {
+        "cap": "cap.membrane.http_api.taint_precise",
+        "endorsement_id": "endorse.alpha",
+        "control_flow_id": "ifc.guard.branchmask_v1",
+        "notes": "Implicit-flow handled by branch-masking guard (variant v1)."
+      }
+    }
+  ]
+}

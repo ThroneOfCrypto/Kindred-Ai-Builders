@@ -1,0 +1,9 @@
+{
+  "elements": [
+    "wf.auth.agent_access"
+  ],
+  "id": "compound.neg_identity_agent_missing_receipts",
+  "name": "NEG: agent access missing access receipts",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1"
+}

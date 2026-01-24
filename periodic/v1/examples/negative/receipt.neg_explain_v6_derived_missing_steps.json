@@ -1,0 +1,48 @@
+{
+  "schema": "spel.proof_receipt.v1",
+  "version": 1,
+  "profile": "phase1",
+  "explain_trace_v6": [
+    {
+      "v": 6,
+      "profile": "phase1",
+      "policy": {
+        "uri": "spel://policy/profile/phase1",
+        "digest": null,
+        "semantics_digest": null
+      },
+      "kind": "compound",
+      "target": {
+        "compound_id": "compound.demo"
+      },
+      "rule_id": "rule.demo.evidence_binding",
+      "severity": "error",
+      "obligations": {
+        "obligation_ids": [
+          "ob.demo"
+        ]
+      },
+      "evidence": {
+        "evidence_ids": [
+          "ev.demo"
+        ],
+        "missing_evidence_ids": [],
+        "missing_evidence_binding_ids": []
+      },
+      "evidence_satisfied_by": [
+        {
+          "evidence_id": "ev.demo",
+          "satisfaction_mode": "derived",
+          "derivation_steps": [],
+          "satisfied_by": [
+            {
+              "kind": "compound_element",
+              "element_id": "ev.demo"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explain_trace_v6_hash_sha256": "93817ad651f25db46607f06ce577176f372e276033dad4c73fc463d34ff7be4a"
+}

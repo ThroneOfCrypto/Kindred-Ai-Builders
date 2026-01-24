@@ -1,0 +1,9 @@
+{
+  "id": "compound.neg_membrane_compat_missing_spec",
+  "schema": "periodic.compound.v1",
+  "version": "1",
+  "elements": [
+    "wf.membrane.compatibility_tests"
+  ],
+  "director_notes": "Negative regression: compatibility tests without interface spec must fail."
+}

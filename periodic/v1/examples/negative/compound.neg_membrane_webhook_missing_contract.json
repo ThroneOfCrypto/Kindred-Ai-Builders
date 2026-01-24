@@ -1,0 +1,10 @@
+{
+  "elements": [
+    "cap.membrane.webhook_boundary",
+    "pr.membrane.failure_isolation"
+  ],
+  "id": "compound.neg_membrane_webhook_missing_contract",
+  "name": "NEGATIVE: membrane webhook boundary without contract/tests",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1"
+}

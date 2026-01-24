@@ -1,0 +1,19 @@
+{
+  "schema": "periodic.compound.v1",
+  "id": "compound.neg_sim_determinism_missing_replay",
+  "name": "NEG: Simulation determinism missing replay tests",
+  "domain": "game_simulation",
+  "capabilities": [
+    "cap.sim.deterministic_tick"
+  ],
+  "workshops": [
+    "wf.sim.fixed_timestep"
+  ],
+  "evidence": [],
+  "principles": [
+    "pr.sim.determinism_over_variance"
+  ],
+  "tags": [
+    "x.neg"
+  ]
+}

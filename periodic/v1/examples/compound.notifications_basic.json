@@ -1,0 +1,26 @@
+{
+  "elements": [
+    "cap.auth.session",
+    "cap.notifications.email",
+    "cap.observability.metrics",
+    "cap.security.rbac",
+    "cap.storage.sql",
+    "ev.backup.policy",
+    "ev.change.migration_plan",
+    "ev.data.constraints",
+    "ev.data.schema_versioning",
+    "ev.monitor.errors",
+    "ev.monitor.latency",
+    "ev.monitor.saturation",
+    "ev.monitor.traffic",
+    "ev.proof.receipts",
+    "exp.display.settings",
+    "exp.feedback.permission_denied",
+    "wf.notifications.opt_in",
+    "wf.ops.backup_restore"
+  ],
+  "id": "compound.notifications_basic",
+  "name": "Notifications basic (email) with opt-in",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1"
+}

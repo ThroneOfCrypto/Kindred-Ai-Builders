@@ -1,0 +1,11 @@
+{
+  "elements": [
+    "cap.sim.deterministic_tick",
+    "wf.sim.fixed_timestep",
+    "pr.sim.state_reproducible"
+  ],
+  "id": "compound.neg_sim_missing_replay_tests",
+  "name": "NEG: deterministic simulation missing replay determinism evidence",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1"
+}

@@ -1,0 +1,26 @@
+{
+  "elements": [
+    "cap.auth.session",
+    "cap.observability.metrics",
+    "cap.security.rbac",
+    "cap.storage.sql",
+    "ev.backup.policy",
+    "ev.change.migration_plan",
+    "ev.data.constraints",
+    "ev.data.schema_versioning",
+    "ev.monitor.errors",
+    "ev.monitor.latency",
+    "ev.monitor.saturation",
+    "ev.monitor.traffic",
+    "ev.proof.receipts",
+    "exp.display.analytics_dashboard",
+    "exp.display.table",
+    "exp.feedback.permission_denied",
+    "exp.input.filters",
+    "wf.ops.backup_restore"
+  ],
+  "id": "compound.analytics_dashboard_ops",
+  "name": "Analytics dashboard (ops-facing)",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1"
+}

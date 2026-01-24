@@ -1,0 +1,10 @@
+{
+  "schema": "periodic.compound.v1",
+  "id": "compound.neg_activity_log_missing_audit_integrity",
+  "name": "NEGATIVE: activity log without audit integrity",
+  "tables_version": "1",
+  "elements": [
+    "exp.display.activity_log",
+    "wf.audit.append_only_log"
+  ]
+}

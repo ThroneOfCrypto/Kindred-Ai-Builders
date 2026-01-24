@@ -1,0 +1,18 @@
+{
+  "schema": "periodic.compound.v1",
+  "tables_version": "1",
+  "id": "compound.enterprise_compliance_lite",
+  "name": "Enterprise compliance-lite (minimal)",
+  "elements": [
+    "cap.security.rbac",
+    "ev.audit.log_integrity",
+    "ev.comp.change_control_record",
+    "ev.comp.sod_controls",
+    "ev.comp.traceability_matrix",
+    "exp.feedback.permission_denied",
+    "pr.comp.separation_of_duties",
+    "wf.audit.append_only_log",
+    "wf.comp.change_control",
+    "wf.comp.traceability"
+  ]
+}

@@ -1,0 +1,1036 @@
+{
+  "schema": "periodic.table.v1",
+  "table": "workshop",
+  "elements": [
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.audit.append_only_log",
+      "table": "workshop",
+      "group": "governance",
+      "name": "Append-only audit log",
+      "summary": "Every decision emits an immutable-ish event.",
+      "tags": [
+        "audit"
+      ],
+      "required_states": [
+        "emit",
+        "persist",
+        "verify"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "domain": "identity_access_lite",
+      "group": "auth",
+      "id": "wf.auth.agent_access",
+      "name": "Agent access workflow",
+      "schema": "periodic.element.v1",
+      "summary": "Non-interactive access flow for agents, using receipts or proofs rather than user sessions.",
+      "table": "workshop",
+      "tags": [
+        "auth",
+        "x.agent"
+      ]
+    },
+    {
+      "domain": "identity_access_lite",
+      "group": "auth",
+      "id": "wf.auth.did_binding",
+      "name": "DID binding",
+      "schema": "periodic.element.v1",
+      "summary": "Bind a wallet auth method to a portable DID identity anchor.",
+      "table": "workshop",
+      "tags": [
+        "auth",
+        "identity"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.auth.session_login",
+      "table": "workshop",
+      "group": "auth",
+      "name": "Session login workflow",
+      "summary": "Credentials -> session -> logout.",
+      "tags": [
+        "auth"
+      ],
+      "required_states": [
+        "unauthenticated",
+        "authenticating",
+        "authenticated",
+        "error"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "domain": "identity_access_lite",
+      "group": "auth",
+      "id": "wf.auth.session_tokens",
+      "name": "Session token issuance",
+      "schema": "periodic.element.v1",
+      "summary": "Issue short-lived session tokens/cookies after auth.",
+      "table": "workshop",
+      "tags": [
+        "auth"
+      ]
+    },
+    {
+      "domain": "identity_access_lite",
+      "group": "auth",
+      "id": "wf.auth.wallet_login",
+      "name": "Wallet-based login",
+      "schema": "periodic.element.v1",
+      "summary": "Challenge-response login using wallet message signing.",
+      "table": "workshop",
+      "tags": [
+        "auth",
+        "identity"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.change.migration",
+      "table": "workshop",
+      "group": "ops",
+      "name": "Migration workflow",
+      "summary": "Plan -> migrate -> verify -> rollback.",
+      "tags": [
+        "change",
+        "ops"
+      ],
+      "required_states": [
+        "plan",
+        "migrate",
+        "verify",
+        "rollback"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.collab.invites",
+      "table": "workshop",
+      "group": "collab",
+      "name": "Invites & membership",
+      "summary": "Invite -> accept -> role assign.",
+      "tags": [
+        "authz",
+        "collab"
+      ],
+      "required_states": [
+        "invite",
+        "pending",
+        "accepted",
+        "declined",
+        "expired"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.comp.change_control",
+      "table": "workshop",
+      "group": "enterprise",
+      "name": "Change control",
+      "summary": "Propose -> review -> approve -> implement -> verify.",
+      "tags": [
+        "approval",
+        "audit",
+        "compliance"
+      ],
+      "required_states": [
+        "propose",
+        "in_review",
+        "approved",
+        "implemented",
+        "verified"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.comp.traceability",
+      "table": "workshop",
+      "group": "enterprise",
+      "name": "Requirements traceability",
+      "summary": "Map requirements to implementation and verification artifacts.",
+      "tags": [
+        "audit",
+        "compliance"
+      ],
+      "required_states": [
+        "requirement",
+        "implementation",
+        "verification"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.compliance.consent",
+      "table": "workshop",
+      "group": "privacy",
+      "name": "Consent management",
+      "summary": "Collect -> audit -> revoke.",
+      "tags": [
+        "audit",
+        "privacy"
+      ],
+      "required_states": [
+        "collect",
+        "audit",
+        "revoke"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.content.draft_review_publish",
+      "table": "workshop",
+      "group": "content",
+      "name": "Draft-review-publish",
+      "summary": "Content lifecycle with review gate.",
+      "tags": [
+        "approval",
+        "content"
+      ],
+      "required_states": [
+        "draft",
+        "in_review",
+        "published",
+        "rejected"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.data.export",
+      "table": "workshop",
+      "group": "data",
+      "name": "Data export",
+      "summary": "Request -> generate -> deliver -> expire.",
+      "tags": [
+        "data"
+      ],
+      "required_states": [
+        "request",
+        "generating",
+        "ready",
+        "delivered",
+        "expired",
+        "error"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.data.import",
+      "table": "workshop",
+      "group": "data",
+      "name": "Data import",
+      "summary": "Upload -> validate -> import -> report.",
+      "tags": [
+        "blob",
+        "data"
+      ],
+      "required_states": [
+        "upload",
+        "validate",
+        "import",
+        "complete",
+        "error"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.dist.leader_election",
+      "table": "workshop",
+      "group": "distributed_truth",
+      "name": "Leader election",
+      "summary": "Leader election process for coordination under failure.",
+      "tags": [
+        "resilience",
+        "determinism",
+        "x.distributed"
+      ],
+      "domain": "distributed_truth"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.dist.log_replication",
+      "table": "workshop",
+      "group": "distributed_truth",
+      "name": "Log replication",
+      "summary": "Replicated log workflow: append, replicate, commit, apply with invariants.",
+      "tags": [
+        "resilience",
+        "data",
+        "x.distributed"
+      ],
+      "domain": "distributed_truth"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.dist.snapshot_restore",
+      "table": "workshop",
+      "group": "distributed_truth",
+      "name": "Snapshot and restore",
+      "summary": "Snapshotting and restoring replicated state for recovery and bootstrap.",
+      "tags": [
+        "resilience",
+        "data",
+        "x.distributed",
+        "x.ops"
+      ],
+      "domain": "distributed_truth"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.integrations.webhook_dedupe",
+      "table": "workshop",
+      "group": "integration",
+      "name": "Webhook deduplication",
+      "summary": "Receiver-side idempotent processing using event IDs + a dedupe store.",
+      "tags": [
+        "integration",
+        "resilience",
+        "x.idempotence"
+      ],
+      "required_states": [
+        "identify_event",
+        "dedupe_check",
+        "persist_seen",
+        "process"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.integrations.webhook_delivery",
+      "table": "workshop",
+      "group": "integration",
+      "name": "Webhook delivery",
+      "summary": "Deliver events with retries/backoff + DLQ.",
+      "tags": [
+        "integration",
+        "resilience"
+      ],
+      "required_states": [
+        "enqueue",
+        "deliver",
+        "retry",
+        "dead_letter"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.integrations.webhook_replay_protection",
+      "table": "workshop",
+      "group": "integration",
+      "name": "Webhook replay protection",
+      "summary": "Reject replayed webhooks (timestamp/nonce window).",
+      "tags": [
+        "integration",
+        "security",
+        "resilience"
+      ],
+      "required_states": [
+        "timestamp_check",
+        "replay_window"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.integrations.webhook_signature_verify",
+      "table": "workshop",
+      "group": "integration",
+      "name": "Webhook signature verification",
+      "summary": "Verify webhook signatures to ensure authenticity.",
+      "tags": [
+        "integration",
+        "security"
+      ],
+      "required_states": [
+        "verify_signature"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.jobs.background",
+      "table": "workshop",
+      "group": "ops",
+      "name": "Background jobs",
+      "summary": "Queue worker lifecycle with retries.",
+      "tags": [
+        "jobs",
+        "resilience"
+      ],
+      "required_states": [
+        "enqueue",
+        "run",
+        "retry",
+        "dead_letter"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "workshop",
+      "domain": "kernel_runtime",
+      "group": "kernel_runtime",
+      "id": "wf.kernel.abi_versioning",
+      "name": "ABI versioning",
+      "summary": "Versioning rules for runtime/ABI changes and compatibility testing.",
+      "tags": [
+        "x.stability",
+        "x.runtime"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "workshop",
+      "domain": "kernel_runtime",
+      "group": "runtime",
+      "id": "wf.kernel.boundary_testing",
+      "name": "Boundary testing",
+      "summary": "Workflow for exercising and validating isolation boundaries.",
+      "tags": [
+        "x.safety",
+        "proof",
+        "x.runtime"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "workshop",
+      "domain": "kernel_runtime",
+      "group": "kernel_runtime",
+      "id": "wf.kernel.process_isolation",
+      "name": "Process isolation",
+      "summary": "Isolation primitives (process/container/VM) and failure containment.",
+      "tags": [
+        "security",
+        "resilience",
+        "x.runtime"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "workshop",
+      "domain": "kernel_runtime",
+      "group": "kernel_runtime",
+      "id": "wf.kernel.toolchain",
+      "name": "Toolchain workflow",
+      "summary": "Build/toolchain workflow with version pinning and reproducibility posture.",
+      "tags": [
+        "proof",
+        "x.runtime"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.membrane.compatibility_tests",
+      "table": "workshop",
+      "group": "membrane",
+      "name": "Compatibility tests",
+      "summary": "Consumer/provider compatibility checks for boundary contracts (schema, endpoints, event versions).",
+      "tags": [
+        "proof",
+        "integration"
+      ],
+      "domain": "membrane"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.membrane.contract_versioning",
+      "table": "workshop",
+      "group": "membrane",
+      "name": "Contract versioning",
+      "summary": "Version contracts across domain boundaries and enforce backward compatibility windows.",
+      "tags": [
+        "change",
+        "integration"
+      ],
+      "domain": "membrane"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.ml.drift_monitoring",
+      "table": "workshop",
+      "group": "ml_platform",
+      "name": "Drift monitoring workflow",
+      "summary": "Workflow to monitor data/prediction/performance drift and trigger alerts or retraining.",
+      "tags": [
+        "data",
+        "ops",
+        "quality",
+        "x.ml"
+      ],
+      "domain": "ml_platform"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.ml.model_registry",
+      "table": "workshop",
+      "group": "ml_platform",
+      "name": "Model registry workflow",
+      "summary": "Workflow to register, version, and promote models (can be external like MLflow/SageMaker/W&B).",
+      "tags": [
+        "data",
+        "ops",
+        "proof",
+        "x.ml"
+      ],
+      "domain": "ml_platform"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.moderation.appeals",
+      "table": "workshop",
+      "group": "moderation",
+      "name": "Moderation appeals",
+      "summary": "Appeal intake, review, decision, and audit trail.",
+      "tags": [
+        "moderation",
+        "audit",
+        "approval"
+      ],
+      "required_states": [
+        "submitted",
+        "reviewing",
+        "upheld",
+        "overturned",
+        "closed"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.moderation.queue_triage",
+      "table": "workshop",
+      "group": "moderation",
+      "name": "Moderation triage",
+      "summary": "Queue, decision, escalation, audit.",
+      "tags": [
+        "approval",
+        "moderation"
+      ],
+      "required_states": [
+        "queued",
+        "reviewing",
+        "approved",
+        "rejected",
+        "escalated"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.notifications.opt_in",
+      "table": "workshop",
+      "group": "notify",
+      "name": "Notifications opt-in",
+      "summary": "User consent + preferences.",
+      "tags": [
+        "notify",
+        "privacy"
+      ],
+      "required_states": [
+        "unset",
+        "choosing",
+        "saved"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.onboarding.progressive",
+      "table": "workshop",
+      "group": "onboarding",
+      "name": "Progressive onboarding",
+      "summary": "Conditional questions that compile to artifacts.",
+      "tags": [
+        "flow"
+      ],
+      "required_states": [
+        "start",
+        "step",
+        "complete",
+        "error"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.ops.backup_restore",
+      "table": "workshop",
+      "group": "ops",
+      "name": "Backup & restore",
+      "summary": "Backup schedule and restore drill.",
+      "tags": [
+        "evidence",
+        "ops"
+      ],
+      "required_states": [
+        "backup",
+        "verify",
+        "restore_test",
+        "report"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.ops.incident",
+      "table": "workshop",
+      "group": "ops",
+      "name": "Incident response",
+      "summary": "Detect -> triage -> mitigate -> postmortem.",
+      "tags": [
+        "evidence",
+        "ops"
+      ],
+      "required_states": [
+        "detect",
+        "triage",
+        "mitigate",
+        "recover",
+        "postmortem"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.pipeline.stage_progression",
+      "table": "workshop",
+      "group": "data",
+      "name": "Pipeline stage progression",
+      "summary": "Generic stage machine: move entities through stages with constraints and logging.",
+      "tags": [
+        "flow",
+        "data",
+        "change"
+      ],
+      "required_states": [
+        "created",
+        "staged",
+        "progressing",
+        "blocked",
+        "completed"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.privacy.data_delete",
+      "table": "workshop",
+      "group": "privacy",
+      "name": "Data deletion",
+      "summary": "Request -> verify -> delete -> confirm.",
+      "tags": [
+        "irreversible.data",
+        "privacy"
+      ],
+      "required_states": [
+        "request",
+        "verify",
+        "deleting",
+        "confirmed",
+        "error"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.privacy.presentation",
+      "table": "workshop",
+      "group": "privacy",
+      "name": "Proof presentation",
+      "summary": "Present a proof-carrying claim to a verifier as a bounded interaction (request/response).",
+      "tags": [
+        "privacy",
+        "proof",
+        "identity"
+      ],
+      "required_states": [
+        "request",
+        "present",
+        "accept_or_reject"
+      ],
+      "domain": "privacy_compute"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.privacy.replay_protection",
+      "table": "workshop",
+      "group": "privacy",
+      "name": "Replay protection",
+      "summary": "Reject stale or duplicated proof presentations using nonce/timestamp windowing and uniqueness checks.",
+      "tags": [
+        "privacy",
+        "security",
+        "resilience"
+      ],
+      "required_states": [
+        "timestamp_check",
+        "nonce_check",
+        "reject_replay"
+      ],
+      "domain": "privacy_compute"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.privacy.verifier_challenge",
+      "table": "workshop",
+      "group": "privacy",
+      "name": "Verifier challenge",
+      "summary": "Verifier issues a nonce/challenge bound to the session to prevent replay.",
+      "tags": [
+        "privacy",
+        "proof",
+        "security"
+      ],
+      "domain": "privacy_compute",
+      "required_states": [
+        "nonce_issue",
+        "bind_context"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.privacy.verifier_challenge_nonce",
+      "table": "workshop",
+      "group": "privacy",
+      "name": "Verifier challenge nonce",
+      "summary": "Verifier supplies a fresh challenge (nonce) to bind the proof to a specific request and prevent replay.",
+      "tags": [
+        "privacy",
+        "security",
+        "resilience"
+      ],
+      "required_states": [
+        "issue_challenge",
+        "bind_proof"
+      ],
+      "domain": "privacy_compute"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.privacy.verify_presentation",
+      "table": "workshop",
+      "group": "privacy",
+      "name": "Proof verification",
+      "summary": "Verifier checks proof validity against a published spec, including constraints and disclosed fields.",
+      "tags": [
+        "privacy",
+        "proof",
+        "security",
+        "evidence"
+      ],
+      "required_states": [
+        "verify",
+        "accept_or_reject"
+      ],
+      "domain": "privacy_compute"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.proof.verify_receipts",
+      "table": "workshop",
+      "group": "proof",
+      "name": "Verify receipts workflow",
+      "summary": "Verify artifact receipts (SHA-256 + bytes) against exported ship packs.",
+      "tags": [
+        "proof",
+        "determinism",
+        "quality"
+      ],
+      "required_states": [
+        "read",
+        "hash",
+        "compare",
+        "report"
+      ],
+      "domain": "proof_lane"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.rate_limit.enforcement",
+      "table": "workshop",
+      "group": "ops",
+      "name": "Rate limit enforcement",
+      "summary": "Throttle/ban with clear feedback.",
+      "tags": [
+        "ops",
+        "security"
+      ],
+      "required_states": [
+        "observe",
+        "throttle",
+        "ban",
+        "lift"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.reg.change_control",
+      "table": "workshop",
+      "group": "regulated_safety",
+      "name": "Change control",
+      "summary": "Controlled change management process: review, approval, traceability, and release discipline.",
+      "tags": [
+        "governance",
+        "change",
+        "proof",
+        "x.approval"
+      ],
+      "domain": "regulated_safety"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.reg.release_approval_gate",
+      "table": "workshop",
+      "group": "regulated_safety",
+      "name": "Release approval gate",
+      "summary": "Formal release gate with designated approvers; prevents unreviewed releases in regulated contexts.",
+      "tags": [
+        "governance",
+        "proof",
+        "x.approval"
+      ],
+      "domain": "regulated_safety"
+    },
+    {
+      "id": "wf.resilience.idempotency_key",
+      "summary": "Assign idempotency keys to side-effecting requests and deduplicate duplicates safely.",
+      "tags": [
+        "resilience",
+        "determinism"
+      ],
+      "schema": "periodic.element.v1",
+      "table": "workshop",
+      "group": "resilience",
+      "name": "Idempotency key workflow",
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.resilience.retry_backoff",
+      "table": "workshop",
+      "group": "resilience",
+      "name": "Retry with backoff",
+      "summary": "Standard retry/backoff state machine.",
+      "tags": [
+        "resilience"
+      ],
+      "required_states": [
+        "attempt",
+        "backoff",
+        "success",
+        "failed"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.roles.approval_two_person",
+      "table": "workshop",
+      "group": "governance",
+      "name": "Two-person approval",
+      "summary": "Requires two distinct approvers.",
+      "tags": [
+        "approval",
+        "governance"
+      ],
+      "required_states": [
+        "proposed",
+        "approved_one",
+        "approved_two",
+        "rejected"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "workshop",
+      "domain": "hard_real_time",
+      "group": "real_time",
+      "id": "wf.rt.priority_inversion_mitigation",
+      "name": "Priority inversion mitigation",
+      "summary": "Mitigate priority inversion (e.g., inheritance/ceiling) for real-time safety.",
+      "tags": [
+        "x.time",
+        "x.safety",
+        "x.real_time"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "workshop",
+      "domain": "hard_real_time",
+      "group": "hard_real_time",
+      "id": "wf.rt.priority_scheduling",
+      "name": "Priority scheduling",
+      "summary": "Priority-driven scheduling for predictable latency.",
+      "tags": [
+        "performance",
+        "x.real_time"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "workshop",
+      "domain": "hard_real_time",
+      "group": "real_time",
+      "id": "wf.rt.scheduler",
+      "name": "Scheduler design",
+      "summary": "Define scheduling policy and assumptions for deadline compliance.",
+      "tags": [
+        "x.time",
+        "x.safety",
+        "x.real_time"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "workshop",
+      "domain": "hard_real_time",
+      "group": "hard_real_time",
+      "id": "wf.rt.scheduling",
+      "name": "Scheduling design",
+      "summary": "Define scheduling policy and timing constraints.",
+      "tags": [
+        "x.timing",
+        "x.rt"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.search.indexing",
+      "table": "workshop",
+      "group": "search",
+      "name": "Search indexing",
+      "summary": "Write -> index -> refresh -> queryable.",
+      "tags": [
+        "search"
+      ],
+      "required_states": [
+        "write",
+        "index",
+        "refresh",
+        "ready",
+        "error"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.security.rotation",
+      "table": "workshop",
+      "group": "security",
+      "name": "Secret rotation",
+      "summary": "Rotate creds with downtime-safe steps.",
+      "tags": [
+        "irreversible.security",
+        "ops",
+        "security"
+      ],
+      "required_states": [
+        "plan",
+        "rotate",
+        "verify",
+        "complete",
+        "rollback"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "workshop",
+      "domain": "game_simulation",
+      "group": "simulation",
+      "id": "wf.sim.desync_detection",
+      "name": "Desync detection",
+      "summary": "Detect and surface divergence between simulation replicas.",
+      "tags": [
+        "determinism",
+        "proof",
+        "x.simulation"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "workshop",
+      "domain": "game_simulation",
+      "group": "simulation",
+      "id": "wf.sim.fixed_timestep",
+      "name": "Fixed timestep workflow",
+      "summary": "Workflow enforcing fixed timestep progression for determinism.",
+      "tags": [
+        "determinism",
+        "x.time",
+        "x.simulation"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "workshop",
+      "domain": "game_simulation",
+      "group": "game_simulation",
+      "id": "wf.sim.sync_model",
+      "name": "Simulation sync model",
+      "summary": "Define sync model (lockstep/rollback/state sync) for netcode.",
+      "tags": [
+        "resilience",
+        "x.sim"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.tx.lifecycle",
+      "table": "workshop",
+      "group": "value",
+      "name": "Transaction lifecycle",
+      "summary": "Prepare -> sign -> submit -> confirm/fail.",
+      "tags": [
+        "irreversible.value",
+        "value"
+      ],
+      "required_states": [
+        "prepare",
+        "sign",
+        "submit",
+        "pending",
+        "confirmed",
+        "failed"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "wf.value.commit_gate",
+      "table": "workshop",
+      "group": "value",
+      "name": "Irreversible commit gate",
+      "summary": "Two-step confirm for irreversible state.",
+      "tags": [
+        "irreversible.value",
+        "value"
+      ],
+      "required_states": [
+        "propose",
+        "confirm",
+        "commit",
+        "abort"
+      ],
+      "domain": "internet_app"
+    }
+  ],
+  "version": "1"
+}

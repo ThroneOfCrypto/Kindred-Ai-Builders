@@ -1,0 +1,13 @@
+{
+  "schema": "periodic.compound.v1",
+  "tables_version": "1",
+  "id": "compound.neg_publish_missing_proof_receipts",
+  "name": "NEG: Publish flow missing proof receipts",
+  "elements": [
+    "cap.security.rbac",
+    "exp.feedback.permission_denied",
+    "exp.flow.publish",
+    "exp.input.form.basic",
+    "wf.content.draft_review_publish"
+  ]
+}

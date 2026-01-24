@@ -1,0 +1,10 @@
+{
+  "schema": "periodic.compound.v1",
+  "tables_version": "1",
+  "id": "compound.neg_comp_sod_missing_controls",
+  "name": "Compliance-lite separation-of-duties missing controls",
+  "elements": [
+    "pr.comp.separation_of_duties",
+    "wf.audit.append_only_log"
+  ]
+}

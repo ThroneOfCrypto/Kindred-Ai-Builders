@@ -1,0 +1,28 @@
+{
+  "schema": "periodic.system.v1",
+  "version": 1,
+  "id": "system.ifc_under_tainting.v1",
+  "name": "Counterexample: IFC under-tainting (same obligations, weaker membrane cap)",
+  "description": "This system is syntactically different (κ differs) but semantically weak-equivalent (obligations-only). The membrane cap is too permissive: it drops taint too early.",
+  "compounds": [
+    {
+      "as": "wallet",
+      "path": "periodic/v1/examples/compound.wallet_commitments_boundary.json"
+    },
+    {
+      "as": "service_a",
+      "path": "periodic/v1/examples/compound.saas_service_a_boundary.json"
+    }
+  ],
+  "links": [
+    {
+      "from": "wallet",
+      "to": "service_a",
+      "via": {
+        "cap": "cap.membrane.http_api.taint_none",
+        "endorsement_id": "endorse.alpha",
+        "notes": "Under-tainting: treat the membrane as fully de-tainting, even when it should not."
+      }
+    }
+  ]
+}

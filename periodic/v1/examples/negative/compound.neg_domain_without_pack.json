@@ -1,0 +1,9 @@
+{
+  "schema": "periodic.compound.v1",
+  "id": "compound.neg_domain_without_pack",
+  "name": "NEGATIVE: Domain used without corresponding bond pack",
+  "tables_version": "1",
+  "elements": [
+    "cap.test.no_pack_dummy"
+  ]
+}

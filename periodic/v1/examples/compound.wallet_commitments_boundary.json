@@ -1,0 +1,32 @@
+{
+  "elements": [
+    "cap.membrane.http_api",
+    "cap.observability.metrics",
+    "cap.value.wallet_tx",
+    "ev.membrane.interface_spec",
+    "ev.monitor.errors",
+    "ev.monitor.latency",
+    "ev.monitor.saturation",
+    "ev.monitor.traffic",
+    "ev.proof.receipts",
+    "ev.resilience.idempotency_key",
+    "ev.security.secrets_never_client",
+    "exp.feedback.retry_banner",
+    "exp.value.commit_confirm",
+    "exp.value.tx_status",
+    "exp.value.wallet_connect",
+    "pr.idempotence",
+    "pr.membrane.backward_compat",
+    "pr.membrane.failure_isolation",
+    "wf.membrane.compatibility_tests",
+    "wf.membrane.contract_versioning",
+    "wf.resilience.idempotency_key",
+    "wf.resilience.retry_backoff",
+    "wf.tx.lifecycle",
+    "wf.value.commit_gate"
+  ],
+  "id": "compound.wallet_commitments_boundary",
+  "name": "Wallet commitments with membrane boundary",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1"
+}

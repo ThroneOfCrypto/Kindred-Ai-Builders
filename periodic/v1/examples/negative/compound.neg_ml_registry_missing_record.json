@@ -1,0 +1,9 @@
+{
+  "schema": "periodic.compound.v1",
+  "id": "compound.neg_ml_registry_missing_record",
+  "name": "NEGATIVE: ML registry workflow missing registry record evidence",
+  "domain": "ml_platform",
+  "elements": [
+    "wf.ml.model_registry"
+  ]
+}

@@ -1,0 +1,716 @@
+{
+  "schema": "periodic.table.v1",
+  "table": "experience",
+  "elements": [
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.display.activity_log",
+      "table": "experience",
+      "group": "display",
+      "name": "Activity log",
+      "summary": "Chronological audit-like timeline.",
+      "tags": [
+        "audit",
+        "display"
+      ],
+      "required_states": [
+        "loading",
+        "ready",
+        "empty",
+        "error"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.display.analytics_dashboard",
+      "table": "experience",
+      "group": "display",
+      "name": "Analytics dashboard",
+      "summary": "Charts + KPIs with time range.",
+      "tags": [
+        "display",
+        "ops"
+      ],
+      "required_states": [
+        "loading",
+        "ready",
+        "error"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.display.card_grid",
+      "table": "experience",
+      "group": "display",
+      "name": "Card grid",
+      "summary": "Responsive grid of item cards.",
+      "tags": [
+        "display"
+      ],
+      "required_states": [
+        "loading",
+        "ready",
+        "empty",
+        "error"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.display.map",
+      "table": "experience",
+      "group": "display",
+      "name": "Map view",
+      "summary": "Geospatial display for listings/points.",
+      "tags": [
+        "display"
+      ],
+      "required_states": [
+        "loading",
+        "ready",
+        "error"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.display.notifications",
+      "table": "experience",
+      "group": "display",
+      "name": "Notifications inbox",
+      "summary": "List of notifications with read/unread.",
+      "tags": [
+        "display"
+      ],
+      "required_states": [
+        "loading",
+        "ready",
+        "empty",
+        "error"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.display.profile",
+      "table": "experience",
+      "group": "display",
+      "name": "Profile page",
+      "summary": "Entity detail view with sections.",
+      "tags": [
+        "display"
+      ],
+      "required_states": [
+        "loading",
+        "ready",
+        "error"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.display.settings",
+      "table": "experience",
+      "group": "display",
+      "name": "Settings panel",
+      "summary": "Config screen with guarded save/reset.",
+      "tags": [
+        "display",
+        "settings"
+      ],
+      "required_states": [
+        "loading",
+        "ready",
+        "saving",
+        "saved",
+        "error"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.display.table",
+      "table": "experience",
+      "group": "display",
+      "name": "Data table",
+      "summary": "Sortable, pageable table view.",
+      "tags": [
+        "display"
+      ],
+      "required_states": [
+        "loading",
+        "ready",
+        "empty",
+        "error"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.feedback.empty",
+      "table": "experience",
+      "group": "feedback",
+      "name": "Empty state",
+      "summary": "Guidance when a list is empty.",
+      "tags": [
+        "feedback"
+      ],
+      "required_states": [
+        "empty"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.feedback.inline_error",
+      "table": "experience",
+      "group": "feedback",
+      "name": "Inline error message",
+      "summary": "Field-level or section-level error display.",
+      "tags": [
+        "feedback"
+      ],
+      "required_states": [
+        "show"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.feedback.loading",
+      "table": "experience",
+      "group": "feedback",
+      "name": "Loading skeleton",
+      "summary": "Perceived-performance UI while fetching.",
+      "tags": [
+        "feedback"
+      ],
+      "required_states": [
+        "loading",
+        "loaded",
+        "error"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.feedback.modal_confirm",
+      "table": "experience",
+      "group": "feedback",
+      "name": "Confirm modal",
+      "summary": "Explicit confirmation for risky actions.",
+      "tags": [
+        "feedback",
+        "ux"
+      ],
+      "required_states": [
+        "open",
+        "confirming",
+        "cancelled"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.feedback.permission_denied",
+      "table": "experience",
+      "group": "feedback",
+      "name": "Permission denied state",
+      "summary": "Clear denial screen with recovery path.",
+      "tags": [
+        "authz",
+        "feedback"
+      ],
+      "required_states": [
+        "denied"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.feedback.retry_banner",
+      "table": "experience",
+      "group": "feedback",
+      "name": "Retry banner",
+      "summary": "Persistent error banner with retry.",
+      "tags": [
+        "feedback",
+        "resilience"
+      ],
+      "required_states": [
+        "show",
+        "retrying",
+        "dismiss"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.feedback.toast",
+      "table": "experience",
+      "group": "feedback",
+      "name": "Toast notifications",
+      "summary": "Non-blocking notifications for actions.",
+      "tags": [
+        "feedback"
+      ],
+      "required_states": [
+        "show",
+        "dismiss"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.flow.auth.reset_password",
+      "table": "experience",
+      "group": "flow",
+      "name": "Password reset",
+      "summary": "Request + confirm reset flow.",
+      "tags": [
+        "auth",
+        "flow"
+      ],
+      "required_states": [
+        "idle",
+        "submitting",
+        "sent",
+        "success",
+        "error"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.flow.auth.sign_in",
+      "table": "experience",
+      "group": "flow",
+      "name": "Sign in",
+      "summary": "Sign-in screen with errors + recovery.",
+      "tags": [
+        "auth",
+        "flow"
+      ],
+      "required_states": [
+        "idle",
+        "submitting",
+        "success",
+        "error"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.flow.auth.sign_up",
+      "table": "experience",
+      "group": "flow",
+      "name": "Sign up",
+      "summary": "Account creation screen with verification step.",
+      "tags": [
+        "auth",
+        "flow"
+      ],
+      "required_states": [
+        "idle",
+        "submitting",
+        "verify",
+        "success",
+        "error"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.flow.checkout",
+      "table": "experience",
+      "group": "flow",
+      "name": "Checkout",
+      "summary": "Multi-step purchase/commit flow.",
+      "tags": [
+        "flow",
+        "irreversible.value",
+        "value"
+      ],
+      "required_states": [
+        "cart",
+        "details",
+        "paying",
+        "success",
+        "error"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.flow.invite_members",
+      "table": "experience",
+      "group": "flow",
+      "name": "Invite members",
+      "summary": "Invite users by email/link with status.",
+      "tags": [
+        "collab",
+        "flow"
+      ],
+      "required_states": [
+        "idle",
+        "sending",
+        "sent",
+        "error"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.flow.moderation_queue",
+      "table": "experience",
+      "group": "flow",
+      "name": "Moderation queue",
+      "summary": "Queue UI for review/approve/reject.",
+      "tags": [
+        "approval",
+        "flow",
+        "moderation"
+      ],
+      "required_states": [
+        "loading",
+        "ready",
+        "empty",
+        "error"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.flow.onboarding",
+      "table": "experience",
+      "group": "flow",
+      "name": "Onboarding",
+      "summary": "First-run setup steps for a new user.",
+      "tags": [
+        "flow"
+      ],
+      "required_states": [
+        "step",
+        "saving",
+        "done",
+        "error"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.flow.publish",
+      "table": "experience",
+      "group": "flow",
+      "name": "Publish content",
+      "summary": "Draft->review->publish UI flow.",
+      "tags": [
+        "approval",
+        "content",
+        "flow"
+      ],
+      "required_states": [
+        "draft",
+        "review",
+        "publishing",
+        "published",
+        "error"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.input.date_time",
+      "table": "experience",
+      "group": "input",
+      "name": "Date/time picker",
+      "summary": "Date and time selection control.",
+      "tags": [
+        "input"
+      ],
+      "required_states": [
+        "idle",
+        "selecting",
+        "error"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.input.file_upload",
+      "table": "experience",
+      "group": "input",
+      "name": "File upload",
+      "summary": "Upload one or more files with progress.",
+      "tags": [
+        "blob",
+        "input"
+      ],
+      "required_states": [
+        "idle",
+        "selecting",
+        "uploading",
+        "uploaded",
+        "error"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.input.filters",
+      "table": "experience",
+      "group": "input",
+      "name": "Filter panel",
+      "summary": "Faceted filters with apply/reset semantics.",
+      "tags": [
+        "input",
+        "search"
+      ],
+      "required_states": [
+        "idle",
+        "changed",
+        "applying",
+        "applied",
+        "error"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.input.form.basic",
+      "table": "experience",
+      "group": "input",
+      "name": "Basic form",
+      "summary": "Single-page form with validation.",
+      "tags": [
+        "input"
+      ],
+      "required_states": [
+        "idle",
+        "dirty",
+        "submitting",
+        "success",
+        "error"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.input.form.wizard",
+      "table": "experience",
+      "group": "input",
+      "name": "Wizard form",
+      "summary": "Multi-step form with progress + validation.",
+      "tags": [
+        "flow",
+        "input"
+      ],
+      "required_states": [
+        "step",
+        "validating",
+        "submitting",
+        "success",
+        "error"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.input.rich_text",
+      "table": "experience",
+      "group": "input",
+      "name": "Rich text editor",
+      "summary": "WYSIWYG content entry with formatting.",
+      "tags": [
+        "content",
+        "input"
+      ],
+      "required_states": [
+        "idle",
+        "dirty",
+        "saving",
+        "saved",
+        "error"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.input.search_autocomplete",
+      "table": "experience",
+      "group": "input",
+      "name": "Autocomplete search",
+      "summary": "Typeahead search suggestions.",
+      "tags": [
+        "input",
+        "search"
+      ],
+      "required_states": [
+        "idle",
+        "typing",
+        "suggesting",
+        "selected",
+        "error"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.nav.breadcrumbs",
+      "table": "experience",
+      "group": "nav",
+      "name": "Breadcrumbs",
+      "summary": "Context trail for deep hierarchies.",
+      "tags": [
+        "nav"
+      ],
+      "required_states": [
+        "idle"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.nav.search",
+      "table": "experience",
+      "group": "nav",
+      "name": "Global search box",
+      "summary": "Search entry in top-level navigation.",
+      "tags": [
+        "nav",
+        "search"
+      ],
+      "required_states": [
+        "idle",
+        "typing",
+        "results",
+        "no_results",
+        "error"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.nav.sidebar",
+      "table": "experience",
+      "group": "nav",
+      "name": "Sidebar navigation",
+      "summary": "Persistent left nav for multi-section apps.",
+      "tags": [
+        "global",
+        "nav"
+      ],
+      "required_states": [
+        "idle",
+        "collapsed"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.nav.tabs",
+      "table": "experience",
+      "group": "nav",
+      "name": "Tabs",
+      "summary": "Switch between peer views without route change.",
+      "tags": [
+        "nav"
+      ],
+      "required_states": [
+        "idle"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.nav.topbar",
+      "table": "experience",
+      "group": "nav",
+      "name": "Top bar navigation",
+      "summary": "Global navigation header with primary actions.",
+      "tags": [
+        "global",
+        "nav"
+      ],
+      "required_states": [
+        "idle"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.privacy.consent_scope_preview",
+      "table": "experience",
+      "group": "privacy",
+      "name": "Consent scope preview",
+      "summary": "User sees exactly what fields will be disclosed before confirming a proof presentation.",
+      "tags": [
+        "privacy",
+        "ux",
+        "sovereignty"
+      ],
+      "domain": "privacy_compute"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.value.commit_confirm",
+      "table": "experience",
+      "group": "value",
+      "name": "Irreversible commit confirmation",
+      "summary": "Explicit confirmation UX for irreversible actions.",
+      "tags": [
+        "irreversible.value",
+        "value"
+      ],
+      "required_states": [
+        "open",
+        "confirming",
+        "cancelled",
+        "confirmed"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.value.tx_status",
+      "table": "experience",
+      "group": "value",
+      "name": "Transaction status",
+      "summary": "Shows pending/confirmed/failed states.",
+      "tags": [
+        "irreversible.value",
+        "value",
+        "wallet"
+      ],
+      "required_states": [
+        "pending",
+        "confirmed",
+        "failed"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "exp.value.wallet_connect",
+      "table": "experience",
+      "group": "value",
+      "name": "Wallet connect",
+      "summary": "Connect wallet with explicit consent.",
+      "tags": [
+        "value",
+        "wallet"
+      ],
+      "x_notes": "Non-custodial by default; never store secrets client-side.",
+      "required_states": [
+        "idle",
+        "connecting",
+        "connected",
+        "error"
+      ],
+      "domain": "internet_app"
+    }
+  ],
+  "version": "1"
+}

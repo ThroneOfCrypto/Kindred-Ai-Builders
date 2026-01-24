@@ -1,0 +1,42 @@
+{
+  "schema": "periodic.bond_ruleset.v1",
+  "version": "1",
+  "rules": [
+    {
+      "schema": "periodic.bond_rule.v1",
+      "id": "bond.sim_determinism_requires_replay_evidence",
+      "severity": "error",
+      "message": "Deterministic simulation requires fixed timestep and replay evidence to prevent divergence and non-reproducible bugs.",
+      "when": {
+        "any_of": [
+          "cap.sim.deterministic_tick",
+          "wf.sim.fixed_timestep"
+        ]
+      },
+      "require": {
+        "all_of": [
+          "wf.sim.fixed_timestep",
+          "ev.sim.replay_determinism_tests",
+          "pr.sim.state_reproducible"
+        ]
+      }
+    },
+    {
+      "schema": "periodic.bond_rule.v1",
+      "id": "bond.sim_netcode_requires_rollback_or_lockstep_evidence",
+      "severity": "error",
+      "message": "Networked simulation requires an explicit sync model (rollback/lockstep) with evidence of correctness under jitter/packet loss.",
+      "when": {
+        "any_of": [
+          "cap.sim.netcode"
+        ]
+      },
+      "require": {
+        "all_of": [
+          "ev.sim.netcode_evidence",
+          "ev.sim.desync_tests"
+        ]
+      }
+    }
+  ]
+}

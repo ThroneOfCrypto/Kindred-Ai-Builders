@@ -1,0 +1,36 @@
+name: node24-preflight
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Install dependencies (deterministic)
+        run: npm ci --no-audit --no-fund
+
+      - name: Diagnostic build (NON-AUTHORITATIVE)
+        env:
+          KINDRED_ALLOW_LOCAL_DIAGNOSTIC: '1'
+        run: npm run build
+
+      - name: Upload dist reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kindred-dist-reports
+          path: dist/*.report.json

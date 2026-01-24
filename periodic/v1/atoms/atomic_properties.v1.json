@@ -1,0 +1,2594 @@
+{
+  "enums": {
+    "blast_radius": [
+      "contained",
+      "cross-boundary",
+      "systemic"
+    ],
+    "bond_pressure": [
+      "low",
+      "medium",
+      "high"
+    ],
+    "evidence_burden": [
+      "low",
+      "medium",
+      "high"
+    ],
+    "scope": [
+      "local",
+      "boundary",
+      "system",
+      "federation"
+    ],
+    "time_sensitivity": [
+      "low",
+      "medium",
+      "high"
+    ]
+  },
+  "properties": [
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "cap._internal.noop",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "capability",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "medium",
+      "domain": "internet_app",
+      "element_id": "cap.auth.oauth",
+      "evidence_burden": "low",
+      "scope": "boundary",
+      "table": "capability",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "internet_app",
+      "element_id": "cap.auth.session",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "capability",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "internet_app",
+      "element_id": "cap.cache.cdn",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "capability",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "high",
+      "domain": "distributed_truth",
+      "element_id": "cap.dist.consensus",
+      "evidence_burden": "medium",
+      "scope": "federation",
+      "table": "capability",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "high",
+      "domain": "distributed_truth",
+      "element_id": "cap.dist.replication",
+      "evidence_burden": "medium",
+      "scope": "federation",
+      "table": "capability",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "cap.feature_flags",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "capability",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "cap.identity.did",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "capability",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "medium",
+      "domain": "identity_access_lite",
+      "element_id": "cap.identity.reusable_account",
+      "evidence_burden": "medium",
+      "scope": "system",
+      "table": "capability",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "cap.integrations.api_client",
+      "evidence_burden": "low",
+      "scope": "boundary",
+      "table": "capability",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "internet_app",
+      "element_id": "cap.integrations.webhooks",
+      "evidence_burden": "medium",
+      "scope": "boundary",
+      "table": "capability",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "medium",
+      "domain": "kernel_runtime",
+      "element_id": "cap.kernel.abi_contract",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "capability",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "medium",
+      "domain": "kernel_runtime",
+      "element_id": "cap.kernel.isolation",
+      "evidence_burden": "medium",
+      "scope": "system",
+      "table": "capability",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "medium",
+      "domain": "kernel_runtime",
+      "element_id": "cap.kernel.sandbox",
+      "evidence_burden": "medium",
+      "scope": "system",
+      "table": "capability",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "medium",
+      "domain": "kernel_runtime",
+      "element_id": "cap.kernel.toolchain",
+      "evidence_burden": "medium",
+      "scope": "system",
+      "table": "capability",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "membrane",
+      "element_id": "cap.membrane.breaking_change",
+      "evidence_burden": "medium",
+      "scope": "boundary",
+      "table": "capability",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "membrane",
+      "element_id": "cap.membrane.event_stream",
+      "evidence_burden": "medium",
+      "scope": "boundary",
+      "table": "capability",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "membrane",
+      "element_id": "cap.membrane.file_artifact_exchange",
+      "evidence_burden": "medium",
+      "scope": "boundary",
+      "table": "capability",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "membrane",
+      "element_id": "cap.membrane.http_api",
+      "evidence_burden": "medium",
+      "scope": "boundary",
+      "table": "capability",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "membrane",
+      "element_id": "cap.membrane.http_api.taint_none",
+      "evidence_burden": "high",
+      "scope": "boundary",
+      "table": "capability",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "membrane",
+      "element_id": "cap.membrane.http_api.taint_precise",
+      "evidence_burden": "high",
+      "scope": "boundary",
+      "table": "capability",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "membrane",
+      "element_id": "cap.membrane.http_api.taint_all",
+      "evidence_burden": "high",
+      "scope": "boundary",
+      "table": "capability",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "membrane",
+      "element_id": "cap.membrane.webhook_boundary",
+      "evidence_burden": "medium",
+      "scope": "boundary",
+      "table": "capability",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "ml_platform",
+      "element_id": "cap.ml_platform.lifecycle",
+      "evidence_burden": "medium",
+      "scope": "local",
+      "table": "capability",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "internet_app",
+      "element_id": "cap.notifications.email",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "capability",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "internet_app",
+      "element_id": "cap.notifications.push",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "capability",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "internet_app",
+      "element_id": "cap.notifications.sms",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "capability",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "cap.observability.logging",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "capability",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "cap.observability.metrics",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "capability",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "cap.observability.tracing",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "capability",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "medium",
+      "domain": "privacy_compute",
+      "element_id": "cap.privacy.proof_carrying_claim",
+      "evidence_burden": "medium",
+      "scope": "local",
+      "table": "capability",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "medium",
+      "domain": "privacy_compute",
+      "element_id": "cap.privacy.selective_disclosure",
+      "evidence_burden": "medium",
+      "scope": "local",
+      "table": "capability",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "cap.queue.jobs",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "capability",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "cap.rate_limit",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "capability",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "hard_real_time",
+      "element_id": "cap.rt.deadlines",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "capability",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "hard_real_time",
+      "element_id": "cap.rt.interrupts",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "capability",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "internet_app",
+      "element_id": "cap.search.fulltext",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "capability",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "cap.security.abac",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "capability",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "cap.security.rbac",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "capability",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "game_simulation",
+      "element_id": "cap.sim.deterministic_tick",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "capability",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "game_simulation",
+      "element_id": "cap.sim.netcode",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "capability",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "cap.storage.blob",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "capability",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "cap.storage.kv",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "capability",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "high",
+      "domain": "internet_app",
+      "element_id": "cap.storage.sql",
+      "evidence_burden": "medium",
+      "scope": "local",
+      "table": "capability",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "no_pack_test",
+      "element_id": "cap.test.no_pack_dummy",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "capability",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "medium",
+      "domain": "kernel_runtime",
+      "element_id": "cap.toolchain.deterministic_builds",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "capability",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "cap.value.escrow",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "capability",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "internet_app",
+      "element_id": "cap.value.wallet_tx",
+      "evidence_burden": "medium",
+      "scope": "boundary",
+      "table": "capability",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "ev.a11y.basics",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "high",
+      "domain": "internet_app",
+      "element_id": "ev.audit.destructive_ops_audit",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "high",
+      "domain": "internet_app",
+      "element_id": "ev.audit.log_integrity",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "medium",
+      "domain": "identity_access_lite",
+      "element_id": "ev.auth.agent_access_receipts",
+      "evidence_burden": "medium",
+      "scope": "system",
+      "table": "evidence",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "identity_access_lite",
+      "element_id": "ev.auth.did_document",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "medium",
+      "domain": "identity_access_lite",
+      "element_id": "ev.auth.login_receipts",
+      "evidence_burden": "medium",
+      "scope": "system",
+      "table": "evidence",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "identity_access_lite",
+      "element_id": "ev.auth.session_audit_log",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "ev.backup.policy",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "ev.change.migration_plan",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "high",
+      "domain": "compliance_lite",
+      "element_id": "ev.comp.change_control_record",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "high",
+      "domain": "compliance_lite",
+      "element_id": "ev.comp.sod_controls",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "high",
+      "domain": "compliance_lite",
+      "element_id": "ev.comp.traceability_matrix",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "ev.data.constraints",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "high",
+      "domain": "internet_app",
+      "element_id": "ev.data.schema_versioning",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "ev.deps.lockfile",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "distributed_truth",
+      "element_id": "ev.dist.consistency_model_decl",
+      "evidence_burden": "low",
+      "scope": "federation",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "distributed_truth",
+      "element_id": "ev.dist.fault_injection_tests",
+      "evidence_burden": "low",
+      "scope": "federation",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "distributed_truth",
+      "element_id": "ev.dist.partition_behavior_matrix",
+      "evidence_burden": "low",
+      "scope": "federation",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "internet_app",
+      "element_id": "ev.integrations.webhook_dedupe",
+      "evidence_burden": "low",
+      "scope": "boundary",
+      "table": "evidence",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "internet_app",
+      "element_id": "ev.integrations.webhook_replay_protection",
+      "evidence_burden": "low",
+      "scope": "boundary",
+      "table": "evidence",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "internet_app",
+      "element_id": "ev.integrations.webhook_signature_verify",
+      "evidence_burden": "low",
+      "scope": "boundary",
+      "table": "evidence",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "high",
+      "domain": "kernel_runtime",
+      "element_id": "ev.kernel.boundary_tests",
+      "evidence_burden": "high",
+      "scope": "system",
+      "table": "evidence",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "kernel_runtime",
+      "element_id": "ev.kernel.deterministic_build_evidence",
+      "evidence_burden": "high",
+      "scope": "system",
+      "table": "evidence",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "kernel_runtime",
+      "element_id": "ev.kernel.isolation_tests",
+      "evidence_burden": "high",
+      "scope": "system",
+      "table": "evidence",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "kernel_runtime",
+      "element_id": "ev.kernel.threat_boundary_spec",
+      "evidence_burden": "high",
+      "scope": "system",
+      "table": "evidence",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "membrane",
+      "element_id": "ev.membrane.interface_spec",
+      "evidence_burden": "low",
+      "scope": "boundary",
+      "table": "evidence",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "membrane",
+      "element_id": "ev.membrane.slo_contract",
+      "evidence_burden": "low",
+      "scope": "boundary",
+      "table": "evidence",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "membrane",
+      "element_id": "ev.membrane.version_bump",
+      "evidence_burden": "low",
+      "scope": "boundary",
+      "table": "evidence",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "high",
+      "domain": "ml_platform",
+      "element_id": "ev.ml.drift_monitoring_evidence",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "evidence",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "high",
+      "domain": "ml_platform",
+      "element_id": "ev.ml.model_registry_record",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "ml_platform",
+      "element_id": "ev.ml.reproducibility_linkage",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "ev.monitor.errors",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "ev.monitor.latency",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "ev.monitor.saturation",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "ev.monitor.traffic",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "ev.ops.runbook",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "ev.perf.budget",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "ev.privacy.non_custodial_default",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "medium",
+      "domain": "privacy_compute",
+      "element_id": "ev.privacy.replay_protection_evidence",
+      "evidence_burden": "high",
+      "scope": "boundary",
+      "table": "evidence",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "medium",
+      "domain": "privacy_compute",
+      "element_id": "ev.privacy.verification_spec",
+      "evidence_burden": "high",
+      "scope": "boundary",
+      "table": "evidence",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "medium",
+      "domain": "privacy_compute",
+      "element_id": "ev.privacy.verification_tests",
+      "evidence_burden": "high",
+      "scope": "boundary",
+      "table": "evidence",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "high",
+      "domain": "proof_lane",
+      "element_id": "ev.proof.build_reproducible",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "high",
+      "domain": "internet_app",
+      "element_id": "ev.proof.node24_registry",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "high",
+      "domain": "internet_app",
+      "element_id": "ev.proof.receipts",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "high",
+      "domain": "proof_lane",
+      "element_id": "ev.proof.receipts.sha256_bytes",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "regulated_safety",
+      "element_id": "ev.reg.hazard_analysis",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "high",
+      "domain": "regulated_safety",
+      "element_id": "ev.reg.traceability_matrix",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "regulated_safety",
+      "element_id": "ev.reg.validation_report",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "regulated_safety",
+      "element_id": "ev.reg.verification_plan",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "ev.reliability.slo",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "high",
+      "domain": "internet_app",
+      "element_id": "ev.resilience.idempotency_key",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "high",
+      "domain": "hard_real_time",
+      "element_id": "ev.rt.latency_budget",
+      "evidence_burden": "medium",
+      "scope": "system",
+      "table": "evidence",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "hard_real_time",
+      "element_id": "ev.rt.latency_jitter_budget",
+      "evidence_burden": "high",
+      "scope": "system",
+      "table": "evidence",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "hard_real_time",
+      "element_id": "ev.rt.priority_inversion_tests",
+      "evidence_burden": "high",
+      "scope": "system",
+      "table": "evidence",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "hard_real_time",
+      "element_id": "ev.rt.scheduling_evidence",
+      "evidence_burden": "high",
+      "scope": "system",
+      "table": "evidence",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "high",
+      "domain": "hard_real_time",
+      "element_id": "ev.rt.wcet_analysis",
+      "evidence_burden": "medium",
+      "scope": "system",
+      "table": "evidence",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "ev.security.secrets_never_client",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "game_simulation",
+      "element_id": "ev.sim.desync_tests",
+      "evidence_burden": "high",
+      "scope": "system",
+      "table": "evidence",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "high",
+      "domain": "game_simulation",
+      "element_id": "ev.sim.net_jitter_tests",
+      "evidence_burden": "medium",
+      "scope": "system",
+      "table": "evidence",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "game_simulation",
+      "element_id": "ev.sim.netcode_evidence",
+      "evidence_burden": "high",
+      "scope": "system",
+      "table": "evidence",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "game_simulation",
+      "element_id": "ev.sim.replay_determinism_tests",
+      "evidence_burden": "high",
+      "scope": "system",
+      "table": "evidence",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "high",
+      "domain": "game_simulation",
+      "element_id": "ev.sim.replay_tests",
+      "evidence_burden": "medium",
+      "scope": "system",
+      "table": "evidence",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "ev.testing.e2e",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "ev.testing.integration",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "ev.testing.unit",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "evidence",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "exp.display.activity_log",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "exp.display.analytics_dashboard",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "exp.display.card_grid",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "exp.display.map",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "internet_app",
+      "element_id": "exp.display.notifications",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "exp.display.profile",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "exp.display.settings",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "exp.display.table",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "exp.feedback.empty",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "exp.feedback.inline_error",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "exp.feedback.loading",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "exp.feedback.modal_confirm",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "exp.feedback.permission_denied",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "high",
+      "domain": "internet_app",
+      "element_id": "exp.feedback.retry_banner",
+      "evidence_burden": "medium",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "exp.feedback.toast",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "internet_app",
+      "element_id": "exp.flow.auth.reset_password",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "internet_app",
+      "element_id": "exp.flow.auth.sign_in",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "internet_app",
+      "element_id": "exp.flow.auth.sign_up",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "exp.flow.checkout",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "exp.flow.invite_members",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "internet_app",
+      "element_id": "exp.flow.moderation_queue",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "exp.flow.onboarding",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "exp.flow.publish",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "exp.input.date_time",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "internet_app",
+      "element_id": "exp.input.file_upload",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "exp.input.filters",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "exp.input.form.basic",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "exp.input.form.wizard",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "exp.input.rich_text",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "internet_app",
+      "element_id": "exp.input.search_autocomplete",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "exp.nav.breadcrumbs",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "internet_app",
+      "element_id": "exp.nav.search",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "exp.nav.sidebar",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "exp.nav.tabs",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "exp.nav.topbar",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "medium",
+      "domain": "privacy_compute",
+      "element_id": "exp.privacy.consent_scope_preview",
+      "evidence_burden": "medium",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "exp.value.commit_confirm",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "exp.value.tx_status",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "experience",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "internet_app",
+      "element_id": "exp.value.wallet_connect",
+      "evidence_burden": "medium",
+      "scope": "boundary",
+      "table": "experience",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "identity_access_lite",
+      "element_id": "pr.auth.challenge_response_only",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "identity_access_lite",
+      "element_id": "pr.auth.no_browser_secrets",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "pr.backpressure",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "pr.closed_keys_open_extensions",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "pr.comp.separation_of_duties",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "pr.composability",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "pr.contracts_over_conventions",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "pr.cost_awareness",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "pr.default_safe",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "pr.determinism",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "high",
+      "domain": "distributed_truth",
+      "element_id": "pr.dist.idempotent_messages",
+      "evidence_burden": "medium",
+      "scope": "federation",
+      "table": "principle",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "distributed_truth",
+      "element_id": "pr.dist.safety_over_liveness",
+      "evidence_burden": "low",
+      "scope": "federation",
+      "table": "principle",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "pr.explicitness",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "pr.forkability",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "pr.graceful_degradation",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "pr.human_readable_failures",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "high",
+      "domain": "internet_app",
+      "element_id": "pr.idempotence",
+      "evidence_burden": "medium",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "medium",
+      "domain": "kernel_runtime",
+      "element_id": "pr.kernel.isolation_first",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "medium",
+      "domain": "kernel_runtime",
+      "element_id": "pr.kernel.least_privilege",
+      "evidence_burden": "low",
+      "scope": "federation",
+      "table": "principle",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "medium",
+      "domain": "kernel_runtime",
+      "element_id": "pr.kernel.least_privilege_runtime",
+      "evidence_burden": "low",
+      "scope": "federation",
+      "table": "principle",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "pr.least_privilege",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "membrane",
+      "element_id": "pr.membrane.backward_compat",
+      "evidence_burden": "medium",
+      "scope": "boundary",
+      "table": "principle",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "membrane",
+      "element_id": "pr.membrane.failure_isolation",
+      "evidence_burden": "medium",
+      "scope": "boundary",
+      "table": "principle",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "pr.monotonic_evidence",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "pr.no_blob_magnets",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "pr.non_custodial_default",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "pr.observability",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "medium",
+      "domain": "privacy_compute",
+      "element_id": "pr.privacy.minimal_disclosure",
+      "evidence_burden": "medium",
+      "scope": "local",
+      "table": "principle",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "pr.progressive_disclosure",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "regulated_safety",
+      "element_id": "pr.reg.safety_case_integrity",
+      "evidence_burden": "high",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "regulated_safety",
+      "element_id": "pr.reg.separation_of_duties",
+      "evidence_burden": "high",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "pr.reversible_by_default",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "medium",
+      "domain": "hard_real_time",
+      "element_id": "pr.rt.bounded_time",
+      "evidence_burden": "low",
+      "scope": "federation",
+      "table": "principle",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "medium",
+      "domain": "hard_real_time",
+      "element_id": "pr.rt.deadline_safety_first",
+      "evidence_burden": "low",
+      "scope": "federation",
+      "table": "principle",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "hard_real_time",
+      "element_id": "pr.rt.safety_over_features",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "pr.separation_of_concerns",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "game_simulation",
+      "element_id": "pr.sim.determinism_over_variance",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "medium",
+      "domain": "game_simulation",
+      "element_id": "pr.sim.determinism_over_vibes",
+      "evidence_burden": "low",
+      "scope": "federation",
+      "table": "principle",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "medium",
+      "domain": "game_simulation",
+      "element_id": "pr.sim.state_reproducible",
+      "evidence_burden": "low",
+      "scope": "federation",
+      "table": "principle",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "pr.single_source_of_truth",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "pr.small_basis_set",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "pr.state_completeness",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "pr.user_agency",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "principle",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "high",
+      "domain": "internet_app",
+      "element_id": "wf.audit.append_only_log",
+      "evidence_burden": "medium",
+      "scope": "local",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "medium",
+      "domain": "identity_access_lite",
+      "element_id": "wf.auth.agent_access",
+      "evidence_burden": "medium",
+      "scope": "system",
+      "table": "workshop",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "medium",
+      "domain": "identity_access_lite",
+      "element_id": "wf.auth.did_binding",
+      "evidence_burden": "medium",
+      "scope": "system",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "internet_app",
+      "element_id": "wf.auth.session_login",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "medium",
+      "domain": "identity_access_lite",
+      "element_id": "wf.auth.session_tokens",
+      "evidence_burden": "low",
+      "scope": "system",
+      "table": "workshop",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "medium",
+      "domain": "identity_access_lite",
+      "element_id": "wf.auth.wallet_login",
+      "evidence_burden": "medium",
+      "scope": "system",
+      "table": "workshop",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "wf.change.migration",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "wf.collab.invites",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "high",
+      "domain": "internet_app",
+      "element_id": "wf.comp.change_control",
+      "evidence_burden": "medium",
+      "scope": "local",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "high",
+      "domain": "internet_app",
+      "element_id": "wf.comp.traceability",
+      "evidence_burden": "medium",
+      "scope": "local",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "wf.compliance.consent",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "wf.content.draft_review_publish",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "wf.data.export",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "wf.data.import",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "distributed_truth",
+      "element_id": "wf.dist.leader_election",
+      "evidence_burden": "low",
+      "scope": "federation",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "high",
+      "domain": "distributed_truth",
+      "element_id": "wf.dist.log_replication",
+      "evidence_burden": "medium",
+      "scope": "federation",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "distributed_truth",
+      "element_id": "wf.dist.snapshot_restore",
+      "evidence_burden": "low",
+      "scope": "federation",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "internet_app",
+      "element_id": "wf.integrations.webhook_dedupe",
+      "evidence_burden": "medium",
+      "scope": "boundary",
+      "table": "workshop",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "internet_app",
+      "element_id": "wf.integrations.webhook_delivery",
+      "evidence_burden": "medium",
+      "scope": "boundary",
+      "table": "workshop",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "internet_app",
+      "element_id": "wf.integrations.webhook_replay_protection",
+      "evidence_burden": "medium",
+      "scope": "boundary",
+      "table": "workshop",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "internet_app",
+      "element_id": "wf.integrations.webhook_signature_verify",
+      "evidence_burden": "medium",
+      "scope": "boundary",
+      "table": "workshop",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "wf.jobs.background",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "kernel_runtime",
+      "element_id": "wf.kernel.abi_versioning",
+      "evidence_burden": "medium",
+      "scope": "system",
+      "table": "workshop",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "kernel_runtime",
+      "element_id": "wf.kernel.boundary_testing",
+      "evidence_burden": "medium",
+      "scope": "system",
+      "table": "workshop",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "kernel_runtime",
+      "element_id": "wf.kernel.process_isolation",
+      "evidence_burden": "medium",
+      "scope": "system",
+      "table": "workshop",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "kernel_runtime",
+      "element_id": "wf.kernel.toolchain",
+      "evidence_burden": "medium",
+      "scope": "system",
+      "table": "workshop",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "membrane",
+      "element_id": "wf.membrane.compatibility_tests",
+      "evidence_burden": "medium",
+      "scope": "boundary",
+      "table": "workshop",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "high",
+      "domain": "membrane",
+      "element_id": "wf.membrane.contract_versioning",
+      "evidence_burden": "medium",
+      "scope": "boundary",
+      "table": "workshop",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "high",
+      "domain": "ml_platform",
+      "element_id": "wf.ml.drift_monitoring",
+      "evidence_burden": "medium",
+      "scope": "local",
+      "table": "workshop",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "high",
+      "domain": "ml_platform",
+      "element_id": "wf.ml.model_registry",
+      "evidence_burden": "medium",
+      "scope": "local",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "internet_app",
+      "element_id": "wf.moderation.appeals",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "internet_app",
+      "element_id": "wf.moderation.queue_triage",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "workshop",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "internet_app",
+      "element_id": "wf.notifications.opt_in",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "wf.onboarding.progressive",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "wf.ops.backup_restore",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "wf.ops.incident",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "internet_app",
+      "element_id": "wf.pipeline.stage_progression",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "wf.privacy.data_delete",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "medium",
+      "domain": "privacy_compute",
+      "element_id": "wf.privacy.presentation",
+      "evidence_burden": "medium",
+      "scope": "boundary",
+      "table": "workshop",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "medium",
+      "domain": "privacy_compute",
+      "element_id": "wf.privacy.replay_protection",
+      "evidence_burden": "medium",
+      "scope": "boundary",
+      "table": "workshop",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "privacy_compute",
+      "element_id": "wf.privacy.verifier_challenge",
+      "evidence_burden": "medium",
+      "scope": "boundary",
+      "table": "workshop",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "medium",
+      "domain": "privacy_compute",
+      "element_id": "wf.privacy.verifier_challenge_nonce",
+      "evidence_burden": "medium",
+      "scope": "boundary",
+      "table": "workshop",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "medium",
+      "domain": "privacy_compute",
+      "element_id": "wf.privacy.verify_presentation",
+      "evidence_burden": "medium",
+      "scope": "boundary",
+      "table": "workshop",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "high",
+      "domain": "proof_lane",
+      "element_id": "wf.proof.verify_receipts",
+      "evidence_burden": "high",
+      "scope": "system",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "wf.rate_limit.enforcement",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "high",
+      "domain": "regulated_safety",
+      "element_id": "wf.reg.change_control",
+      "evidence_burden": "high",
+      "scope": "system",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "regulated_safety",
+      "element_id": "wf.reg.release_approval_gate",
+      "evidence_burden": "high",
+      "scope": "system",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "high",
+      "domain": "internet_app",
+      "element_id": "wf.resilience.idempotency_key",
+      "evidence_burden": "medium",
+      "scope": "local",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "high",
+      "domain": "internet_app",
+      "element_id": "wf.resilience.retry_backoff",
+      "evidence_burden": "medium",
+      "scope": "local",
+      "table": "workshop",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "wf.roles.approval_two_person",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "high",
+      "domain": "hard_real_time",
+      "element_id": "wf.rt.priority_inversion_mitigation",
+      "evidence_burden": "medium",
+      "scope": "system",
+      "table": "workshop",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "hard_real_time",
+      "element_id": "wf.rt.priority_scheduling",
+      "evidence_burden": "medium",
+      "scope": "system",
+      "table": "workshop",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "hard_real_time",
+      "element_id": "wf.rt.scheduler",
+      "evidence_burden": "medium",
+      "scope": "system",
+      "table": "workshop",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "high",
+      "domain": "hard_real_time",
+      "element_id": "wf.rt.scheduling",
+      "evidence_burden": "medium",
+      "scope": "system",
+      "table": "workshop",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "internet_app",
+      "element_id": "wf.search.indexing",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "systemic",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "wf.security.rotation",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "medium",
+      "domain": "game_simulation",
+      "element_id": "wf.sim.desync_detection",
+      "evidence_burden": "medium",
+      "scope": "system",
+      "table": "workshop",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "high",
+      "domain": "game_simulation",
+      "element_id": "wf.sim.fixed_timestep",
+      "evidence_burden": "medium",
+      "scope": "system",
+      "table": "workshop",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "high",
+      "domain": "game_simulation",
+      "element_id": "wf.sim.sync_model",
+      "evidence_burden": "medium",
+      "scope": "system",
+      "table": "workshop",
+      "time_sensitivity": "high"
+    },
+    {
+      "blast_radius": "cross-boundary",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "wf.tx.lifecycle",
+      "evidence_burden": "low",
+      "scope": "boundary",
+      "table": "workshop",
+      "time_sensitivity": "medium"
+    },
+    {
+      "blast_radius": "contained",
+      "bond_pressure": "low",
+      "domain": "internet_app",
+      "element_id": "wf.value.commit_gate",
+      "evidence_burden": "low",
+      "scope": "local",
+      "table": "workshop",
+      "time_sensitivity": "low"
+    }
+  ],
+  "schema": "periodic.atomic_properties.v1",
+  "version": "1"
+}

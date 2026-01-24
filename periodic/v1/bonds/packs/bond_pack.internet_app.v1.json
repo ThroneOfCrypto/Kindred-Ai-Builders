@@ -1,0 +1,465 @@
+{
+  "rules": [
+    {
+      "schema": "periodic.bond_rule.v1",
+      "id": "bond.activity_log_requires_audit_integrity",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "exp.display.activity_log"
+        ]
+      },
+      "require": {
+        "all_of": [
+          "wf.audit.append_only_log",
+          "ev.audit.log_integrity"
+        ]
+      },
+      "message": "Activity log surfaces require append-only audit workflow and integrity evidence to avoid fake audit UIs."
+    },
+    {
+      "id": "bond.approval_requires_authz_denied_state",
+      "message": "Approval/role workflows require RBAC capability and a permission-denied UX state.",
+      "require": {
+        "all_of": [
+          "cap.security.rbac",
+          "exp.feedback.permission_denied"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "error",
+      "when": {
+        "any_tag": [
+          "approval"
+        ]
+      }
+    },
+    {
+      "id": "bond.audit_surfaces_require_append_only_workflow",
+      "message": "Audit surfaces should bond with append-only audit workflow (integrity evidence is enforced by specific audit surface rules).",
+      "require": {
+        "all_of": [
+          "wf.audit.append_only_log"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "warn",
+      "when": {
+        "any_tag": [
+          "audit"
+        ]
+      }
+    },
+    {
+      "id": "bond.blob_storage_requires_retention_and_backup",
+      "message": "Blob/file capabilities should pair with backup policy and backup/restore workflow.",
+      "require": {
+        "all_of": [
+          "ev.backup.policy",
+          "wf.ops.backup_restore"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "warn",
+      "when": {
+        "any_of": [
+          "cap.storage.blob"
+        ]
+      }
+    },
+    {
+      "id": "bond.content_publish_requires_authoring_input",
+      "message": "Publishing flows should include an authoring input surface (rich text or at least a basic form).",
+      "require": {
+        "any_of": [
+          "exp.input.rich_text",
+          "exp.input.form.basic"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "warn",
+      "when": {
+        "any_of": [
+          "wf.content.draft_review_publish",
+          "exp.flow.publish"
+        ]
+      }
+    },
+    {
+      "id": "bond.destructive_actions_require_confirm_and_audit",
+      "message": "Destructive/irreversible operations require explicit confirmation UX plus append-only audit workflow, integrity evidence, and audit coverage for the destructive event.",
+      "require": {
+        "all_of": [
+          "exp.feedback.modal_confirm",
+          "wf.audit.append_only_log",
+          "ev.audit.log_integrity",
+          "ev.audit.destructive_ops_audit"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "wf.privacy.data_delete",
+          "wf.security.rotation"
+        ]
+      }
+    },
+    {
+      "schema": "periodic.bond_rule.v1",
+      "id": "bond.file_upload_requires_blob_storage",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "exp.input.file_upload"
+        ]
+      },
+      "require": {
+        "all_of": [
+          "cap.storage.blob"
+        ]
+      },
+      "message": "File upload UX requires blob storage capability; otherwise uploads are non-shippable fantasy."
+    },
+    {
+      "id": "bond.golden_signals_for_civilization_horizon",
+      "message": "Operational surface implies golden signals tracking (latency/traffic/errors/saturation) and metrics collection.",
+      "require": {
+        "all_of": [
+          "cap.observability.metrics",
+          "ev.monitor.latency",
+          "ev.monitor.traffic",
+          "ev.monitor.errors",
+          "ev.monitor.saturation"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "warn",
+      "when": {
+        "any_of": [
+          "cap.observability.metrics"
+        ]
+      }
+    },
+    {
+      "id": "bond.idempotence_requires_keys_and_evidence",
+      "message": "Idempotence must be operational, not aspirational: safe retries require idempotency-key workflow plus evidence of deduplication.",
+      "require": {
+        "all_of": [
+          "wf.resilience.idempotency_key",
+          "ev.resilience.idempotency_key"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "error",
+      "when": {
+        "all_of": [
+          "pr.idempotence",
+          "wf.resilience.retry_backoff"
+        ]
+      }
+    },
+    {
+      "id": "bond.integration_requires_retry_and_failure_ux",
+      "message": "Integrations require retry/backoff workflow and a visible failure+retry UX branch.",
+      "require": {
+        "all_of": [
+          "wf.resilience.retry_backoff",
+          "exp.feedback.retry_banner"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "cap.integrations.webhooks",
+          "cap.integrations.api_client"
+        ]
+      }
+    },
+    {
+      "id": "bond.irreversible_requires_tx_states",
+      "message": "Value/tx commitments require explicit pending/confirmed/failed UX (exp.value.tx_status) and a tx lifecycle workshop (wf.tx.lifecycle).",
+      "require": {
+        "all_of": [
+          "exp.value.tx_status",
+          "wf.tx.lifecycle"
+        ],
+        "states": [
+          "pending",
+          "confirmed",
+          "failed"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "cap.value.wallet_tx",
+          "cap.value.escrow",
+          "wf.value.commit_gate"
+        ]
+      }
+    },
+    {
+      "id": "bond.migration_requires_plan_and_backup",
+      "message": "SQL storage or migrations require schema versioning + migration plan evidence and an explicit backup/restore workflow.",
+      "require": {
+        "all_of": [
+          "ev.data.schema_versioning",
+          "ev.change.migration_plan",
+          "ev.backup.policy",
+          "wf.ops.backup_restore"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "wf.change.migration",
+          "cap.storage.sql"
+        ]
+      }
+    },
+    {
+      "id": "bond.sql_requires_constraints_evidence",
+      "message": "Relational DB claims require evidence of constraints and invariants enforced at the database layer (NOT NULL/UNIQUE/FK).",
+      "require": {
+        "all_of": [
+          "ev.data.constraints"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "cap.storage.sql"
+        ]
+      }
+    },
+    {
+      "id": "bond.moderation_appeals_require_audit_and_authz",
+      "message": "Moderation appeals require RBAC + permission-denied UX and an append-only audit trail with integrity evidence.",
+      "require": {
+        "all_of": [
+          "cap.security.rbac",
+          "exp.feedback.permission_denied",
+          "wf.audit.append_only_log",
+          "ev.audit.log_integrity"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "wf.moderation.appeals"
+        ]
+      }
+    },
+    {
+      "id": "bond.notifications_require_opt_in",
+      "message": "Notifications require an explicit opt-in workflow.",
+      "require": {
+        "all_of": [
+          "wf.notifications.opt_in"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "error",
+      "when": {
+        "any_tag": [
+          "notify"
+        ]
+      }
+    },
+    {
+      "schema": "periodic.bond_rule.v1",
+      "id": "bond.permission_denied_requires_rbac",
+      "severity": "warn",
+      "when": {
+        "any_of": [
+          "exp.feedback.permission_denied"
+        ]
+      },
+      "require": {
+        "all_of": [
+          "cap.security.rbac"
+        ]
+      },
+      "message": "Permission-denied UX implies RBAC capability; otherwise the UI is lying about authorization semantics."
+    },
+    {
+      "id": "bond.pipeline_stage_progression_requires_filters_and_list",
+      "message": "Pipeline stage progression should expose a list surface (table/card grid) plus filtering to avoid unusable stage jungles.",
+      "require": {
+        "all_of": [
+          "exp.input.filters"
+        ],
+        "any_of": [
+          "exp.display.table",
+          "exp.display.card_grid"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "warn",
+      "when": {
+        "any_of": [
+          "wf.pipeline.stage_progression"
+        ]
+      }
+    },
+    {
+      "id": "bond.rbac_requires_permission_denied_state",
+      "message": "RBAC capability requires an explicit permission-denied UX state to avoid silent authz failures.",
+      "require": {
+        "all_of": [
+          "exp.feedback.permission_denied"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "cap.security.rbac"
+        ]
+      }
+    },
+    {
+      "id": "bond.retry_side_effects_require_idempotence_principle",
+      "message": "Retries combined with side-effecting capabilities require the idempotence principle to prevent duplicate external actions.",
+      "require": {
+        "all_of": [
+          "pr.idempotence"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "error",
+      "when": {
+        "all_of": [
+          "wf.resilience.retry_backoff"
+        ],
+        "any_of": [
+          "cap.integrations.webhooks",
+          "cap.integrations.api_client",
+          "cap.value.wallet_tx",
+          "cap.value.escrow",
+          "wf.value.commit_gate"
+        ]
+      }
+    },
+    {
+      "id": "bond.tx_lifecycle_requires_tx_status",
+      "message": "Transaction lifecycle semantics require an explicit tx status UX (pending/confirmed/failed) so users can understand commitment state.",
+      "require": {
+        "all_of": [
+          "exp.value.tx_status"
+        ],
+        "states": [
+          "pending",
+          "confirmed",
+          "failed"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "wf.tx.lifecycle"
+        ]
+      }
+    },
+    {
+      "id": "bond.tx_status_requires_tx_lifecycle",
+      "message": "Transaction status UX requires an explicit tx lifecycle workshop so the UI cannot exist without real commitment semantics.",
+      "require": {
+        "all_of": [
+          "wf.tx.lifecycle"
+        ],
+        "states": [
+          "pending",
+          "confirmed",
+          "failed"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "exp.value.tx_status"
+        ]
+      }
+    },
+    {
+      "id": "bond.webhook_delivery_requires_webhooks_capability",
+      "message": "Webhook delivery semantics require the webhooks capability; avoid orphan workflows that claim delivery without enabling webhooks.",
+      "require": {
+        "all_of": [
+          "cap.integrations.webhooks"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "wf.integrations.webhook_delivery"
+        ]
+      }
+    },
+    {
+      "id": "bond.webhooks_require_delivery_semantics",
+      "message": "Claiming webhooks requires explicit delivery semantics plus retry/backoff and failure UX.",
+      "require": {
+        "all_of": [
+          "wf.integrations.webhook_delivery",
+          "wf.resilience.retry_backoff",
+          "exp.feedback.retry_banner"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "cap.integrations.webhooks"
+        ]
+      }
+    },
+    {
+      "id": "bond.webhooks_require_dedupe",
+      "message": "Webhook receivers must be idempotent: require explicit deduplication workflow and evidence to prevent duplicate processing.",
+      "require": {
+        "all_of": [
+          "wf.integrations.webhook_dedupe",
+          "ev.integrations.webhook_dedupe"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "cap.integrations.webhooks"
+        ]
+      }
+    },
+    {
+      "id": "bond.webhooks_require_signature_and_replay_protection",
+      "message": "Webhook integrations must verify authenticity (signatures) and prevent basic replay attacks (timestamp/nonce window).",
+      "require": {
+        "all_of": [
+          "wf.integrations.webhook_signature_verify",
+          "wf.integrations.webhook_replay_protection",
+          "ev.integrations.webhook_signature_verify",
+          "ev.integrations.webhook_replay_protection"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "cap.integrations.webhooks"
+        ]
+      }
+    }
+  ],
+  "schema": "periodic.bond_ruleset.v1",
+  "version": "1"
+}

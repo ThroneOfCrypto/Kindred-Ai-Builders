@@ -1,0 +1,25 @@
+{
+  "domain": "distributed_truth",
+  "elements": [
+    "cap.dist.consensus",
+    "cap.dist.replication",
+    "cap.membrane.http_api",
+    "ev.dist.consistency_model_decl",
+    "ev.dist.fault_injection_tests",
+    "ev.dist.partition_behavior_matrix",
+    "ev.membrane.interface_spec",
+    "pr.dist.idempotent_messages",
+    "pr.dist.safety_over_liveness",
+    "pr.membrane.backward_compat",
+    "pr.membrane.failure_isolation",
+    "wf.dist.leader_election",
+    "wf.dist.log_replication",
+    "wf.dist.snapshot_restore",
+    "wf.membrane.compatibility_tests",
+    "wf.membrane.contract_versioning"
+  ],
+  "id": "compound.distributed_truth_boundary",
+  "name": "Distributed truth with membrane boundary",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1"
+}

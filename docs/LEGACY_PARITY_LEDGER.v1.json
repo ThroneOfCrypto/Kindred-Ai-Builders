@@ -1,0 +1,890 @@
+{
+  "version": "legacy_patched366",
+  "generated_from": "patched366",
+  "counts": {
+    "pages": 92,
+    "routes": 18
+  },
+  "items": [
+    {
+      "kind": "page",
+      "legacy_path": "/__operator/design-lab/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/about/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/account/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/advanced/design/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/advanced/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/advanced/paste-pack/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/ai/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/ai/setup/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/backup/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/builder/[...slug]/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/builder/brownfield/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/builder/new/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/builder/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/director/[...slug]/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/director/blueprints/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/director/brief/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/director/browse/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/director/build/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/director/capabilities/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/director/coherence/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/director/connect-ai/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/director/data/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/director/editor/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/director/evidence/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/director/failures/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/director/golden-path/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/director/health/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/director/import/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/director/intent/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/director/interrogator/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/director/journey/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/director/kits/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/director/libraries/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/director/library-lock/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/director/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/director/patterns/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/director/preview/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/director/proof-request/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/director/proposals/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/director/ship/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/director/start/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/[...slug]/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/auth/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/backup/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/blueprints/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/coherence/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/context-handoff/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/deploy/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/design-tokens/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/director/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/director-brief/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/dogfood/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/feedback-loop/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/golden-path/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/governance/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/interrogator/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/kits/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/libraries/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/market-landscape/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/new-window-bootstrap/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/offline-first/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/paste-pack/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/patterns/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/preview/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/quickstart/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/release/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/repo-projects/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/security/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/spec-pack/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/spel-seed/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/surfaces/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/verify/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/docs/window-carry-checklist/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/feedback/page.tsx",
+      "status": "done",
+      "target_lane": "kernel",
+      "target_ref": "/public/feedback/index.html",
+      "notes": "No-custody feedback helper (static)."
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/marketplace/[type]/[slug]/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/marketplace/[type]/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/marketplace/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/operator/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/privacy/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/release-checklist/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/repo/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/repo-builder/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/repo-projects/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/repo-workbench/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/ship/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/support/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/terms/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/usage/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/verify/page.tsx",
+      "status": "done",
+      "target_lane": "kernel",
+      "target_ref": "/public/verify/index.html",
+      "notes": "Director-friendly proof inspection surface (static)."
+    },
+    {
+      "kind": "page",
+      "legacy_path": "/workbench/page.tsx",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "api",
+      "legacy_path": "/api/ai/brownfield-propose/route.ts",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "api",
+      "legacy_path": "/api/ai/debug-failure/route.ts",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "api",
+      "legacy_path": "/api/ai/ping/route.ts",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "api",
+      "legacy_path": "/api/ai/propose-pack/route.ts",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "api",
+      "legacy_path": "/api/ai/suggest/route.ts",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "api",
+      "legacy_path": "/api/evidence/log/route.ts",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "api",
+      "legacy_path": "/api/evidence/status/route.ts",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "api",
+      "legacy_path": "/api/evidence/upload/route.ts",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "api",
+      "legacy_path": "/api/health/route.ts",
+      "status": "mapped",
+      "target_lane": "kernel",
+      "target_ref": "(planned) /public/api/health.json or /api/health function",
+      "notes": "Legacy had JSON health endpoint; kernel will provide minimal static equivalent."
+    },
+    {
+      "kind": "api",
+      "legacy_path": "/api/library/import-pin/route.ts",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "api",
+      "legacy_path": "/api/library/lockfile/route.ts",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "api",
+      "legacy_path": "/api/proof/run/route.ts",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "api",
+      "legacy_path": "/api/proof/status/route.ts",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "api",
+      "legacy_path": "/api/proof/stop/route.ts",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "api",
+      "legacy_path": "/api/publish-ready/generate/route.ts",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "api",
+      "legacy_path": "/api/runtime-meta/route.ts",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "api",
+      "legacy_path": "/api/selfcheck/route.ts",
+      "status": "unmapped",
+      "target_lane": null,
+      "target_ref": null,
+      "notes": ""
+    },
+    {
+      "kind": "api",
+      "legacy_path": "/healthz/route.ts",
+      "status": "done",
+      "target_lane": "kernel",
+      "target_ref": "/public/healthz",
+      "notes": "Static healthz file for uptime checks."
+    }
+  ]
+}

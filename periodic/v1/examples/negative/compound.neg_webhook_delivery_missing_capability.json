@@ -1,0 +1,9 @@
+{
+  "schema": "periodic.compound.v1",
+  "id": "compound.neg_webhook_delivery_missing_capability",
+  "name": "NEGATIVE: neg webhook delivery missing capability",
+  "tables_version": "1",
+  "elements": [
+    "wf.integrations.webhook_delivery"
+  ]
+}

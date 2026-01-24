@@ -1,0 +1,34 @@
+{
+  "schema": "periodic.system.v1",
+  "version": 1,
+  "id": "system.neg_wallet_service_a_double_link_missing_endorsement_id",
+  "name": "Negative: two links same membrane without endorsement_id (should fail under identity-bearing doctrine)",
+  "compounds": [
+    {
+      "as": "wallet",
+      "path": "periodic/v1/examples/compound.wallet_commitments_boundary.json"
+    },
+    {
+      "as": "service_a",
+      "path": "periodic/v1/examples/compound.saas_service_a_boundary.json"
+    }
+  ],
+  "links": [
+    {
+      "from": "wallet",
+      "to": "service_a",
+      "via": {
+        "cap": "cap.membrane.http_api",
+        "notes": "Missing endorsement_id"
+      }
+    },
+    {
+      "from": "wallet",
+      "to": "service_a",
+      "via": {
+        "cap": "cap.membrane.http_api",
+        "notes": "Missing endorsement_id"
+      }
+    }
+  ]
+}

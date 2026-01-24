@@ -1,0 +1,9 @@
+{
+  "schema": "periodic.compound.v1",
+  "tables_version": "1",
+  "id": "compound.neg_privacy_proof_claim_missing_replay_protection",
+  "name": "NEG: proof-carrying claim without replay protection",
+  "elements": [
+    "cap.privacy.proof_carrying_claim"
+  ]
+}

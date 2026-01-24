@@ -1,0 +1,20 @@
+{
+  "schema": "periodic.compound.v1",
+  "id": "compound.neg_webhooks_missing_delivery",
+  "name": "NEGATIVE: Webhooks without delivery semantics",
+  "tables_version": "1",
+  "elements": [
+    "cap.integrations.webhooks",
+    "wf.resilience.retry_backoff",
+    "exp.feedback.retry_banner",
+    "pr.idempotence",
+    "wf.resilience.idempotency_key",
+    "ev.resilience.idempotency_key",
+    "wf.integrations.webhook_signature_verify",
+    "wf.integrations.webhook_replay_protection",
+    "ev.integrations.webhook_signature_verify",
+    "ev.integrations.webhook_replay_protection",
+    "wf.integrations.webhook_dedupe",
+    "ev.integrations.webhook_dedupe"
+  ]
+}

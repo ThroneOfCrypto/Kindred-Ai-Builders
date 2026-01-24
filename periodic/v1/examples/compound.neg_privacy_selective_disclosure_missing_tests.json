@@ -1,0 +1,13 @@
+{
+  "schema": "periodic.compound.v1",
+  "tables_version": "1",
+  "id": "compound.neg_privacy_selective_disclosure_missing_tests",
+  "name": "NEG: selective disclosure missing verification tests",
+  "elements": [
+    "cap.privacy.selective_disclosure",
+    "pr.privacy.minimal_disclosure",
+    "wf.privacy.presentation",
+    "wf.privacy.verify_presentation",
+    "ev.privacy.verification_spec"
+  ]
+}

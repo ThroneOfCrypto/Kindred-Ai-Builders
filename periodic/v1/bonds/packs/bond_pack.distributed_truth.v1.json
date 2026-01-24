@@ -1,0 +1,43 @@
+{
+  "rules": [
+    {
+      "id": "bond.dist_consensus_requires_decl_and_tests",
+      "message": "Distributed truth (consensus/coordination) requires declared consistency semantics, partition behavior, fault injection evidence, and an explicit safety-over-liveness posture.",
+      "require": {
+        "all_of": [
+          "ev.dist.consistency_model_decl",
+          "ev.dist.partition_behavior_matrix",
+          "ev.dist.fault_injection_tests",
+          "pr.dist.safety_over_liveness"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "cap.dist.consensus",
+          "wf.dist.leader_election",
+          "wf.dist.log_replication"
+        ]
+      }
+    },
+    {
+      "id": "bond.dist_replication_requires_snapshot_restore",
+      "message": "Replication requires snapshot/restore workflow for recovery and bootstrap.",
+      "require": {
+        "all_of": [
+          "wf.dist.snapshot_restore"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "cap.dist.replication"
+        ]
+      }
+    }
+  ],
+  "schema": "periodic.bond_ruleset.v1",
+  "version": "1"
+}

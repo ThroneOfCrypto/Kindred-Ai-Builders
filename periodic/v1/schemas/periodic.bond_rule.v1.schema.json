@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "periodic.bond_rule.v1.schema.json",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "when",
+    "require",
+    "message"
+  ],
+  "properties": {
+    "schema": {
+      "const": "periodic.bond_rule.v1"
+    },
+    "id": {
+      "type": "string"
+    },
+    "severity": {
+      "enum": [
+        "error",
+        "warn"
+      ],
+      "default": "error"
+    },
+    "when": {
+      "type": "object",
+      "properties": {
+        "any_of": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "all_of": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "any_tag": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "table_any_of": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "experience",
+              "workshop",
+              "capability",
+              "evidence",
+              "principle"
+            ]
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "require": {
+      "type": "object",
+      "properties": {
+        "all_of": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "any_of": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "states": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "message": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,86 @@
+{
+  "schema": "periodic.negative_examples.v1",
+  "version": "1",
+  "cases": [
+    {
+      "id": "bond.membrane_event_stream_missing_contract",
+      "path": "periodic/v1/examples/negative/compound.neg_membrane_event_stream_missing_contract.json",
+      "expect_errors": [
+        "bond.membrane_boundary_requires_contract_and_tests"
+      ],
+      "note": "Event stream boundaries still require explicit contracts and tests."
+    },
+    {
+      "id": "bond.membrane_file_artifact_missing_contract",
+      "path": "periodic/v1/examples/negative/compound.neg_membrane_file_artifact_missing_contract.json",
+      "expect_errors": [
+        "bond.membrane_boundary_requires_contract_and_tests"
+      ],
+      "note": "File artifact exchanges are boundaries; they need specs and tests too."
+    },
+    {
+      "id": "neg.membrane_breaking_change_without_version_bump",
+      "path": "periodic/v1/examples/negative/compound.neg_membrane_breaking_change_without_version_bump.json",
+      "expect_errors": [
+        "bond.membrane_breaking_change_requires_version_bump"
+      ],
+      "note": "Breaking changes require version bumps; otherwise compatibility claims are meaningless."
+    },
+    {
+      "id": "neg.membrane_compat_missing_spec",
+      "path": "periodic/v1/examples/negative/compound.neg_membrane_compat_missing_spec.json",
+      "expect_errors": [
+        "bond.membrane_compat_tests_require_spec"
+      ],
+      "note": "Compatibility testing must reference an explicit spec; otherwise it is not repeatable."
+    },
+    {
+      "id": "neg.membrane_http_missing_compat_tests",
+      "path": "periodic/v1/examples/negative/compound.neg_membrane_http_missing_compat_tests.json",
+      "expect_errors": [
+        "bond.membrane_boundary_requires_contract_and_tests"
+      ],
+      "note": "Boundary contracts without compatibility tests are unproven and must fail."
+    },
+    {
+      "id": "neg.membrane_http_missing_contract",
+      "path": "periodic/v1/examples/negative/compound.neg_membrane_http_missing_contract.json",
+      "expect_errors": [
+        "bond.membrane_boundary_requires_contract_and_tests"
+      ],
+      "note": "Cross-domain boundaries must not exist without an explicit contract."
+    },
+    {
+      "id": "neg.membrane_http_missing_failure_isolation",
+      "path": "periodic/v1/examples/negative/compound.neg_membrane_http_missing_failure_isolation.json",
+      "expect_errors": [
+        "bond.membrane_boundary_requires_failure_isolation"
+      ],
+      "note": "Membrane boundaries must declare failure isolation (bulkheads) to prevent cascading failures."
+    },
+    {
+      "id": "neg.membrane_http_missing_versioning",
+      "path": "periodic/v1/examples/negative/compound.neg_membrane_http_missing_versioning.json",
+      "expect_errors": [
+        "bond.membrane_boundary_requires_contract_and_tests"
+      ],
+      "note": "Breaking boundary changes without versioning collapse trust; must fail."
+    },
+    {
+      "id": "neg.membrane_http_tests_without_spec",
+      "path": "periodic/v1/examples/negative/compound.neg_membrane_http_tests_without_spec.json",
+      "expect_errors": [
+        "bond.membrane_compat_tests_require_spec"
+      ],
+      "note": "Compatibility tests without a versioned interface spec are non-deterministic."
+    },
+    {
+      "id": "neg.membrane_webhook_missing_contract",
+      "path": "periodic/v1/examples/negative/compound.neg_membrane_webhook_missing_contract.json",
+      "expect_errors": [
+        "bond.membrane_boundary_requires_contract_and_tests"
+      ],
+      "note": "Webhook boundaries must be versioned and tested, not implied."
+    }
+  ]
+}

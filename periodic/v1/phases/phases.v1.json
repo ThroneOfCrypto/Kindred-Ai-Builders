@@ -1,0 +1,69 @@
+{
+  "schema": "periodic.phases.v1",
+  "version": "1",
+  "phases": [
+    {
+      "id": "phase0",
+      "name": "Phase 0",
+      "summary": "Substrate: neutral membrane boundary physics only.",
+      "profile": "phase0",
+      "index": "periodic/v1/periodic.index.phase0.v1.json"
+    },
+    {
+      "id": "phase1",
+      "name": "Phase 1",
+      "summary": "Commercial core: internet-app spine (with membrane borders) hardened to shipping cliffs.",
+      "profile": "phase1",
+      "index": "periodic/v1/periodic.index.phase1.v1.json"
+    },
+    {
+      "id": "phase2",
+      "name": "Phase 2",
+      "summary": "Authority lane: proof receipts + federation hygiene and stricter verification posture.",
+      "profile": "phase2",
+      "index": "periodic/v1/periodic.index.phase2.v1.json"
+    },
+    {
+      "id": "phase3",
+      "name": "Phase 3",
+      "summary": "Enterprise reality (lite): compliance evidence cliffs without regulated avionics burden.",
+      "profile": "phase3",
+      "index": "periodic/v1/periodic.index.phase3.v1.json"
+    },
+    {
+      "id": "phase4",
+      "name": "Phase 4",
+      "summary": "Platform multiplier (lite): ML registry + drift + reproducibility linkage as enforceable physics.",
+      "profile": "phase4",
+      "index": "periodic/v1/periodic.index.phase4.v1.json"
+    },
+    {
+      "id": "phase5",
+      "name": "Phase 5",
+      "summary": "Truth machines (lite): distributed truth cliffs and partition behavior evidence.",
+      "profile": "phase5",
+      "index": "periodic/v1/periodic.index.phase5.v1.json"
+    },
+    {
+      "id": "phase6",
+      "name": "Phase 6",
+      "summary": "Phase 6: hard realms (lite). Adds hard real-time, game/simulation, and kernel/runtime physics packs.",
+      "profile": "phase6",
+      "index": "periodic/v1/periodic.index.phase6.v1.json"
+    },
+    {
+      "id": "phase7",
+      "name": "Phase 7",
+      "summary": "Privacy compute (lite): selective disclosure and proof-carrying claims as a distinct immiscible physics regime.",
+      "profile": "phase7",
+      "index": "periodic/v1/periodic.index.phase7.v1.json"
+    },
+    {
+      "id": "phase8",
+      "name": "Phase 8",
+      "summary": "Phase 8: identity/access (lite). Wallet login + session receipts + DID binding evidence + agent access receipts.",
+      "profile": "phase8",
+      "index": "periodic/v1/periodic.index.phase8.v1.json"
+    }
+  ]
+}

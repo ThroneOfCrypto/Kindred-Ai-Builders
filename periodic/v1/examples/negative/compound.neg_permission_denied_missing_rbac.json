@@ -1,0 +1,9 @@
+{
+  "schema": "periodic.compound.v1",
+  "id": "compound.neg_permission_denied_missing_rbac",
+  "name": "NEGATIVE: permission denied without rbac",
+  "tables_version": "1",
+  "elements": [
+    "exp.feedback.permission_denied"
+  ]
+}

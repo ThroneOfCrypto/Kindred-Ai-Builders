@@ -1,0 +1,9 @@
+{
+  "schema": "periodic.compound.v1",
+  "id": "compound.neg_tx_status_missing_lifecycle",
+  "name": "NEGATIVE: neg tx status missing lifecycle",
+  "tables_version": "1",
+  "elements": [
+    "exp.value.tx_status"
+  ]
+}

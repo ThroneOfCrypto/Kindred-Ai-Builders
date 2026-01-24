@@ -1,0 +1,13 @@
+{
+  "schema": "periodic.compound.v1",
+  "id": "compound.neg_sql_missing_constraints_evidence",
+  "name": "NEGATIVE: SQL without constraints evidence",
+  "tables_version": "1",
+  "elements": [
+    "cap.storage.sql",
+    "ev.backup.policy",
+    "ev.change.migration_plan",
+    "ev.data.schema_versioning",
+    "wf.ops.backup_restore"
+  ]
+}

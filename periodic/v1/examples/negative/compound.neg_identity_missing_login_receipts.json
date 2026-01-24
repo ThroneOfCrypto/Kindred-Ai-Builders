@@ -1,0 +1,13 @@
+{
+  "elements": [
+    "cap.identity.reusable_account",
+    "pr.auth.challenge_response_only",
+    "pr.auth.no_browser_secrets",
+    "wf.auth.session_tokens",
+    "wf.auth.wallet_login"
+  ],
+  "id": "compound.neg_identity_missing_login_receipts",
+  "name": "NEG: wallet login missing login receipts",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1"
+}

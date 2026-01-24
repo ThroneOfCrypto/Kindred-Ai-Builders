@@ -1,0 +1,17 @@
+{
+  "elements": [
+    "ev.reg.hazard_analysis",
+    "ev.reg.traceability_matrix",
+    "ev.reg.validation_report",
+    "ev.reg.verification_plan",
+    "pr.reg.safety_case_integrity",
+    "pr.reg.separation_of_duties",
+    "wf.reg.change_control",
+    "wf.reg.release_approval_gate"
+  ],
+  "id": "compound.regulated_safety_lite",
+  "name": "Regulated safety lite (governance + traceability + V&V)",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1",
+  "domain": "regulated_safety"
+}

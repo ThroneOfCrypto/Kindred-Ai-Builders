@@ -1,0 +1,29 @@
+{
+  "elements": [
+    "cap.auth.session",
+    "cap.integrations.api_client",
+    "cap.observability.metrics",
+    "cap.security.rbac",
+    "cap.storage.sql",
+    "ev.backup.policy",
+    "ev.change.migration_plan",
+    "ev.data.constraints",
+    "ev.data.schema_versioning",
+    "ev.monitor.errors",
+    "ev.monitor.latency",
+    "ev.monitor.saturation",
+    "ev.monitor.traffic",
+    "ev.proof.receipts",
+    "ev.resilience.idempotency_key",
+    "exp.feedback.permission_denied",
+    "exp.feedback.retry_banner",
+    "pr.idempotence",
+    "wf.ops.backup_restore",
+    "wf.resilience.idempotency_key",
+    "wf.resilience.retry_backoff"
+  ],
+  "id": "compound.api_integration_client",
+  "name": "API client integrations (retries + failure UX)",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1"
+}

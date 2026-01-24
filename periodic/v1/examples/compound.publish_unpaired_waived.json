@@ -1,0 +1,27 @@
+{
+  "schema": "periodic.compound.v1",
+  "tables_version": "1",
+  "id": "compound.publish_unpaired_waived",
+  "name": "Publish flow (pairing waived for prototype)",
+  "elements": [
+    "cap.security.rbac",
+    "exp.feedback.permission_denied",
+    "exp.flow.publish",
+    "exp.input.form.basic"
+  ],
+  "waivers": [
+    {
+      "rule_id": "pair.flow_workshop.missing",
+      "rationale": "Prototype-only: we want to explore publish UX without committing to a full draft/review/publish workshop semantics yet.",
+      "mitigations": [
+        "exp.flow.publish",
+        "exp.input.form.basic",
+        "cap.security.rbac",
+        "exp.feedback.permission_denied"
+      ],
+      "expires_on": "2026-02-01",
+      "notes": "Waiver must be removed or replaced by adding wf.content.draft_review_publish before any production release.",
+      "target": "compound"
+    }
+  ]
+}

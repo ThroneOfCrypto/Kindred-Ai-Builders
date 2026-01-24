@@ -1,0 +1,9 @@
+{
+  "schema": "periodic.compound.v1",
+  "id": "compound.neg_sim_fixed_timestep_missing_replay",
+  "name": "NEGATIVE: simulation fixed timestep without replay evidence",
+  "domain": "game_simulation",
+  "elements": [
+    "wf.sim.fixed_timestep"
+  ]
+}

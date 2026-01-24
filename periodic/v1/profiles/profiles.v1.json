@@ -1,0 +1,182 @@
+{
+  "default_profile": "ship",
+  "profiles": {
+    "full": {
+      "description": "Full federation suite: enables all current packs for cross-domain experimentation. Not the default commercial spine.",
+      "enabled_packs": [
+        "internet_app",
+        "membrane",
+        "distributed_truth",
+        "regulated_safety",
+        "privacy_compute"
+      ],
+      "severity_overrides": {}
+    },
+    "phase0": {
+      "description": "Phase 0: membrane-only. Border physics (contracts, compat tests, versioning, isolation) without domain substance assumptions.",
+      "enabled_packs": [
+        "membrane"
+      ],
+      "severity_overrides": {}
+    },
+    "phase1": {
+      "description": "Commercial core (Phase 0–1): membrane + internet_app only. Designed to ship common SaaS/marketplaces without dragging later domains into default checks.",
+      "enabled_packs": [
+        "internet_app",
+        "membrane"
+      ],
+      "severity_overrides": {
+        "bond.permission_denied_requires_rbac": "error"
+      }
+    },
+    "phase2": {
+      "description": "Phase 2: proof lane receipts + independent verification. Intended for authority checks, not daily iteration.",
+      "enabled_packs": [
+        "compliance_lite",
+        "distributed_truth",
+        "internet_app",
+        "membrane",
+        "ml_platform",
+        "proof_lane",
+        "regulated_safety"
+      ],
+      "severity_overrides": {
+        "bond.permission_denied_requires_rbac": "error",
+        "bond.publish_requires_proof_receipts": "warn"
+      }
+    },
+    "phase3": {
+      "description": "Phase 3: enterprise reality (lite). Adds compliance evidence cliffs to the Phase1 commercial spine.",
+      "enabled_packs": [
+        "internet_app",
+        "membrane",
+        "compliance_lite"
+      ],
+      "severity_overrides": {
+        "bond.permission_denied_requires_rbac": "error"
+      }
+    },
+    "phase4": {
+      "description": "Phase 4: platform multiplier (lite). Adds ML platform operations physics (registry, drift, reproducibility linkage).",
+      "enabled_packs": [
+        "internet_app",
+        "membrane",
+        "compliance_lite",
+        "ml_platform"
+      ],
+      "severity_overrides": {
+        "bond.permission_denied_requires_rbac": "error"
+      }
+    },
+    "phase5": {
+      "description": "Phase 5: truth machines (lite). Adds distributed truth cliffs and proof receipt pairing posture.",
+      "enabled_packs": [
+        "internet_app",
+        "membrane",
+        "compliance_lite",
+        "ml_platform",
+        "distributed_truth",
+        "proof_lane",
+        "regulated_safety"
+      ],
+      "severity_overrides": {
+        "bond.permission_denied_requires_rbac": "error",
+        "bond.publish_requires_proof_receipts": "warn"
+      }
+    },
+    "phase6": {
+      "description": "Phase 6: hard realms (lite). Enables hard_real_time, game_simulation, and kernel_runtime packs in addition to Phase5 truth machines.",
+      "enabled_packs": [
+        "internet_app",
+        "membrane",
+        "compliance_lite",
+        "ml_platform",
+        "distributed_truth",
+        "proof_lane",
+        "regulated_safety",
+        "hard_real_time",
+        "game_simulation",
+        "kernel_runtime"
+      ],
+      "severity_overrides": {
+        "bond.permission_denied_requires_rbac": "error",
+        "bond.publish_requires_proof_receipts": "warn"
+      }
+    },
+    "phase7": {
+      "description": "Phase 7: privacy compute (lite). Adds privacy_compute pack to the Phase6 hard realms profile.",
+      "enabled_packs": [
+        "internet_app",
+        "membrane",
+        "compliance_lite",
+        "ml_platform",
+        "distributed_truth",
+        "proof_lane",
+        "regulated_safety",
+        "hard_real_time",
+        "game_simulation",
+        "kernel_runtime",
+        "privacy_compute"
+      ],
+      "severity_overrides": {
+        "bond.permission_denied_requires_rbac": "error",
+        "bond.publish_requires_proof_receipts": "warn"
+      }
+    },
+    "quick": {
+      "description": "Quick iteration while still shippable. Allows skipping some non-cliff drift signals.",
+      "enabled_packs": [
+        "internet_app",
+        "membrane",
+        "distributed_truth",
+        "regulated_safety"
+      ],
+      "severity_overrides": {
+        "bond.pipeline_stage_progression_requires_filters_and_list": "warn",
+        "pair.flow_workshop.missing": "ignore"
+      }
+    },
+    "ship": {
+      "description": "Shipping-first. Cliffs enforced; only explicitly listed overrides apply.",
+      "enabled_packs": [
+        "compliance_lite",
+        "distributed_truth",
+        "game_simulation",
+        "hard_real_time",
+        "identity_access_lite",
+        "internet_app",
+        "kernel_runtime",
+        "membrane",
+        "ml_platform",
+        "privacy_compute",
+        "proof_lane",
+        "regulated_safety"
+      ],
+      "severity_overrides": {
+        "bond.permission_denied_requires_rbac": "error"
+      }
+    },
+    "phase8": {
+      "description": "Phase 8: identity/access (lite). Adds identity_access_lite pack atop Phase7 federated posture to support wallet auth, DID bindings, and agent-safe receipts without polluting Phase1.",
+      "enabled_packs": [
+        "internet_app",
+        "membrane",
+        "compliance_lite",
+        "ml_platform",
+        "distributed_truth",
+        "proof_lane",
+        "regulated_safety",
+        "hard_real_time",
+        "game_simulation",
+        "kernel_runtime",
+        "privacy_compute",
+        "identity_access_lite"
+      ],
+      "severity_overrides": {
+        "bond.permission_denied_requires_rbac": "error"
+      }
+    }
+  },
+  "schema": "periodic.profiles.v1",
+  "version": "1"
+}

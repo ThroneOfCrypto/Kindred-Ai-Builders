@@ -1,0 +1,27 @@
+{
+  "schema": "periodic.system.v1",
+  "version": 1,
+  "id": "system.wallet_service_a_http_endorse_beta",
+  "name": "Counterexample: wallet -> service_a over HTTP with endorsement beta",
+  "compounds": [
+    {
+      "as": "wallet",
+      "path": "periodic/v1/examples/compound.wallet_commitments_boundary.json"
+    },
+    {
+      "as": "service_a",
+      "path": "periodic/v1/examples/compound.saas_service_a_boundary.json"
+    }
+  ],
+  "links": [
+    {
+      "from": "wallet",
+      "to": "service_a",
+      "via": {
+        "cap": "cap.membrane.http_api",
+        "endorsement_id": "endorse.beta",
+        "notes": "Sanitizer identity beta (identity-bearing endorsement semantics)."
+      }
+    }
+  ]
+}

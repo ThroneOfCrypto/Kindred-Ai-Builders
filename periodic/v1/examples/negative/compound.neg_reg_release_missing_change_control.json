@@ -1,0 +1,12 @@
+{
+  "elements": [
+    "ev.reg.traceability_matrix",
+    "pr.reg.separation_of_duties",
+    "wf.reg.release_approval_gate"
+  ],
+  "id": "compound.neg_reg_release_missing_change_control",
+  "name": "NEGATIVE: regulated release gate without change control",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1",
+  "domain": "regulated_safety"
+}

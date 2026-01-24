@@ -1,0 +1,20 @@
+{
+  "id": "compound.saas_service_a_boundary",
+  "name": "SaaS Service A with explicit HTTP membrane boundary",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1",
+  "elements": [
+    "cap.integrations.api_client",
+    "cap.membrane.http_api",
+    "ev.membrane.interface_spec",
+    "ev.resilience.idempotency_key",
+    "exp.feedback.retry_banner",
+    "pr.idempotence",
+    "pr.membrane.backward_compat",
+    "pr.membrane.failure_isolation",
+    "wf.membrane.compatibility_tests",
+    "wf.membrane.contract_versioning",
+    "wf.resilience.idempotency_key",
+    "wf.resilience.retry_backoff"
+  ]
+}

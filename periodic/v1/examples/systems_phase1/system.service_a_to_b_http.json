@@ -1,0 +1,26 @@
+{
+  "schema": "periodic.system.v1",
+  "version": 1,
+  "id": "system.service_a_to_b_http",
+  "name": "Service A + Service B over HTTP membrane",
+  "compounds": [
+    {
+      "as": "a",
+      "path": "periodic/v1/examples/compound.saas_service_a_boundary.json"
+    },
+    {
+      "as": "b",
+      "path": "periodic/v1/examples/compound.saas_service_b_boundary.json"
+    }
+  ],
+  "links": [
+    {
+      "from": "a",
+      "to": "b",
+      "via": {
+        "cap": "cap.membrane.http_api",
+        "notes": "Membrane boundary enforced via explicit contract + compat tests in each compound."
+      }
+    }
+  ]
+}

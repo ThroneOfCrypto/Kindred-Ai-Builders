@@ -1,0 +1,10 @@
+# Vercel CLI upload exclusions
+# (Git deployments pull from repo, this is mainly for Codespaces/CLI deploys.)
+
+node_modules
+
+dist
+
+.vercel
+
+.DS_Store

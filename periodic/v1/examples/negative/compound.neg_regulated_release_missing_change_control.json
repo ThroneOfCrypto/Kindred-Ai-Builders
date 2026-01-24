@@ -1,0 +1,10 @@
+{
+  "schema": "periodic.compound.v1",
+  "tables_version": "1",
+  "id": "compound.neg_regulated_release_missing_change_control",
+  "name": "NEG: regulated release approval without change control",
+  "domain": "regulated_safety",
+  "elements": [
+    "wf.reg.release_approval_gate"
+  ]
+}

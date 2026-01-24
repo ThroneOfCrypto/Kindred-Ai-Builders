@@ -1,0 +1,12 @@
+{
+  "elements": [
+    "cap.kernel.sandbox",
+    "wf.kernel.process_isolation",
+    "ev.kernel.threat_boundary_spec",
+    "pr.kernel.least_privilege_runtime"
+  ],
+  "id": "compound.neg_kernel_missing_isolation_tests",
+  "name": "NEG: sandbox claimed but isolation tests missing",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1"
+}

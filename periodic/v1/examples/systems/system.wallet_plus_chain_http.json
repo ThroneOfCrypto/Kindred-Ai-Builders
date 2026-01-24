@@ -1,0 +1,26 @@
+{
+  "compounds": [
+    {
+      "as": "wallet",
+      "path": "periodic/v1/examples/compound.wallet_commitments_boundary.json"
+    },
+    {
+      "as": "chain",
+      "path": "periodic/v1/examples/compound.distributed_truth_boundary.json"
+    }
+  ],
+  "id": "system.wallet_plus_chain_http",
+  "links": [
+    {
+      "from": "wallet",
+      "to": "chain",
+      "via": {
+        "cap": "cap.membrane.http_api",
+        "notes": "Explicit API contract + compat tests required by membrane bonds in each compound."
+      }
+    }
+  ],
+  "name": "Wallet app (internet) + chain service (distributed truth) over HTTP membrane",
+  "schema": "periodic.system.v1",
+  "version": 1
+}

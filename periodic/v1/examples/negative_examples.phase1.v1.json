@@ -1,0 +1,204 @@
+{
+  "schema": "periodic.negative_examples.v1",
+  "version": "1",
+  "cases": [
+    {
+      "id": "bond.membrane_event_stream_missing_contract",
+      "path": "periodic/v1/examples/negative/compound.neg_membrane_event_stream_missing_contract.json",
+      "expect_errors": [
+        "bond.membrane_boundary_requires_contract_and_tests"
+      ]
+    },
+    {
+      "id": "bond.membrane_file_artifact_missing_contract",
+      "path": "periodic/v1/examples/negative/compound.neg_membrane_file_artifact_missing_contract.json",
+      "expect_errors": [
+        "bond.membrane_boundary_requires_contract_and_tests"
+      ]
+    },
+    {
+      "id": "neg.activity_log_missing_audit_integrity",
+      "path": "periodic/v1/examples/negative/compound.neg_activity_log_missing_audit_integrity.json",
+      "expect_errors": [
+        "bond.activity_log_requires_audit_integrity"
+      ],
+      "note": "Activity log UX without append-only audit workflow and integrity evidence is fake audit."
+    },
+    {
+      "id": "neg.declared_domain_ambiguous",
+      "path": "periodic/v1/examples/negative/compound.neg_declared_domain_ambiguous.json",
+      "expect_errors": [
+        "domain.declared_ambiguous"
+      ],
+      "note": "If 'domain' is declared, inference must be unambiguous; membrane-only or multi-domain inference cannot declare a single domain."
+    },
+    {
+      "id": "neg.destructive_missing_audit_coverage",
+      "path": "periodic/v1/examples/negative/compound.neg_destructive_missing_audit_coverage.json",
+      "expect_errors": [
+        "bond.destructive_actions_require_confirm_and_audit"
+      ],
+      "note": "Destructive operations must emit complete audit events; integrity alone is not coverage."
+    },
+    {
+      "id": "neg.domain_without_pack",
+      "path": "periodic/v1/examples/negative/compound.neg_domain_without_pack.json",
+      "expect_errors": [
+        "packs.missing_for_domain"
+      ],
+      "note": "Any domain in domains.v1.json must have a corresponding enabled bond pack; missing pack is a hard error."
+    },
+    {
+      "id": "neg.file_upload_missing_blob_storage",
+      "path": "periodic/v1/examples/negative/compound.neg_file_upload_missing_blob_storage.json",
+      "expect_errors": [
+        "bond.file_upload_requires_blob_storage"
+      ],
+      "note": "File upload UX must include blob storage capability."
+    },
+    {
+      "id": "neg.membrane_http_missing_compat_tests",
+      "path": "periodic/v1/examples/negative/compound.neg_membrane_http_missing_compat_tests.json",
+      "expect_errors": [
+        "bond.membrane_boundary_requires_contract_and_tests"
+      ],
+      "note": "Boundary contract versioning without compatibility tests is an unproven boundary; must fail."
+    },
+    {
+      "id": "neg.membrane_http_missing_contract",
+      "path": "periodic/v1/examples/negative/compound.neg_membrane_http_missing_contract.json",
+      "expect_errors": [
+        "bond.membrane_boundary_requires_contract_and_tests"
+      ],
+      "note": "Cross-domain boundaries must not exist without explicit contracts and compatibility tests."
+    },
+    {
+      "id": "neg.membrane_http_missing_failure_isolation",
+      "path": "periodic/v1/examples/negative/compound.neg_membrane_http_missing_failure_isolation.json",
+      "expect_errors": [
+        "bond.membrane_boundary_requires_failure_isolation"
+      ],
+      "note": "Membrane boundaries must declare failure isolation to prevent cascading failures across domains."
+    },
+    {
+      "id": "neg.membrane_http_missing_versioning",
+      "path": "periodic/v1/examples/negative/compound.neg_membrane_http_missing_versioning.json",
+      "expect_errors": [
+        "bond.membrane_boundary_requires_contract_and_tests"
+      ],
+      "note": "Breaking boundary changes without contract versioning collapse trust; must fail."
+    },
+    {
+      "id": "neg.membrane_http_tests_without_spec",
+      "path": "periodic/v1/examples/negative/compound.neg_membrane_http_tests_without_spec.json",
+      "expect_errors": [
+        "bond.membrane_compat_tests_require_spec"
+      ],
+      "note": "Compatibility tests without a versioned interface spec are non-deterministic and must fail."
+    },
+    {
+      "id": "neg.membrane_webhook_missing_contract",
+      "path": "periodic/v1/examples/negative/compound.neg_membrane_webhook_missing_contract.json",
+      "expect_errors": [
+        "bond.membrane_boundary_requires_contract_and_tests"
+      ],
+      "note": "Webhook membrane boundaries must not exist without explicit contracts and compatibility tests."
+    },
+    {
+      "id": "neg.migration_missing_plan",
+      "path": "periodic/v1/examples/negative/compound.neg_migration_missing_plan.json",
+      "expect_errors": [
+        "bond.migration_requires_plan_and_backup"
+      ],
+      "note": "SQL + migrations without plan/versioning/backup is a real-world failure cliff."
+    },
+    {
+      "id": "neg.permission_denied_missing_rbac",
+      "path": "periodic/v1/examples/negative/compound.neg_permission_denied_missing_rbac.json",
+      "expect_errors": [
+        "bond.permission_denied_requires_rbac"
+      ],
+      "note": "Permission-denied UX without RBAC capability is a fake authz UI cliff."
+    },
+    {
+      "id": "neg.rbac_missing_permission_denied",
+      "path": "periodic/v1/examples/negative/compound.neg_rbac_missing_permission_denied.json",
+      "expect_errors": [
+        "bond.rbac_requires_permission_denied_state"
+      ],
+      "note": "RBAC without a permission-denied UX is a silent authz cliff."
+    },
+    {
+      "id": "neg.retry_missing_idempotence",
+      "path": "periodic/v1/examples/negative/compound.neg_retry_missing_idempotence.json",
+      "expect_errors": [
+        "bond.retry_side_effects_require_idempotence_principle"
+      ],
+      "note": "Retries with side effects require idempotence; otherwise duplicates are guaranteed sooner or later."
+    },
+    {
+      "id": "neg.retry_missing_idempotency_key",
+      "path": "periodic/v1/examples/negative/compound.neg_retry_missing_idempotency_key.json",
+      "note": "Declaring idempotence without idempotency-key mechanism is a half-truth; retries still duplicate side effects.",
+      "expect_errors": [
+        "bond.idempotence_requires_keys_and_evidence"
+      ]
+    },
+    {
+      "id": "neg.retry_side_effect_missing_idempotence",
+      "path": "periodic/v1/examples/negative/compound.neg_retry_side_effect_missing_idempotence.json",
+      "expect_errors": [
+        "bond.retry_side_effects_require_idempotence_principle"
+      ],
+      "note": "Retries plus side effects (integrations/value) must require idempotence."
+    },
+    {
+      "id": "neg.sql_missing_constraints_evidence",
+      "path": "periodic/v1/examples/negative/compound.neg_sql_missing_constraints_evidence.json",
+      "expect_errors": [
+        "bond.sql_requires_constraints_evidence"
+      ],
+      "note": "Relational DB claims must prove constraints exist; without this you get silent data corruption and duplicate rows forever."
+    },
+    {
+      "id": "neg.tx_lifecycle_missing_status",
+      "path": "periodic/v1/examples/negative/compound.neg_tx_lifecycle_missing_status.json",
+      "expect_errors": [
+        "bond.tx_lifecycle_requires_tx_status"
+      ],
+      "note": "Tx lifecycle without status UX is a commitments transparency cliff."
+    },
+    {
+      "id": "neg.tx_status_missing_lifecycle",
+      "path": "periodic/v1/examples/negative/compound.neg_tx_status_missing_lifecycle.json",
+      "expect_errors": [
+        "bond.tx_status_requires_tx_lifecycle"
+      ],
+      "note": "Tx status UX without lifecycle semantics is a fake UI cliff."
+    },
+    {
+      "id": "neg.webhook_delivery_missing_capability",
+      "path": "periodic/v1/examples/negative/compound.neg_webhook_delivery_missing_capability.json",
+      "expect_errors": [
+        "bond.webhook_delivery_requires_webhooks_capability"
+      ],
+      "note": "Delivery workflow cannot exist without the underlying webhooks capability."
+    },
+    {
+      "id": "neg.webhooks_missing_delivery",
+      "path": "periodic/v1/examples/negative/compound.neg_webhooks_missing_delivery.json",
+      "expect_errors": [
+        "bond.webhooks_require_delivery_semantics"
+      ],
+      "note": "Claiming webhooks without delivery semantics is fantasy-mode."
+    },
+    {
+      "id": "neg.webhooks_missing_signature_verify",
+      "path": "periodic/v1/examples/negative/compound.neg_webhooks_missing_signature_verify.json",
+      "expect_errors": [
+        "bond.webhooks_require_signature_and_replay_protection"
+      ],
+      "note": "Webhooks must verify signatures and prevent basic replay."
+    }
+  ]
+}

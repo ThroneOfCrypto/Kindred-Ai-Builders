@@ -1,0 +1,10 @@
+{
+  "schema": "periodic.compound.v1",
+  "id": "compound.neg_declared_domain_ambiguous",
+  "name": "NEGATIVE: Declared domain when inference is ambiguous",
+  "tables_version": "1",
+  "domain": "internet_app",
+  "elements": [
+    "pr.membrane.failure_isolation"
+  ]
+}

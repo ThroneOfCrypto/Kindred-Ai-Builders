@@ -1,0 +1,30 @@
+{
+  "kit_id": "vercel-node24",
+  "name": "Vercel Node 24",
+  "status": "authoritative",
+  "contract": {
+    "platform": "vercel",
+    "node": "24.x",
+    "install": "npm ci",
+    "build": "npm run build",
+    "test": "npm test",
+    "env_required": {
+      "VERCEL": "1"
+    }
+  },
+  "runtime_surface": {
+    "static_root": "public/",
+    "functions_root": "api/",
+    "endpoints": {
+      "health": "/api/health",
+      "proof": "/api/proof",
+      "proof_portal": "/proof/"
+    }
+  },
+  "evidence": {
+    "dist_dir": "dist/",
+    "reports_glob": "dist/*.report.json",
+    "proof_graph": "dist/proof_graph.v1.json",
+    "proof_manifest": "public/proof/proof_manifest.v1.json"
+  }
+}

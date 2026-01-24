@@ -1,0 +1,15 @@
+{
+  "elements": [
+    "cap.kernel.isolation",
+    "cap.kernel.sandbox",
+    "ev.kernel.isolation_tests",
+    "ev.kernel.threat_boundary_spec",
+    "pr.kernel.least_privilege_runtime",
+    "wf.kernel.boundary_testing",
+    "wf.kernel.process_isolation"
+  ],
+  "id": "compound.kernel_runtime_sandbox",
+  "name": "Kernel/runtime sandbox (process isolation + boundary tests)",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1"
+}

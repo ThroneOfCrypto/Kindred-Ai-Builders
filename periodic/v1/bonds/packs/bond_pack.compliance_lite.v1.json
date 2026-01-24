@@ -1,0 +1,54 @@
+{
+  "rules": [
+    {
+      "id": "bond.comp_change_control_requires_evidence",
+      "message": "Compliance-lite change control requires a change record (ticket/log) with approver trace.",
+      "require": {
+        "all_of": [
+          "ev.comp.change_control_record"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "wf.comp.change_control"
+        ]
+      }
+    },
+    {
+      "id": "bond.comp_separation_of_duties_requires_controls",
+      "message": "Compliance-lite separation-of-duties requires evidence of role separation controls and review.",
+      "require": {
+        "all_of": [
+          "ev.comp.sod_controls"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "pr.comp.separation_of_duties"
+        ]
+      }
+    },
+    {
+      "id": "bond.comp_traceability_requires_matrix",
+      "message": "Compliance-lite traceability requires a traceability matrix mapping requirements to implementation and verification.",
+      "require": {
+        "all_of": [
+          "ev.comp.traceability_matrix"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "wf.comp.traceability"
+        ]
+      }
+    }
+  ],
+  "schema": "periodic.bond_ruleset.v1",
+  "version": "1"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "compound.membrane_http_boundary_only",
+  "name": "Membrane HTTP boundary (substrate-only)",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1",
+  "elements": [
+    "cap.membrane.http_api",
+    "ev.membrane.interface_spec",
+    "pr.membrane.backward_compat",
+    "pr.membrane.failure_isolation",
+    "wf.membrane.compatibility_tests",
+    "wf.membrane.contract_versioning"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "elements": [
+    "cap.auth.session",
+    "cap.observability.metrics",
+    "cap.security.rbac",
+    "cap.storage.sql",
+    "ev.audit.log_integrity",
+    "ev.backup.policy",
+    "ev.change.migration_plan",
+    "ev.data.constraints",
+    "ev.data.schema_versioning",
+    "ev.monitor.errors",
+    "ev.monitor.latency",
+    "ev.monitor.saturation",
+    "ev.monitor.traffic",
+    "ev.proof.receipts",
+    "exp.feedback.modal_confirm",
+    "exp.feedback.permission_denied",
+    "exp.flow.moderation_queue",
+    "wf.audit.append_only_log",
+    "wf.moderation.appeals",
+    "wf.moderation.queue_triage",
+    "wf.ops.backup_restore"
+  ],
+  "id": "compound.moderation_appeals",
+  "name": "Moderation with appeals (auditable)",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1"
+}

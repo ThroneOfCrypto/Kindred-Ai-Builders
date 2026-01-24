@@ -1,0 +1,118 @@
+{
+  "schema": "periodic.negative_examples.v1",
+  "version": "1",
+  "cases": [
+    {
+      "id": "neg.compliance_lite_change_control_missing_evidence",
+      "path": "periodic/v1/examples/negative/compound.neg_comp_change_control_missing_record.json",
+      "expect_errors": [
+        "bond.comp_change_control_requires_evidence"
+      ]
+    },
+    {
+      "id": "neg.compliance_lite_sod_missing_controls",
+      "path": "periodic/v1/examples/negative/compound.neg_comp_sod_missing_controls.json",
+      "expect_errors": [
+        "bond.comp_separation_of_duties_requires_controls"
+      ]
+    },
+    {
+      "id": "neg.compliance_lite_traceability_missing_matrix",
+      "path": "periodic/v1/examples/negative/compound.neg_comp_traceability_missing_matrix.json",
+      "expect_errors": [
+        "bond.comp_traceability_requires_matrix"
+      ]
+    },
+    {
+      "id": "neg.dist_consensus_missing_partition_matrix",
+      "path": "periodic/v1/examples/negative/compound.neg_dist_consensus_missing_partition_matrix.json",
+      "expect_errors": [
+        "bond.dist_consensus_requires_decl_and_tests"
+      ]
+    },
+    {
+      "id": "neg.immiscible_domains_mixed",
+      "path": "periodic/v1/examples/negative/compound.neg_immiscible_pair_in_compound.json",
+      "expect_errors": [
+        "domain.immiscible"
+      ]
+    },
+    {
+      "id": "neg.membrane_http_missing_compat_tests",
+      "path": "periodic/v1/examples/negative/compound.neg_membrane_http_missing_compat_tests.json",
+      "expect_errors": [
+        "bond.membrane_boundary_requires_contract_and_tests"
+      ]
+    },
+    {
+      "id": "neg.membrane_http_missing_contract",
+      "path": "periodic/v1/examples/negative/compound.neg_membrane_http_missing_contract.json",
+      "expect_errors": [
+        "bond.membrane_boundary_requires_contract_and_tests"
+      ]
+    },
+    {
+      "id": "neg.membrane_http_missing_failure_isolation",
+      "path": "periodic/v1/examples/negative/compound.neg_membrane_http_missing_failure_isolation.json",
+      "expect_errors": [
+        "bond.membrane_boundary_requires_failure_isolation"
+      ]
+    },
+    {
+      "id": "neg.ml_platform_claim_missing_drift_monitoring",
+      "path": "periodic/v1/examples/negative/compound.neg_ml_claim_missing_drift_monitoring.json",
+      "expect_errors": [
+        "bond.ml_platform_claim_requires_registry_drift_and_repro"
+      ]
+    },
+    {
+      "id": "neg.ml_platform_claim_missing_repro_linkage",
+      "path": "periodic/v1/examples/negative/compound.neg_ml_claim_missing_repro_linkage.json",
+      "expect_errors": [
+        "bond.ml_platform_claim_requires_registry_drift_and_repro"
+      ]
+    },
+    {
+      "id": "neg.privacy_proof_claim_missing_replay_protection",
+      "path": "periodic/v1/examples/negative/compound.neg_privacy_proof_claim_missing_replay_protection.json",
+      "expect_errors": [
+        "bond.privacy_proof_carrying_claim_requires_replay_protection"
+      ]
+    },
+    {
+      "id": "neg.privacy_selective_disclosure_missing_verification",
+      "path": "periodic/v1/examples/negative/compound.neg_privacy_selective_disclosure_missing_verification.json",
+      "expect_errors": [
+        "bond.privacy_selective_disclosure_requires_spec_and_verification"
+      ]
+    },
+    {
+      "id": "neg.publish_missing_proof_receipts",
+      "path": "periodic/v1/examples/negative/compound.neg_publish_missing_proof_receipts.json",
+      "expect_warnings": [
+        "bond.publish_requires_proof_receipts"
+      ]
+    },
+    {
+      "id": "neg.retry_side_effect_missing_idempotence",
+      "path": "periodic/v1/examples/negative/compound.neg_retry_side_effect_missing_idempotence.json",
+      "expect_errors": [
+        "bond.retry_side_effects_require_idempotence_principle"
+      ]
+    },
+    {
+      "id": "neg.sql_missing_constraints_evidence",
+      "path": "periodic/v1/examples/negative/compound.neg_sql_missing_constraints_evidence.json",
+      "expect_errors": [
+        "bond.sql_requires_constraints_evidence"
+      ]
+    },
+    {
+      "id": "neg.webhooks_missing_signature_verify",
+      "path": "periodic/v1/examples/negative/compound.neg_webhooks_missing_signature_verify.json",
+      "expect_errors": [
+        "bond.webhooks_require_signature_and_replay_protection"
+      ]
+    }
+  ]
+}

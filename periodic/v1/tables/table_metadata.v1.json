@@ -1,0 +1,41 @@
+{
+  "schema": "periodic.table_metadata.v1",
+  "version": "1",
+  "tables": [
+    {
+      "id": "capability",
+      "name": "Capability",
+      "summary": "Functional affordances and primitives the system can provide.",
+      "why_separate": "Capability is compositional (a Lego inventory). Mixing capability with evidence or principles blurs what can be done with what must be proven or must never happen.",
+      "collapse_risk": "Domain collapse creates false precision: capability claims look satisfied while evidence and constraints are silently missing, causing waiver inflation and audit fanfiction."
+    },
+    {
+      "id": "evidence",
+      "name": "Evidence",
+      "summary": "Artifacts required to justify claims (receipts, tests, attestations, audits).",
+      "why_separate": "Evidence is not a feature. It is the verification surface that turns claims into audited truth. If it is not its own table it gets hand-waved into prose and disappears.",
+      "collapse_risk": "Without a dedicated evidence table, proof obligations degrade into optional documentation and the system loses the ability to bind claims to reproducible receipts."
+    },
+    {
+      "id": "experience",
+      "name": "Experience",
+      "summary": "Surface reality and lived outcomes (UX shape, product expectations, user-observed behavior).",
+      "why_separate": "Experience requirements are not engineering guarantees. Mixing experience with capability produces the illusion that aesthetics or product intent were formally proven.",
+      "collapse_risk": "If experience is collapsed into capability or evidence, the checker starts proving vibes (UI wishes) or punishing valid designs for not matching a single aesthetic worldview."
+    },
+    {
+      "id": "principle",
+      "name": "Principle",
+      "summary": "Global invariants and constraints (non-custodial posture, determinism, safety boundaries).",
+      "why_separate": "Principles are non-negotiable invariants, not optional features. Treating them as capabilities makes them negotiable, which is where systems rot.",
+      "collapse_risk": "Principle collapse makes invariants look like toggles; exceptions become normal; waivers become the primary mechanism; trust evaporates."
+    },
+    {
+      "id": "workshop",
+      "name": "Workshop",
+      "summary": "Build and operations workflow mechanics (how the system is produced, maintained, and operated).",
+      "why_separate": "The same capabilities can be built with radically different workflows and failure modes. Workshop captures the process-physics that determines reproducibility and operational truth.",
+      "collapse_risk": "If workshop is merged into capability, build/ops constraints become invisible and you get non-reproducible systems with perfect-looking specs and catastrophic delivery drift."
+    }
+  ]
+}

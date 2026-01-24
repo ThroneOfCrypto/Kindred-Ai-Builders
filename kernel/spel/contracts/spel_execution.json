@@ -1,0 +1,10 @@
+{
+  "subsystem": "SPEL",
+  "execution_environment": "vercel",
+  "authoritative": true,
+  "determinism_required": true,
+  "time_policy": "forbidden",
+  "random_policy": "forbidden",
+  "evidence_required": true,
+  "kernel_dependency": "required"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "compound.neg_membrane_breaking_change_without_version_bump",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1",
+  "name": "NEGATIVE: membrane breaking change without version bump",
+  "director_notes": "Negative regression: a breaking boundary change with contract/versioning workflow but no explicit version bump evidence.",
+  "elements": [
+    "cap.membrane.http_api",
+    "cap.membrane.breaking_change",
+    "ev.membrane.interface_spec",
+    "wf.membrane.contract_versioning",
+    "wf.membrane.compatibility_tests",
+    "pr.membrane.backward_compat",
+    "pr.membrane.failure_isolation"
+  ]
+}

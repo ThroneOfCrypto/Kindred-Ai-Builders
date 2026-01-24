@@ -1,0 +1,7 @@
+{
+  "execution_environment": "vercel",
+  "authoritative": true,
+  "kernel_required": true,
+  "determinism_required": true,
+  "evidence_required": true
+}

@@ -1,0 +1,69 @@
+{
+  "schema": "periodic.negative_examples.v1",
+  "version": "1",
+  "cases": [
+    {
+      "id": "neg.compliance_lite_change_control_missing_evidence",
+      "path": "periodic/v1/examples/negative/compound.neg_comp_change_control_missing_record.json",
+      "expect_errors": [
+        "bond.comp_change_control_requires_evidence"
+      ]
+    },
+    {
+      "id": "neg.compliance_lite_sod_missing_controls",
+      "path": "periodic/v1/examples/negative/compound.neg_comp_sod_missing_controls.json",
+      "expect_errors": [
+        "bond.comp_separation_of_duties_requires_controls"
+      ]
+    },
+    {
+      "id": "neg.compliance_lite_traceability_missing_matrix",
+      "path": "periodic/v1/examples/negative/compound.neg_comp_traceability_missing_matrix.json",
+      "expect_errors": [
+        "bond.comp_traceability_requires_matrix"
+      ]
+    },
+    {
+      "id": "neg.destructive_missing_audit_coverage",
+      "path": "periodic/v1/examples/negative/compound.neg_destructive_missing_audit_coverage.json",
+      "expect_errors": [
+        "bond.destructive_actions_require_confirm_and_audit"
+      ]
+    },
+    {
+      "id": "neg.membrane_http_missing_contract",
+      "path": "periodic/v1/examples/negative/compound.neg_membrane_http_missing_contract.json",
+      "expect_errors": [
+        "bond.membrane_boundary_requires_contract_and_tests"
+      ]
+    },
+    {
+      "id": "neg.membrane_http_missing_failure_isolation",
+      "path": "periodic/v1/examples/negative/compound.neg_membrane_http_missing_failure_isolation.json",
+      "expect_errors": [
+        "bond.membrane_boundary_requires_failure_isolation"
+      ]
+    },
+    {
+      "id": "neg.migration_missing_plan",
+      "path": "periodic/v1/examples/negative/compound.neg_migration_missing_plan.json",
+      "expect_errors": [
+        "bond.migration_requires_plan_and_backup"
+      ]
+    },
+    {
+      "id": "neg.retry_side_effect_missing_idempotence",
+      "path": "periodic/v1/examples/negative/compound.neg_retry_side_effect_missing_idempotence.json",
+      "expect_errors": [
+        "bond.retry_side_effects_require_idempotence_principle"
+      ]
+    },
+    {
+      "id": "neg.webhooks_missing_signature_verify",
+      "path": "periodic/v1/examples/negative/compound.neg_webhooks_missing_signature_verify.json",
+      "expect_errors": [
+        "bond.webhooks_require_signature_and_replay_protection"
+      ]
+    }
+  ]
+}

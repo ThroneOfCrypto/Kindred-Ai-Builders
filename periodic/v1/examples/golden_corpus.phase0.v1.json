@@ -1,0 +1,17 @@
+{
+  "schema": "periodic.golden_corpus.v1",
+  "version": "1",
+  "corpora": [
+    {
+      "id": "membrane_phase0",
+      "name": "Membrane Phase 0 (Substrate Golden Corpus)",
+      "description": "Minimal membrane-only regression suite. This must always pass for the federation to have real borders.",
+      "examples": [
+        "periodic/v1/examples/compound.membrane_breaking_change_versioned.json",
+        "periodic/v1/examples/compound.membrane_event_stream_boundary_only.json",
+        "periodic/v1/examples/compound.membrane_http_boundary_only.json",
+        "periodic/v1/examples/compound.membrane_webhook_boundary_only.json"
+      ]
+    }
+  ]
+}

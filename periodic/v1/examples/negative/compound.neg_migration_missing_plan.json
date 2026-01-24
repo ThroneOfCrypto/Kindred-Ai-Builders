@@ -1,0 +1,11 @@
+{
+  "schema": "periodic.compound.v1",
+  "id": "compound.neg_migration_missing_plan",
+  "name": "NEGATIVE: SQL+migration without plan/backups",
+  "tables_version": "1",
+  "elements": [
+    "cap.storage.sql",
+    "wf.change.migration",
+    "ev.data.constraints"
+  ]
+}

@@ -1,0 +1,246 @@
+{
+  "schema": "periodic.negative_examples.v1",
+  "version": "1",
+  "cases": [
+    {
+      "id": "neg.activity_log_missing_audit_integrity",
+      "path": "periodic/v1/examples/negative/compound.neg_activity_log_missing_audit_integrity.json",
+      "expect_errors": [
+        "bond.activity_log_requires_audit_integrity"
+      ],
+      "note": "Activity log UX without append-only audit workflow and integrity evidence is fake audit."
+    },
+    {
+      "id": "neg.declared_domain_ambiguous",
+      "path": "periodic/v1/examples/negative/compound.neg_declared_domain_ambiguous.json",
+      "expect_errors": [
+        "domain.declared_ambiguous"
+      ],
+      "note": "If 'domain' is declared, inference must be unambiguous; membrane-only or multi-domain inference cannot declare a single domain."
+    },
+    {
+      "id": "neg.dist_consensus_missing_partition_matrix",
+      "path": "periodic/v1/examples/negative/compound.neg_dist_consensus_missing_partition_matrix.json",
+      "expect_errors": [
+        "bond.dist_consensus_requires_decl_and_tests"
+      ],
+      "note": "Consensus without declared partition behavior/consistency and fault tests is a distributed-systems cliff."
+    },
+    {
+      "id": "neg.domain_without_pack",
+      "path": "periodic/v1/examples/negative/compound.neg_domain_without_pack.json",
+      "expect_errors": [
+        "packs.missing_for_domain"
+      ],
+      "note": "Any domain used by a compound must have a corresponding enabled bond pack; missing pack is a hard error."
+    },
+    {
+      "id": "neg.file_upload_missing_blob_storage",
+      "path": "periodic/v1/examples/negative/compound.neg_file_upload_missing_blob_storage.json",
+      "expect_errors": [
+        "bond.file_upload_requires_blob_storage"
+      ],
+      "note": "File upload UX must include blob storage capability."
+    },
+    {
+      "id": "neg.immiscible_domains_in_compound",
+      "path": "periodic/v1/examples/negative/compound.neg_immiscible_pair_in_compound.json",
+      "expect_errors": [
+        "domain.immiscible"
+      ],
+      "note": "Immiscible domain pairs must not be mixed inside a single compound; split into system-of-compounds with membrane boundaries."
+    },
+    {
+      "id": "neg.kernel_missing_isolation_tests",
+      "path": "periodic/v1/examples/negative/compound.neg_kernel_missing_isolation_tests.json",
+      "expect_errors": [
+        "bond.kernel_isolation_requires_boundary_tests"
+      ],
+      "expect_warnings": []
+    },
+    {
+      "id": "neg.membrane_breaking_change_without_version_bump",
+      "path": "periodic/v1/examples/negative/compound.neg_membrane_breaking_change_without_version_bump.json",
+      "expect_errors": [
+        "bond.membrane_breaking_change_requires_version_bump"
+      ],
+      "note": "If a boundary change is breaking, a contract version bump must be evidenced; must fail without it."
+    },
+    {
+      "id": "neg.membrane_compat_missing_spec",
+      "path": "periodic/v1/examples/negative/compound.neg_membrane_compat_missing_spec.json",
+      "expect_errors": [
+        "bond.membrane_compat_tests_require_spec"
+      ],
+      "note": "Compatibility tests without interface spec must fail."
+    },
+    {
+      "id": "neg.membrane_http_missing_compat_tests",
+      "path": "periodic/v1/examples/negative/compound.neg_membrane_http_missing_compat_tests.json",
+      "expect_errors": [
+        "bond.membrane_boundary_requires_contract_and_tests"
+      ],
+      "note": "Boundary contract versioning without compatibility tests is an unproven boundary; must fail."
+    },
+    {
+      "id": "neg.membrane_http_missing_contract",
+      "path": "periodic/v1/examples/negative/compound.neg_membrane_http_missing_contract.json",
+      "expect_errors": [
+        "bond.membrane_boundary_requires_contract_and_tests"
+      ],
+      "note": "Cross-domain boundaries must not exist without explicit contracts and compatibility tests."
+    },
+    {
+      "id": "neg.membrane_http_missing_failure_isolation",
+      "path": "periodic/v1/examples/negative/compound.neg_membrane_http_missing_failure_isolation.json",
+      "expect_errors": [
+        "bond.membrane_boundary_requires_failure_isolation"
+      ],
+      "note": "Membrane boundaries must declare failure isolation to prevent cascading failures across domains."
+    },
+    {
+      "id": "neg.membrane_http_missing_versioning",
+      "path": "periodic/v1/examples/negative/compound.neg_membrane_http_missing_versioning.json",
+      "expect_errors": [
+        "bond.membrane_boundary_requires_contract_and_tests"
+      ],
+      "note": "Breaking boundary changes without contract versioning collapse trust; must fail."
+    },
+    {
+      "id": "neg.membrane_http_tests_without_spec",
+      "path": "periodic/v1/examples/negative/compound.neg_membrane_http_tests_without_spec.json",
+      "expect_errors": [
+        "bond.membrane_compat_tests_require_spec"
+      ],
+      "note": "Compatibility tests without a versioned interface spec are non-deterministic and must fail."
+    },
+    {
+      "id": "neg.membrane_webhook_missing_contract",
+      "path": "periodic/v1/examples/negative/compound.neg_membrane_webhook_missing_contract.json",
+      "expect_errors": [
+        "bond.membrane_boundary_requires_contract_and_tests"
+      ],
+      "note": "Webhook membrane boundaries must not exist without explicit contracts and compatibility tests."
+    },
+    {
+      "id": "neg.migration_missing_plan",
+      "path": "periodic/v1/examples/negative/compound.neg_migration_missing_plan.json",
+      "expect_errors": [
+        "bond.migration_requires_plan_and_backup"
+      ],
+      "note": "SQL + migrations without plan/versioning/backup is a real-world failure cliff."
+    },
+    {
+      "id": "neg.ml_registry_missing_record",
+      "path": "periodic/v1/examples/negative/compound.neg_ml_registry_missing_record.json",
+      "expect_errors": [
+        "bond.ml_platform_model_registry_requires_record"
+      ],
+      "expect_warnings": []
+    },
+    {
+      "id": "neg.permission_denied_missing_rbac",
+      "path": "periodic/v1/examples/negative/compound.neg_permission_denied_missing_rbac.json",
+      "expect_errors": [
+        "bond.permission_denied_requires_rbac"
+      ],
+      "note": "Permission-denied UX without RBAC capability is a fake authz UI cliff."
+    },
+    {
+      "id": "neg.privacy_missing_verification_spec",
+      "path": "periodic/v1/examples/negative/compound.neg_privacy_missing_verification_spec.json",
+      "expect_errors": [
+        "bond.privacy_selective_disclosure_requires_spec_and_verification"
+      ],
+      "expect_warnings": []
+    },
+    {
+      "id": "neg.rbac_missing_permission_denied",
+      "path": "periodic/v1/examples/negative/compound.neg_rbac_missing_permission_denied.json",
+      "expect_errors": [
+        "bond.rbac_requires_permission_denied_state"
+      ],
+      "note": "RBAC without a permission-denied UX is a silent authz cliff."
+    },
+    {
+      "id": "neg.reg_change_control_missing_hazard",
+      "path": "periodic/v1/examples/negative/compound.neg_reg_change_control_missing_hazard.json",
+      "expect_errors": [
+        "bond.reg_change_control_requires_hazard_and_verification"
+      ],
+      "note": "Regulated change control without hazard analysis is compliance theater."
+    },
+    {
+      "id": "neg.reg_release_missing_change_control",
+      "path": "periodic/v1/examples/negative/compound.neg_reg_release_missing_change_control.json",
+      "expect_errors": [
+        "bond.reg_release_requires_change_control"
+      ],
+      "note": "Regulated release gate without change control/SoD is a governance cliff."
+    },
+    {
+      "id": "neg.retry_missing_idempotence",
+      "path": "periodic/v1/examples/negative/compound.neg_retry_missing_idempotence.json",
+      "expect_errors": [
+        "bond.retry_side_effects_require_idempotence_principle"
+      ],
+      "note": "Retries combined with side-effecting capabilities require the idempotence principle to prevent duplicate external actions."
+    },
+    {
+      "id": "neg.retry_side_effect_missing_idempotence",
+      "path": "periodic/v1/examples/negative/compound.neg_retry_side_effect_missing_idempotence.json",
+      "expect_errors": [
+        "bond.retry_side_effects_require_idempotence_principle"
+      ],
+      "note": "Retries plus side effects (integrations/value) must require idempotence."
+    },
+    {
+      "id": "neg.rt_deadlines_missing_wcet",
+      "path": "periodic/v1/examples/negative/compound.neg_rt_deadlines_missing_wcet.json",
+      "expect_errors": [
+        "bond.rt_deadlines_require_wcet_and_budget"
+      ],
+      "expect_warnings": []
+    },
+    {
+      "id": "neg.sim_fixed_timestep_missing_replay",
+      "path": "periodic/v1/examples/negative/compound.neg_sim_fixed_timestep_missing_replay.json",
+      "expect_errors": [
+        "bond.sim_determinism_requires_replay_evidence"
+      ],
+      "expect_warnings": []
+    },
+    {
+      "id": "neg.tx_lifecycle_missing_status",
+      "path": "periodic/v1/examples/negative/compound.neg_tx_lifecycle_missing_status.json",
+      "expect_errors": [
+        "bond.tx_lifecycle_requires_tx_status"
+      ],
+      "note": "Tx lifecycle without status UX is a commitments transparency cliff."
+    },
+    {
+      "id": "neg.tx_status_missing_lifecycle",
+      "path": "periodic/v1/examples/negative/compound.neg_tx_status_missing_lifecycle.json",
+      "expect_errors": [
+        "bond.tx_status_requires_tx_lifecycle"
+      ],
+      "note": "Tx status UX without lifecycle semantics is a fake UI cliff."
+    },
+    {
+      "id": "neg.webhook_delivery_missing_capability",
+      "path": "periodic/v1/examples/negative/compound.neg_webhook_delivery_missing_capability.json",
+      "expect_errors": [
+        "bond.webhook_delivery_requires_webhooks_capability"
+      ],
+      "note": "Delivery workflow cannot exist without the underlying webhooks capability."
+    },
+    {
+      "id": "neg.webhooks_missing_delivery",
+      "path": "periodic/v1/examples/negative/compound.neg_webhooks_missing_delivery.json",
+      "expect_errors": [
+        "bond.webhooks_require_delivery_semantics"
+      ],
+      "note": "Claiming webhooks without delivery semantics is fantasy-mode."
+    }
+  ]
+}

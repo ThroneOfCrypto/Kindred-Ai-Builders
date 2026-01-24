@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "periodic.compound.v1.schema.json",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "name",
+    "tables_version",
+    "elements"
+  ],
+  "properties": {
+    "schema": {
+      "const": "periodic.compound.v1"
+    },
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "elements": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "director_notes": {
+      "type": "string",
+      "maxLength": 280,
+      "pattern": "^[^\\n\\r]*$"
+    },
+    "domain": {
+      "type": "string",
+      "description": "Optional declared domain for the compound. If present, must match the inferred domain from its elements (excluding membrane elements)."
+    },
+    "tables_version": {
+      "type": "string"
+    },
+    "invariants": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "waivers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "rule_id",
+          "target",
+          "rationale",
+          "mitigations",
+          "expires_on"
+        ],
+        "properties": {
+          "rule_id": {
+            "type": "string"
+          },
+          "rationale": {
+            "type": "string"
+          },
+          "mitigations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "expires_on": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,37 @@
+{
+  "compounds": [
+    {
+      "as": "a",
+      "path": "periodic/v1/examples/compound.membrane_http_boundary_only.json"
+    },
+    {
+      "as": "b",
+      "path": "periodic/v1/examples/compound.membrane_http_boundary_only.json"
+    }
+  ],
+  "id": "system.neg_waiver_bad_target",
+  "links": [
+    {
+      "from": "a",
+      "to": "b",
+      "via": {
+        "cap": "cap.membrane.http_api",
+        "notes": "Explicit API contract + compat tests required by membrane bonds in each compound."
+      }
+    }
+  ],
+  "name": "NEG: system waiver bad target",
+  "schema": "periodic.system.v1",
+  "version": 1,
+  "waivers": [
+    {
+      "rule_id": "system.link.via_not_membrane",
+      "target": "link:wallet->missing",
+      "rationale": "Testing waiver target grounding.",
+      "mitigations": [
+        "compound:a"
+      ],
+      "expires_on": "2099-01-01"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "elements": [
+    "cap.ml_platform.lifecycle",
+    "ev.ml.model_registry_record",
+    "ev.ml.reproducibility_linkage",
+    "ev.proof.receipts.sha256_bytes",
+    "wf.ml.model_registry",
+    "wf.proof.verify_receipts"
+  ],
+  "id": "compound.neg_ml_claim_missing_drift_monitoring",
+  "name": "NEG: ML claimed but drift monitoring missing",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1"
+}

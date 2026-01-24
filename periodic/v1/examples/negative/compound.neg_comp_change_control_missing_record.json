@@ -1,0 +1,12 @@
+{
+  "schema": "periodic.compound.v1",
+  "tables_version": "1",
+  "id": "compound.neg_comp_change_control_missing_record",
+  "name": "Compliance-lite change control missing evidence",
+  "elements": [
+    "wf.comp.change_control",
+    "wf.audit.append_only_log",
+    "cap.security.rbac",
+    "exp.feedback.permission_denied"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schema": "periodic.compound.v1",
+  "tables_version": "1",
+  "id": "compound.publish_with_proof_receipts",
+  "name": "Publish flow (with proof lane receipts)",
+  "elements": [
+    "cap.security.rbac",
+    "ev.proof.build_reproducible",
+    "ev.proof.receipts.sha256_bytes",
+    "exp.feedback.permission_denied",
+    "exp.flow.publish",
+    "exp.input.form.basic",
+    "wf.content.draft_review_publish",
+    "wf.proof.verify_receipts"
+  ]
+}

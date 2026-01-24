@@ -1,0 +1,18 @@
+{
+  "schema": "periodic.flow_workshop_pairs.v1",
+  "version": "1",
+  "pairs": [
+    {
+      "flow": "exp.flow.moderation_queue",
+      "workshop": "wf.moderation.queue_triage",
+      "severity": "warn",
+      "message": "Moderation queue experience should be backed by triage workshop semantics to avoid drift."
+    },
+    {
+      "flow": "exp.flow.publish",
+      "workshop": "wf.content.draft_review_publish",
+      "severity": "warn",
+      "message": "Publishing flow should be backed by draft/review/publish workshop semantics to avoid drift."
+    }
+  ]
+}

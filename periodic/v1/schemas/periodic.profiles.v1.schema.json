@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "default_profile": {
+      "type": "string"
+    },
+    "profiles": {
+      "additionalProperties": {
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "enabled_packs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "severity_overrides": {
+            "additionalProperties": {
+              "enum": [
+                "error",
+                "warn",
+                "ignore"
+              ],
+              "type": "string"
+            },
+            "type": "object"
+          }
+        },
+        "required": [
+          "description"
+        ],
+        "type": "object"
+      },
+      "type": "object"
+    },
+    "schema": {
+      "const": "periodic.profiles.v1"
+    },
+    "version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema",
+    "version",
+    "default_profile",
+    "profiles"
+  ],
+  "title": "periodic.profiles.v1",
+  "type": "object"
+}

@@ -1,0 +1,18 @@
+{
+  "kit_id": "docker-node24",
+  "name": "Docker Node 24",
+  "status": "diagnostic",
+  "contract": {
+    "platform": "docker",
+    "node": "24.x",
+    "install": "npm ci",
+    "build": "npm run build",
+    "test": "npm test"
+  },
+  "notes": [
+    "This kit provides a minimal Docker runner for Node 24.x.",
+    "Docker execution is **diagnostic-only**: Vercel remains the kernel authority.",
+    "The Docker lane must not weaken or bypass kernel contracts.",
+    "This kit sets KINDRED_ALLOW_LOCAL_DIAGNOSTIC=1 explicitly so contracts can run without pretending Docker == Vercel."
+  ]
+}

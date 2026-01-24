@@ -1,0 +1,87 @@
+{
+  "schema": "periodic.index.v1",
+  "version": "1",
+  "bond_packs": {
+    "path": "periodic/v1/bonds/bond_packs.v1.json"
+  },
+  "bond_rules": {
+    "path": "periodic/v1/bonds/bond_rules.v1.json"
+  },
+  "atomic_properties": {
+    "path": "periodic/v1/atoms/atomic_properties.v1.json"
+  },
+  "spel_semantics": {
+    "path": "periodic/v1/config/spel_semantics.v1.json"
+  },
+  "domains": {
+    "path": "periodic/v1/domains/domains.v1.json"
+  },
+  "examples": [
+    "periodic/v1/examples/compound.analytics_dashboard_ops.json",
+    "periodic/v1/examples/compound.api_integration_client.json",
+    "periodic/v1/examples/compound.blog_basic_phase2.json",
+    "periodic/v1/examples/compound.community_moderation_heavy.json",
+    "periodic/v1/examples/compound.crm_lite.json",
+    "periodic/v1/examples/compound.crm_pipeline_with_activity_log.json",
+    "periodic/v1/examples/compound.file_upload_media.json",
+    "periodic/v1/examples/compound.marketplace_basic.json",
+    "periodic/v1/examples/compound.marketplace_with_escrow.json",
+    "periodic/v1/examples/compound.moderation_appeals.json",
+    "periodic/v1/examples/compound.notifications_basic.json",
+    "periodic/v1/examples/compound.oauth_sso_basic.json",
+    "periodic/v1/examples/compound.privacy_data_delete.json",
+    "periodic/v1/examples/compound.publish_with_proof_receipts.json",
+    "periodic/v1/examples/compound.saas_integrations_heavy.json",
+    "periodic/v1/examples/compound.saas_service_a_boundary.json",
+    "periodic/v1/examples/compound.saas_service_b_boundary.json",
+    "periodic/v1/examples/compound.security_rotation.json",
+    "periodic/v1/examples/compound.wallet_commitments.json",
+    "periodic/v1/examples/compound.wiki_basic_phase2.json",
+    "periodic/v1/examples/compound.enterprise_compliance_lite.json",
+    "periodic/v1/examples/compound.ml_platform_lite_inference.json",
+    "periodic/v1/examples/compound.distributed_truth_basic.json",
+    "periodic/v1/examples/compound.distributed_truth_boundary.json",
+    "periodic/v1/examples/compound.regulated_safety_lite.json",
+    "periodic/v1/examples/compound.hard_real_time_controller.json",
+    "periodic/v1/examples/compound.game_simulation_deterministic.json",
+    "periodic/v1/examples/compound.kernel_runtime_sandbox.json"
+  ],
+  "negative_examples": {
+    "path": "periodic/v1/examples/negative_examples.phase6.v1.json"
+  },
+  "golden_corpus": {
+    "path": "periodic/v1/examples/golden_corpus.phase6.v1.json"
+  },
+  "pairing": {
+    "flow_workshop": {
+      "path": "periodic/v1/pairing/flow_workshop_pairs.v1.json"
+    }
+  },
+  "profiles": {
+    "path": "periodic/v1/profiles/profiles.v1.json"
+  },
+  "system_negative_examples": {
+    "path": "periodic/v1/examples/system_negative_examples.phase1.v1.json"
+  },
+  "systems": {
+    "path": "periodic/v1/examples/systems_phase1",
+    "schema_path": "periodic/v1/schemas/periodic.system.v1.schema.json"
+  },
+  "tables": {
+    "capability": {
+      "path": "periodic/v1/tables/capability.v1.json"
+    },
+    "evidence": {
+      "path": "periodic/v1/tables/evidence.v1.json"
+    },
+    "experience": {
+      "path": "periodic/v1/tables/experience.v1.json"
+    },
+    "principle": {
+      "path": "periodic/v1/tables/principle.v1.json"
+    },
+    "workshop": {
+      "path": "periodic/v1/tables/workshop.v1.json"
+    }
+  }
+}

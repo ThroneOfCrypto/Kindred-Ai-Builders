@@ -1,0 +1,13 @@
+{
+  "elements": [
+    "ev.reg.traceability_matrix",
+    "ev.reg.verification_plan",
+    "pr.reg.safety_case_integrity",
+    "wf.reg.change_control"
+  ],
+  "id": "compound.neg_reg_change_control_missing_hazard",
+  "name": "NEGATIVE: regulated change control without hazard analysis",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1",
+  "domain": "regulated_safety"
+}

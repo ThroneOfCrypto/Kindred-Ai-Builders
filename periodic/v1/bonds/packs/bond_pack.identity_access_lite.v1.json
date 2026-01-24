@@ -1,0 +1,58 @@
+{
+  "rules": [
+    {
+      "schema": "periodic.bond_rule.v1",
+      "id": "bond.identity_access_requires_wallet_login_session_and_receipts",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "cap.identity.reusable_account"
+        ]
+      },
+      "require": {
+        "all_of": [
+          "wf.auth.wallet_login",
+          "wf.auth.session_tokens",
+          "ev.auth.login_receipts",
+          "pr.auth.challenge_response_only",
+          "pr.auth.no_browser_secrets"
+        ]
+      },
+      "message": "Reusable identity account claims require wallet login workflow, session tokens workflow, login receipt evidence, and basic auth safety principles (challenge-response only; no browser secrets)."
+    },
+    {
+      "schema": "periodic.bond_rule.v1",
+      "id": "bond.identity_did_binding_requires_did_document",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "wf.auth.did_binding"
+        ]
+      },
+      "require": {
+        "all_of": [
+          "ev.auth.did_document"
+        ]
+      },
+      "message": "DID binding workflow requires DID document evidence (format, method, and binding proof) so identity portability is not hand-waved."
+    },
+    {
+      "schema": "periodic.bond_rule.v1",
+      "id": "bond.identity_agent_access_requires_receipts",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "wf.auth.agent_access"
+        ]
+      },
+      "require": {
+        "all_of": [
+          "ev.auth.agent_access_receipts"
+        ]
+      },
+      "message": "Agent access workflow requires machine-verifiable access receipts (e.g. payment receipts or verifiable proof receipts)."
+    }
+  ],
+  "schema": "periodic.bond_ruleset.v1",
+  "version": "1"
+}

@@ -1,0 +1,14 @@
+{
+  "schema": "periodic.compound.v1",
+  "id": "compound.neg_evidence_binding_unbound",
+  "name": "Negative: evidence exists but is not bound to the rule that requires it",
+  "tables_version": "1",
+  "domain": "internet_app",
+  "x_evidence_binding_mode": "explicit_only",
+  "x_evidence_bindings": {},
+  "elements": [
+    "ev.audit.log_integrity",
+    "exp.display.activity_log",
+    "wf.audit.append_only_log"
+  ]
+}

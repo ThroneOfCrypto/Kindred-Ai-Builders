@@ -1,0 +1,18 @@
+{
+  "schema": "periodic.compound.v1",
+  "tables_version": "1",
+  "id": "compound.privacy_selective_disclosure_basic",
+  "name": "Privacy selective disclosure (basic)",
+  "elements": [
+    "cap.privacy.selective_disclosure",
+    "cap.privacy.proof_carrying_claim",
+    "pr.privacy.minimal_disclosure",
+    "wf.privacy.presentation",
+    "wf.privacy.verify_presentation",
+    "wf.privacy.verifier_challenge_nonce",
+    "wf.privacy.replay_protection",
+    "ev.privacy.verification_spec",
+    "ev.privacy.verification_tests",
+    "ev.privacy.replay_protection_evidence"
+  ]
+}

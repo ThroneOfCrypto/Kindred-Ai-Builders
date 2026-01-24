@@ -1,0 +1,10 @@
+{
+  "elements": [
+    "cap.membrane.event_stream",
+    "pr.membrane.failure_isolation"
+  ],
+  "id": "compound.neg_membrane_event_stream_missing_contract",
+  "name": "NEGATIVE: membrane event stream boundary without contract/tests",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1"
+}

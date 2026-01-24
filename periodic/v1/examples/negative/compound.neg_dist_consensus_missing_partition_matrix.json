@@ -1,0 +1,14 @@
+{
+  "elements": [
+    "cap.dist.consensus",
+    "ev.dist.consistency_model_decl",
+    "ev.dist.fault_injection_tests",
+    "pr.dist.safety_over_liveness",
+    "wf.dist.leader_election"
+  ],
+  "id": "compound.neg_dist_consensus_missing_partition_matrix",
+  "name": "NEGATIVE: distributed consensus without partition behavior matrix",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1",
+  "domain": "distributed_truth"
+}

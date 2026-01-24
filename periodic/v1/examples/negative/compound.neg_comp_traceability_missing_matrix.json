@@ -1,0 +1,10 @@
+{
+  "schema": "periodic.compound.v1",
+  "tables_version": "1",
+  "id": "compound.neg_comp_traceability_missing_matrix",
+  "name": "Compliance-lite traceability missing matrix",
+  "elements": [
+    "wf.comp.traceability",
+    "wf.audit.append_only_log"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "elements": [
+    "cap.sim.deterministic_tick",
+    "ev.sim.replay_determinism_tests",
+    "pr.sim.determinism_over_vibes",
+    "pr.sim.state_reproducible",
+    "wf.sim.fixed_timestep"
+  ],
+  "id": "compound.game_simulation_deterministic",
+  "name": "Deterministic simulation loop (fixed timestep + replay)",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1"
+}

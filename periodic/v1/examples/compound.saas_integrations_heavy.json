@@ -1,0 +1,22 @@
+{
+  "schema": "periodic.compound.v1",
+  "tables_version": "1",
+  "id": "compound.saas_integrations_heavy",
+  "name": "SaaS integrations heavy (api client + webhooks + retry; idempotence declared)",
+  "elements": [
+    "cap.integrations.api_client",
+    "cap.integrations.webhooks",
+    "ev.integrations.webhook_dedupe",
+    "ev.integrations.webhook_replay_protection",
+    "ev.integrations.webhook_signature_verify",
+    "ev.resilience.idempotency_key",
+    "exp.feedback.retry_banner",
+    "pr.idempotence",
+    "wf.integrations.webhook_dedupe",
+    "wf.integrations.webhook_delivery",
+    "wf.integrations.webhook_replay_protection",
+    "wf.integrations.webhook_signature_verify",
+    "wf.resilience.idempotency_key",
+    "wf.resilience.retry_backoff"
+  ]
+}

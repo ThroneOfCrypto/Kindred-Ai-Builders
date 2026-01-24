@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "periodic.domain_completion.v1",
+  "type": "object",
+  "required": ["schema", "version", "packs"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "periodic.domain_completion.v1" },
+    "version": { "type": "string" },
+    "packs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "pack_id",
+          "status",
+          "min_positive_examples",
+          "min_negative_examples"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "pack_id": { "type": "string" },
+          "status": { "enum": ["complete", "draft"] },
+          "min_positive_examples": { "type": "integer", "minimum": 0 },
+          "min_negative_examples": { "type": "integer", "minimum": 0 }
+        }
+      }
+    }
+  }
+}

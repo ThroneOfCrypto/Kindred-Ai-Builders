@@ -1,0 +1,54 @@
+{
+  "schema": "kindred.kit_adapter_interfaces.v1",
+  "description": "A small, closed registry of adapter interfaces that Kits may implement. This is used by kit generators to scaffold stubs. Do not grow this casually.",
+  "interfaces": {
+    "EmailAdapter": {
+      "methods": [
+        {
+          "name": "send",
+          "args": [
+            { "name": "to", "type": "string" },
+            { "name": "subject", "type": "string" },
+            { "name": "text", "type": "string" }
+          ],
+          "returns": "Promise<{ id: string }>"
+        }
+      ]
+    },
+    "AuthAdapter": {
+      "methods": [
+        { "name": "getSession", "args": [], "returns": "Promise<{ user_id: string } | null>" }
+      ]
+    },
+    "DbAdapter": {
+      "methods": [
+        { "name": "health", "args": [], "returns": "Promise<{ ok: boolean }>" }
+      ]
+    },
+    "StorageAdapter": {
+      "methods": [
+        { "name": "put", "args": [{ "name": "key", "type": "string" }], "returns": "Promise<{ ok: boolean }>" }
+      ]
+    },
+    "PaymentsAdapter": {
+      "methods": [
+        { "name": "createCheckout", "args": [{ "name": "amount", "type": "number" }], "returns": "Promise<{ url: string }>" }
+      ]
+    },
+    "SearchAdapter": {
+      "methods": [
+        { "name": "query", "args": [{ "name": "q", "type": "string" }], "returns": "Promise<{ hits: any[] }>" }
+      ]
+    },
+    "OpsAdapter": {
+      "methods": [
+        { "name": "log", "args": [{ "name": "msg", "type": "string" }], "returns": "void" }
+      ]
+    },
+    "AiAdapter": {
+      "methods": [
+        { "name": "propose", "args": [{ "name": "prompt", "type": "string" }], "returns": "Promise<{ ok: boolean }>" }
+      ]
+    }
+  }
+}

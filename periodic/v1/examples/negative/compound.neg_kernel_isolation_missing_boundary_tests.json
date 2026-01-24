@@ -1,0 +1,17 @@
+{
+  "schema": "periodic.compound.v1",
+  "id": "compound.neg_kernel_isolation_missing_boundary_tests",
+  "name": "NEG: Kernel isolation missing boundary tests",
+  "domain": "kernel_runtime",
+  "capabilities": [
+    "cap.kernel.isolation"
+  ],
+  "workshops": [],
+  "evidence": [],
+  "principles": [
+    "pr.kernel.isolation_first"
+  ],
+  "tags": [
+    "x.neg"
+  ]
+}

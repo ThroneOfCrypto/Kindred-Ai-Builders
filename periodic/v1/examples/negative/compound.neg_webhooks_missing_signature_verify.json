@@ -1,0 +1,17 @@
+{
+  "schema": "periodic.compound.v1",
+  "tables_version": "1",
+  "id": "compound.neg_webhooks_missing_signature_verify",
+  "name": "NEGATIVE: webhooks declared without signature verification/replay protection",
+  "elements": [
+    "cap.integrations.webhooks",
+    "ev.integrations.webhook_dedupe",
+    "exp.feedback.retry_banner",
+    "pr.idempotence",
+    "wf.resilience.idempotency_key",
+    "ev.resilience.idempotency_key",
+    "wf.integrations.webhook_dedupe",
+    "wf.integrations.webhook_delivery",
+    "wf.resilience.retry_backoff"
+  ]
+}

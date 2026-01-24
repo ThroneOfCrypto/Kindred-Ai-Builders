@@ -1,0 +1,60 @@
+{
+  "schema": "periodic.bond_ruleset.v1",
+  "version": "1",
+  "rules": [
+    {
+      "schema": "periodic.bond_rule.v1",
+      "id": "bond.ml_platform_model_registry_requires_record",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "wf.ml.model_registry"
+        ]
+      },
+      "require": {
+        "all_of": [
+          "ev.ml.model_registry_record"
+        ]
+      },
+      "message": "ML platform-lite model registry workflow requires evidence of a registered model version (record/metadata), even if external."
+    },
+    {
+      "schema": "periodic.bond_rule.v1",
+      "id": "bond.ml_platform_drift_monitoring_requires_evidence",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "wf.ml.drift_monitoring"
+        ]
+      },
+      "require": {
+        "all_of": [
+          "ev.ml.drift_monitoring_evidence"
+        ]
+      },
+      "message": "ML platform-lite drift monitoring workflow requires evidence (dashboard/alerts/thresholds and response)."
+    },
+    {
+      "schema": "periodic.bond_rule.v1",
+      "id": "bond.ml_platform_claim_requires_registry_drift_and_repro",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "cap.ml_platform.lifecycle"
+        ]
+      },
+      "require": {
+        "all_of": [
+          "wf.ml.model_registry",
+          "ev.ml.model_registry_record",
+          "wf.ml.drift_monitoring",
+          "ev.ml.drift_monitoring_evidence",
+          "wf.proof.verify_receipts",
+          "ev.proof.receipts.sha256_bytes",
+          "ev.ml.reproducibility_linkage"
+        ]
+      },
+      "message": "If a system claims ML lifecycle responsibility, it must include model registry, drift monitoring, and proof-lane compatible reproducibility linkage (receipts + linkage evidence)."
+    }
+  ]
+}

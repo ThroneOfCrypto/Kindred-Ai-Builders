@@ -1,0 +1,882 @@
+{
+  "schema": "periodic.table.v1",
+  "table": "evidence",
+  "elements": [
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.a11y.basics",
+      "table": "evidence",
+      "group": "quality",
+      "name": "Accessibility basics",
+      "summary": "Keyboard nav, labels, contrast, focus.",
+      "tags": [
+        "a11y",
+        "quality"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.audit.destructive_ops_audit",
+      "table": "evidence",
+      "group": "audit",
+      "name": "Destructive ops audit coverage",
+      "summary": "Evidence that irreversible actions emit complete audit events (who/what/when/why).",
+      "tags": [
+        "audit",
+        "security",
+        "ops"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.audit.log_integrity",
+      "table": "evidence",
+      "group": "audit",
+      "name": "Audit log integrity",
+      "summary": "Append-only events + verification hooks.",
+      "tags": [
+        "audit",
+        "security"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "domain": "identity_access_lite",
+      "group": "auth",
+      "id": "ev.auth.agent_access_receipts",
+      "name": "Agent access receipts",
+      "schema": "periodic.element.v1",
+      "summary": "Receipts proving agent access was granted (e.g., payment proof, capability token, or signed allowance).",
+      "table": "evidence",
+      "tags": [
+        "x.agent",
+        "audit"
+      ]
+    },
+    {
+      "domain": "identity_access_lite",
+      "group": "auth",
+      "id": "ev.auth.did_document",
+      "name": "DID document",
+      "schema": "periodic.element.v1",
+      "summary": "DID document or equivalent registry binding used for portable identity anchoring.",
+      "table": "evidence",
+      "tags": [
+        "identity"
+      ]
+    },
+    {
+      "domain": "identity_access_lite",
+      "group": "auth",
+      "id": "ev.auth.login_receipts",
+      "name": "Login receipts",
+      "schema": "periodic.element.v1",
+      "summary": "Evidence of successful login events (non-sensitive) suitable for auditing and troubleshooting.",
+      "table": "evidence",
+      "tags": [
+        "auth",
+        "audit"
+      ]
+    },
+    {
+      "domain": "identity_access_lite",
+      "group": "auth",
+      "id": "ev.auth.session_audit_log",
+      "name": "Session audit log",
+      "schema": "periodic.element.v1",
+      "summary": "Append-only audit record of session creation/refresh/revocation.",
+      "table": "evidence",
+      "tags": [
+        "auth",
+        "audit"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.backup.policy",
+      "table": "evidence",
+      "group": "ops",
+      "name": "Backup policy",
+      "summary": "Regular backups + restore drills.",
+      "tags": [
+        "evidence",
+        "ops"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.change.migration_plan",
+      "table": "evidence",
+      "group": "change",
+      "name": "Migration plan",
+      "summary": "Plan for schema changes + rollback.",
+      "tags": [
+        "change",
+        "ops"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.comp.change_control_record",
+      "table": "evidence",
+      "group": "enterprise",
+      "name": "Change control record",
+      "summary": "Evidence of change request, review, approval, and rollout (e.g., ticket + audit log).",
+      "tags": [
+        "audit",
+        "compliance"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.comp.sod_controls",
+      "table": "evidence",
+      "group": "enterprise",
+      "name": "Separation-of-duties controls",
+      "summary": "Evidence of role separation controls, reviewer/approver independence, and periodic access reviews.",
+      "tags": [
+        "audit",
+        "compliance",
+        "security"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.comp.traceability_matrix",
+      "table": "evidence",
+      "group": "enterprise",
+      "name": "Traceability matrix",
+      "summary": "Mapping from requirements to implementation artifacts and verification evidence.",
+      "tags": [
+        "audit",
+        "compliance"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.data.constraints",
+      "table": "evidence",
+      "group": "data",
+      "name": "Relational constraints evidence",
+      "summary": "Evidence of NOT NULL/UNIQUE/FK constraints and invariants enforced at the DB layer.",
+      "tags": [
+        "data",
+        "quality",
+        "x.integrity"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.data.schema_versioning",
+      "table": "evidence",
+      "group": "data",
+      "name": "Schema versioning",
+      "summary": "Explicit schema versions for artifacts.",
+      "tags": [
+        "data",
+        "determinism"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.deps.lockfile",
+      "table": "evidence",
+      "group": "proof",
+      "name": "Lockfile discipline",
+      "summary": "Lockfile committed; no floating deps.",
+      "tags": [
+        "determinism",
+        "proof"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.dist.consistency_model_decl",
+      "table": "evidence",
+      "group": "distributed_truth",
+      "name": "Consistency model declaration",
+      "summary": "Declared consistency and ordering semantics (strong/eventual, monotonic reads, etc.).",
+      "tags": [
+        "proof",
+        "quality",
+        "x.distributed"
+      ],
+      "domain": "distributed_truth"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.dist.fault_injection_tests",
+      "table": "evidence",
+      "group": "distributed_truth",
+      "name": "Fault injection tests",
+      "summary": "Evidence of fault injection/chaos tests across failure modes (network, node, disk).",
+      "tags": [
+        "proof",
+        "resilience",
+        "x.distributed",
+        "x.ops"
+      ],
+      "domain": "distributed_truth"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.dist.partition_behavior_matrix",
+      "table": "evidence",
+      "group": "distributed_truth",
+      "name": "Partition behavior matrix",
+      "summary": "Documented behavior under partitions and degraded modes (read-only, reject writes, etc.).",
+      "tags": [
+        "proof",
+        "resilience",
+        "x.distributed"
+      ],
+      "domain": "distributed_truth"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.integrations.webhook_dedupe",
+      "table": "evidence",
+      "group": "integration",
+      "name": "Webhook deduplication evidence",
+      "summary": "Evidence of receiver-side dedupe using event IDs + storage (prevents duplicate processing).",
+      "tags": [
+        "integration",
+        "resilience",
+        "x.idempotence"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.integrations.webhook_replay_protection",
+      "table": "evidence",
+      "group": "integration",
+      "name": "Webhook replay protection evidence",
+      "summary": "Evidence of replay protection (timestamp window tests).",
+      "tags": [
+        "integration",
+        "security",
+        "resilience"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.integrations.webhook_signature_verify",
+      "table": "evidence",
+      "group": "integration",
+      "name": "Webhook signature verification evidence",
+      "summary": "Evidence of signature verification (tests, fixtures, docs).",
+      "tags": [
+        "integration",
+        "security"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "evidence",
+      "domain": "kernel_runtime",
+      "group": "kernel_runtime",
+      "id": "ev.kernel.boundary_tests",
+      "name": "Boundary tests",
+      "summary": "Evidence that sandbox boundaries are enforced and tested.",
+      "tags": [
+        "security",
+        "proof",
+        "x.kernel"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "evidence",
+      "domain": "kernel_runtime",
+      "group": "kernel_runtime",
+      "id": "ev.kernel.deterministic_build_evidence",
+      "name": "Deterministic build evidence",
+      "summary": "Evidence of reproducible builds/toolchain determinism for runtime artifacts.",
+      "tags": [
+        "proof",
+        "x.runtime"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "evidence",
+      "domain": "kernel_runtime",
+      "group": "runtime",
+      "id": "ev.kernel.isolation_tests",
+      "name": "Isolation tests",
+      "summary": "Evidence that isolation boundaries are enforced under attack/escape attempts.",
+      "tags": [
+        "x.safety",
+        "proof",
+        "x.runtime"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "evidence",
+      "domain": "kernel_runtime",
+      "group": "kernel_runtime",
+      "id": "ev.kernel.threat_boundary_spec",
+      "name": "Threat boundary spec",
+      "summary": "Declared threat boundary and trust assumptions for the sandbox/runtime.",
+      "tags": [
+        "security",
+        "proof",
+        "x.runtime"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.membrane.interface_spec",
+      "table": "evidence",
+      "group": "membrane",
+      "name": "Interface specification",
+      "summary": "An explicit boundary contract: OpenAPI/AsyncAPI/JSON Schema or equivalent, versioned.",
+      "tags": [
+        "proof"
+      ],
+      "domain": "membrane"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.membrane.slo_contract",
+      "table": "evidence",
+      "group": "membrane",
+      "name": "SLO contract",
+      "summary": "Published latency/availability/error-budget expectations for a boundary.",
+      "tags": [
+        "ops",
+        "quality"
+      ],
+      "domain": "membrane"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.membrane.version_bump",
+      "table": "evidence",
+      "group": "membrane",
+      "name": "Boundary version bump evidence",
+      "summary": "Evidence that a breaking boundary change triggers a contract version bump (e.g., tagged spec, changelog, migration note, or release pipeline check).",
+      "tags": [
+        "change",
+        "proof"
+      ],
+      "domain": "membrane"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.ml.drift_monitoring_evidence",
+      "table": "evidence",
+      "group": "ml_platform",
+      "name": "Drift monitoring evidence",
+      "summary": "Evidence of active drift monitoring (dashboard, alerts, thresholds, and response playbook).",
+      "tags": [
+        "data",
+        "ops",
+        "quality",
+        "evidence",
+        "x.ml"
+      ],
+      "domain": "ml_platform"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.ml.model_registry_record",
+      "table": "evidence",
+      "group": "ml_platform",
+      "name": "Model registry record",
+      "summary": "Evidence of a registered model version with metadata (metrics, dataset hash/ID, owner, stage).",
+      "tags": [
+        "data",
+        "proof",
+        "evidence",
+        "x.ml"
+      ],
+      "domain": "ml_platform"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.ml.reproducibility_linkage",
+      "table": "evidence",
+      "group": "ml_platform",
+      "name": "Reproducibility linkage",
+      "summary": "Evidence linking model training inputs/outputs to proof-lane receipts (commit, build, artifact hashes).",
+      "tags": [
+        "proof",
+        "determinism",
+        "evidence",
+        "x.ml"
+      ],
+      "domain": "ml_platform"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.monitor.errors",
+      "table": "evidence",
+      "group": "monitoring",
+      "name": "Errors signal",
+      "summary": "Track error rate and failure modes.",
+      "tags": [
+        "ops"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.monitor.latency",
+      "table": "evidence",
+      "group": "monitoring",
+      "name": "Latency signal",
+      "summary": "Track tail latency (p95/p99).",
+      "tags": [
+        "ops"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.monitor.saturation",
+      "table": "evidence",
+      "group": "monitoring",
+      "name": "Saturation signal",
+      "summary": "Track resource saturation (CPU, mem, queue).",
+      "tags": [
+        "ops"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.monitor.traffic",
+      "table": "evidence",
+      "group": "monitoring",
+      "name": "Traffic signal",
+      "summary": "Track request rate/throughput.",
+      "tags": [
+        "ops"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.ops.runbook",
+      "table": "evidence",
+      "group": "ops",
+      "name": "Runbooks",
+      "summary": "Human-readable runbooks for critical ops.",
+      "tags": [
+        "evidence",
+        "ops"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.perf.budget",
+      "table": "evidence",
+      "group": "quality",
+      "name": "Performance budget",
+      "summary": "Budget for JS size, TTFB, LCP.",
+      "tags": [
+        "ops",
+        "quality"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.privacy.non_custodial_default",
+      "table": "evidence",
+      "group": "privacy",
+      "name": "Non-custodial default",
+      "summary": "Integrations opt-in; no hidden custody.",
+      "tags": [
+        "privacy"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.privacy.replay_protection_evidence",
+      "table": "evidence",
+      "group": "privacy",
+      "name": "Replay protection evidence",
+      "summary": "Evidence of nonce/timestamp window enforcement and replay rejection tests for proof presentations.",
+      "tags": [
+        "privacy",
+        "security",
+        "evidence"
+      ],
+      "domain": "privacy_compute"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.privacy.verification_spec",
+      "table": "evidence",
+      "group": "privacy",
+      "name": "Verification spec",
+      "summary": "Evidence that verification rules and disclosure boundaries are specified (what is proven, what is revealed, and acceptance criteria).",
+      "tags": [
+        "privacy",
+        "proof",
+        "evidence"
+      ],
+      "domain": "privacy_compute"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.privacy.verification_tests",
+      "table": "evidence",
+      "group": "privacy",
+      "name": "Verification tests",
+      "summary": "Compatibility tests demonstrating verifiers can validate presentations per the spec across versions.",
+      "tags": [
+        "privacy",
+        "proof",
+        "quality",
+        "evidence"
+      ],
+      "domain": "privacy_compute"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.proof.build_reproducible",
+      "table": "evidence",
+      "group": "proof",
+      "name": "Reproducible build evidence",
+      "summary": "Document how to reproduce builds deterministically (pinned deps, environment, and hashable outputs).",
+      "tags": [
+        "proof",
+        "determinism",
+        "quality"
+      ],
+      "domain": "proof_lane"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.proof.node24_registry",
+      "table": "evidence",
+      "group": "proof",
+      "name": "Proof Lane contract",
+      "summary": "Node 24.x + reachable npm registry required for authority.",
+      "tags": [
+        "proof"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.proof.receipts",
+      "table": "evidence",
+      "group": "proof",
+      "name": "Deterministic receipts",
+      "summary": "Timestamped receipts: cmd, exit_code, env.",
+      "tags": [
+        "determinism",
+        "proof"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.proof.receipts.sha256_bytes",
+      "table": "evidence",
+      "group": "proof",
+      "name": "Receipts: SHA-256 + bytes",
+      "summary": "Artifacts are accompanied by byte size and SHA-256 hashes to enable independent verification.",
+      "tags": [
+        "proof",
+        "determinism",
+        "evidence"
+      ],
+      "domain": "proof_lane"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.reg.hazard_analysis",
+      "table": "evidence",
+      "group": "regulated_safety",
+      "name": "Hazard analysis",
+      "summary": "Hazard analysis / risk assessment artifact covering failure modes and mitigations.",
+      "tags": [
+        "governance",
+        "proof",
+        "x.safety"
+      ],
+      "domain": "regulated_safety"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.reg.traceability_matrix",
+      "table": "evidence",
+      "group": "regulated_safety",
+      "name": "Requirements traceability matrix",
+      "summary": "Traceability mapping from requirements to design/implementation/tests/evidence.",
+      "tags": [
+        "governance",
+        "proof",
+        "x.safety"
+      ],
+      "domain": "regulated_safety"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.reg.validation_report",
+      "table": "evidence",
+      "group": "regulated_safety",
+      "name": "Validation report",
+      "summary": "Validation results showing the system meets intended use under defined conditions.",
+      "tags": [
+        "proof",
+        "quality",
+        "x.safety"
+      ],
+      "domain": "regulated_safety"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.reg.verification_plan",
+      "table": "evidence",
+      "group": "regulated_safety",
+      "name": "Verification plan",
+      "summary": "Plan describing verification methods, acceptance criteria, and coverage expectations.",
+      "tags": [
+        "proof",
+        "quality",
+        "x.safety"
+      ],
+      "domain": "regulated_safety"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.reliability.slo",
+      "table": "evidence",
+      "group": "quality",
+      "name": "SLO definition",
+      "summary": "Explicit SLOs tied to golden signals.",
+      "tags": [
+        "ops",
+        "quality"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "id": "ev.resilience.idempotency_key",
+      "summary": "Proof that idempotency keys are generated, stored, and used for deduplication across retries.",
+      "tags": [
+        "resilience",
+        "integration",
+        "determinism"
+      ],
+      "schema": "periodic.element.v1",
+      "table": "evidence",
+      "group": "resilience",
+      "name": "Idempotency key evidence",
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "evidence",
+      "domain": "hard_real_time",
+      "group": "hard_real_time",
+      "id": "ev.rt.latency_budget",
+      "name": "Latency budget",
+      "summary": "Declared end-to-end latency budget for deadlines.",
+      "tags": [
+        "x.timing",
+        "proof",
+        "x.rt"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "evidence",
+      "domain": "hard_real_time",
+      "group": "real_time",
+      "id": "ev.rt.latency_jitter_budget",
+      "name": "Latency/jitter budget",
+      "summary": "Declared latency and jitter budget aligned to deadlines.",
+      "tags": [
+        "x.time",
+        "proof",
+        "x.safety",
+        "x.real_time"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "evidence",
+      "domain": "hard_real_time",
+      "group": "real_time",
+      "id": "ev.rt.priority_inversion_tests",
+      "name": "Priority inversion tests",
+      "summary": "Evidence that priority inversion scenarios are detected/mitigated.",
+      "tags": [
+        "x.time",
+        "proof",
+        "x.safety",
+        "x.real_time"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "evidence",
+      "domain": "hard_real_time",
+      "group": "hard_real_time",
+      "id": "ev.rt.scheduling_evidence",
+      "name": "Scheduling evidence",
+      "summary": "Evidence that the scheduling strategy meets deadlines under load.",
+      "tags": [
+        "proof",
+        "x.real_time"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "evidence",
+      "domain": "hard_real_time",
+      "group": "real_time",
+      "id": "ev.rt.wcet_analysis",
+      "name": "WCET analysis evidence",
+      "summary": "Worst-case execution time analysis or measurement evidence.",
+      "tags": [
+        "x.time",
+        "proof",
+        "x.safety",
+        "x.real_time"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.security.secrets_never_client",
+      "table": "evidence",
+      "group": "security",
+      "name": "Secrets never persisted client-side",
+      "summary": "No client-side persistence of secrets; use env + kits.",
+      "tags": [
+        "noncustodial",
+        "security"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "evidence",
+      "domain": "game_simulation",
+      "group": "simulation",
+      "id": "ev.sim.desync_tests",
+      "name": "Desync tests",
+      "summary": "Evidence of desync detection under network perturbations.",
+      "tags": [
+        "determinism",
+        "proof",
+        "x.simulation"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "evidence",
+      "domain": "game_simulation",
+      "group": "game_simulation",
+      "id": "ev.sim.net_jitter_tests",
+      "name": "Net jitter tests",
+      "summary": "Evidence of simulation correctness under jitter/packet loss.",
+      "tags": [
+        "resilience",
+        "proof",
+        "x.sim"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "evidence",
+      "domain": "game_simulation",
+      "group": "game_simulation",
+      "id": "ev.sim.netcode_evidence",
+      "name": "Netcode evidence",
+      "summary": "Evidence for desync handling, rollback/resync or authoritative correction behavior.",
+      "tags": [
+        "proof",
+        "x.simulation"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "evidence",
+      "domain": "game_simulation",
+      "group": "simulation",
+      "id": "ev.sim.replay_determinism_tests",
+      "name": "Replay determinism tests",
+      "summary": "Evidence that simulation replays reproduce identical state evolution.",
+      "tags": [
+        "determinism",
+        "proof",
+        "x.simulation"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "table": "evidence",
+      "domain": "game_simulation",
+      "group": "game_simulation",
+      "id": "ev.sim.replay_tests",
+      "name": "Replay tests",
+      "summary": "Deterministic replay evidence: same input stream yields same state trace.",
+      "tags": [
+        "proof",
+        "determinism",
+        "x.simulation"
+      ]
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.testing.e2e",
+      "table": "evidence",
+      "group": "quality",
+      "name": "E2E tests",
+      "summary": "User-critical flows tested end-to-end.",
+      "tags": [
+        "quality"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.testing.integration",
+      "table": "evidence",
+      "group": "quality",
+      "name": "Integration tests",
+      "summary": "Boundary tests for kits/integrations.",
+      "tags": [
+        "quality"
+      ],
+      "domain": "internet_app"
+    },
+    {
+      "schema": "periodic.element.v1",
+      "id": "ev.testing.unit",
+      "table": "evidence",
+      "group": "quality",
+      "name": "Unit tests",
+      "summary": "Deterministic unit tests for core logic.",
+      "tags": [
+        "quality"
+      ],
+      "domain": "internet_app"
+    }
+  ],
+  "version": "1"
+}

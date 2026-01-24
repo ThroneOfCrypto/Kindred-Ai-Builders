@@ -1,0 +1,63 @@
+{
+  "schema": "periodic.index.v1",
+  "version": "1",
+  "bond_packs": {
+    "path": "periodic/v1/bonds/bond_packs.v1.json"
+  },
+  "bond_rules": {
+    "path": "periodic/v1/bonds/bond_rules.v1.json"
+  },
+  "atomic_properties": {
+    "path": "periodic/v1/atoms/atomic_properties.v1.json"
+  },
+  "spel_semantics": {
+    "path": "periodic/v1/config/spel_semantics.v1.json"
+  },
+  "domains": {
+    "path": "periodic/v1/domains/domains.v1.json"
+  },
+  "examples": [
+    "periodic/v1/examples/compound.membrane_http_boundary_only.json",
+    "periodic/v1/examples/compound.membrane_webhook_boundary_only.json",
+    "periodic/v1/examples/compound.membrane_event_stream_boundary_only.json",
+    "periodic/v1/examples/compound.membrane_breaking_change_versioned.json"
+  ],
+  "negative_examples": {
+    "path": "periodic/v1/examples/negative_examples.phase0.v1.json"
+  },
+  "golden_corpus": {
+    "path": "periodic/v1/examples/golden_corpus.phase0.v1.json"
+  },
+  "pairing": {
+    "flow_workshop": {
+      "path": "periodic/v1/pairing/flow_workshop_pairs.v1.json"
+    }
+  },
+  "profiles": {
+    "path": "periodic/v1/profiles/profiles.v1.json"
+  },
+  "system_negative_examples": {
+    "path": "periodic/v1/examples/system_negative_examples.phase0.v1.json"
+  },
+  "systems": {
+    "path": "periodic/v1/examples/systems_phase0",
+    "schema_path": "periodic/v1/schemas/periodic.system.v1.schema.json"
+  },
+  "tables": {
+    "capability": {
+      "path": "periodic/v1/tables/capability.v1.json"
+    },
+    "evidence": {
+      "path": "periodic/v1/tables/evidence.v1.json"
+    },
+    "experience": {
+      "path": "periodic/v1/tables/experience.v1.json"
+    },
+    "principle": {
+      "path": "periodic/v1/tables/principle.v1.json"
+    },
+    "workshop": {
+      "path": "periodic/v1/tables/workshop.v1.json"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "elements": [
+    "cap.dist.consensus",
+    "cap.dist.replication",
+    "ev.dist.consistency_model_decl",
+    "ev.dist.fault_injection_tests",
+    "ev.dist.partition_behavior_matrix",
+    "pr.dist.idempotent_messages",
+    "pr.dist.safety_over_liveness",
+    "wf.dist.leader_election",
+    "wf.dist.log_replication",
+    "wf.dist.snapshot_restore"
+  ],
+  "id": "compound.distributed_truth_basic",
+  "name": "Distributed truth basic (consensus + replication discipline)",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1",
+  "domain": "distributed_truth"
+}

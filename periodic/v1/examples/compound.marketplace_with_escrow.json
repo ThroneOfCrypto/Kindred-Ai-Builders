@@ -1,0 +1,29 @@
+{
+  "elements": [
+    "cap.auth.session",
+    "cap.observability.metrics",
+    "cap.security.rbac",
+    "cap.storage.sql",
+    "cap.value.escrow",
+    "ev.backup.policy",
+    "ev.change.migration_plan",
+    "ev.data.constraints",
+    "ev.data.schema_versioning",
+    "ev.monitor.errors",
+    "ev.monitor.latency",
+    "ev.monitor.saturation",
+    "ev.monitor.traffic",
+    "ev.proof.receipts",
+    "exp.feedback.permission_denied",
+    "exp.value.tx_status",
+    "exp.value.wallet_connect",
+    "pr.idempotence",
+    "wf.ops.backup_restore",
+    "wf.tx.lifecycle",
+    "wf.value.commit_gate"
+  ],
+  "id": "compound.marketplace_with_escrow",
+  "name": "Marketplace with escrow commitments",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1"
+}

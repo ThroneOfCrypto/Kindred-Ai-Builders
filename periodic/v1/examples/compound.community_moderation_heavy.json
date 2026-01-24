@@ -1,0 +1,19 @@
+{
+  "schema": "periodic.compound.v1",
+  "tables_version": "1",
+  "id": "compound.community_moderation_heavy",
+  "name": "Community moderation heavy (queue + triage + appeals + separation of duties)",
+  "elements": [
+    "cap.auth.session",
+    "cap.security.rbac",
+    "ev.audit.log_integrity",
+    "exp.display.activity_log",
+    "exp.feedback.permission_denied",
+    "exp.flow.moderation_queue",
+    "exp.nav.sidebar",
+    "wf.audit.append_only_log",
+    "wf.moderation.appeals",
+    "wf.moderation.queue_triage",
+    "wf.roles.approval_two_person"
+  ]
+}

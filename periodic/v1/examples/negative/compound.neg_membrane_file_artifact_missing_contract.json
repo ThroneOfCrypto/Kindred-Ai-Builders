@@ -1,0 +1,10 @@
+{
+  "elements": [
+    "cap.membrane.file_artifact_exchange",
+    "pr.membrane.failure_isolation"
+  ],
+  "id": "compound.neg_membrane_file_artifact_missing_contract",
+  "name": "NEGATIVE: membrane file artifact exchange without contract/tests",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1"
+}

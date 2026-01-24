@@ -1,0 +1,120 @@
+{
+  "packs": [
+    {
+      "default_enabled": false,
+      "description": "Enterprise compliance-lite cliffs (change control, traceability, separation of duties). Phase2-only by default.",
+      "domains": [
+        "compliance_lite",
+        "internet_app"
+      ],
+      "id": "compliance_lite",
+      "path": "periodic/v1/bonds/packs/bond_pack.compliance_lite.v1.json"
+    },
+    {
+      "default_enabled": true,
+      "description": "Distributed truth/consensus physics.",
+      "domains": [
+        "distributed_truth"
+      ],
+      "id": "distributed_truth",
+      "path": "periodic/v1/bonds/packs/bond_pack.distributed_truth.v1.json"
+    },
+    {
+      "default_enabled": false,
+      "description": "Game/simulation physics: deterministic tick/replay evidence, fixed-step workflows, and netcode invariants.",
+      "domains": [
+        "game_simulation"
+      ],
+      "id": "game_simulation",
+      "path": "periodic/v1/bonds/packs/bond_pack.game_simulation.v1.json"
+    },
+    {
+      "default_enabled": false,
+      "description": "Hard real-time physics: deadlines, WCET evidence, jitter budgeting, and scheduling safety cliffs.",
+      "domains": [
+        "hard_real_time"
+      ],
+      "id": "hard_real_time",
+      "path": "periodic/v1/bonds/packs/bond_pack.hard_real_time.v1.json"
+    },
+    {
+      "default_enabled": false,
+      "description": "Identity/access cliffs (wallet login, DID binding evidence, and agent access receipts) without browser secrets.",
+      "domains": [
+        "identity_access_lite",
+        "internet_app",
+        "membrane"
+      ],
+      "id": "identity_access_lite",
+      "path": "periodic/v1/bonds/packs/bond_pack.identity_access_lite.v1.json"
+    },
+    {
+      "default_enabled": true,
+      "description": "Internet app baseline shipping cliffs.",
+      "domains": [
+        "internet_app"
+      ],
+      "id": "internet_app",
+      "path": "periodic/v1/bonds/packs/bond_pack.internet_app.v1.json"
+    },
+    {
+      "default_enabled": false,
+      "description": "Kernel/runtime physics: isolation boundaries, memory/process invariants, and toolchain determinism evidence.",
+      "domains": [
+        "kernel_runtime",
+        "proof_lane"
+      ],
+      "id": "kernel_runtime",
+      "path": "periodic/v1/bonds/packs/bond_pack.kernel_runtime.v1.json"
+    },
+    {
+      "default_enabled": true,
+      "description": "Membrane boundary contracts and tests.",
+      "domains": [
+        "membrane"
+      ],
+      "id": "membrane",
+      "path": "periodic/v1/bonds/packs/bond_pack.membrane.v1.json"
+    },
+    {
+      "default_enabled": false,
+      "description": "ML Platform pack (lite rules): model registry, drift monitoring, and proof-lane reproducibility linkage (Phase2-only by default).",
+      "domains": [
+        "ml_platform",
+        "proof_lane"
+      ],
+      "id": "ml_platform",
+      "path": "periodic/v1/bonds/packs/bond_pack.ml_platform_lite.v1.json"
+    },
+    {
+      "default_enabled": false,
+      "description": "Privacy compute (lite): selective disclosure workflows, verification evidence, and replay resistance for proof-carrying claims.",
+      "domains": [
+        "privacy_compute"
+      ],
+      "id": "privacy_compute",
+      "path": "periodic/v1/bonds/packs/bond_pack.privacy_compute.v1.json"
+    },
+    {
+      "default_enabled": false,
+      "description": "Deterministic receipts + independent verification physics (Proof Lane).",
+      "domains": [
+        "internet_app",
+        "proof_lane"
+      ],
+      "id": "proof_lane",
+      "path": "periodic/v1/bonds/packs/bond_pack.proof_lane.v1.json"
+    },
+    {
+      "default_enabled": true,
+      "description": "Regulated safety/compliance-lite physics.",
+      "domains": [
+        "regulated_safety"
+      ],
+      "id": "regulated_safety",
+      "path": "periodic/v1/bonds/packs/bond_pack.regulated_safety.v1.json"
+    }
+  ],
+  "schema": "periodic.bond_packs.v1",
+  "version": "1"
+}

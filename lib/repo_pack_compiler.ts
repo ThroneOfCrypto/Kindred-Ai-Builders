@@ -1,0 +1,170 @@
+"use client";
+
+import { strFromU8, unzipSync } from "fflate";
+
+import type { ProjectState } from "./types";
+
+import { buildSpecPack } from "./export_pack";
+import { sha256Hex } from "./hash";
+import { stableJsonText } from "./stable_json";
+
+import { compileBlueprintPackFromStateWithSpecSha } from "./blueprint_pack";
+
+import { getKitById } from "./kits";
+import { buildRepoSeedFiles, defaultRepoSeedToggles, RepoSeedTemplateId } from "./repo_seeds";
+import { createRepoPackFromVirtualFiles, RepoPack, RepoPackImportError, VirtualRepoFile } from "./repo_pack_io";
+
+export type RepoPackCompilerReportV1 = {
+  schema: "kindred.repo_pack_compiler_report.v1";
+  version: "v1";
+  repo_name: string;
+  // Deterministic hashes of inputs.
+  spec_pack_sha256: string;
+  blueprint_pack_sha256: string;
+  // High-level intent (for auditing).
+  primary_surface: string | null;
+  palettes: string[];
+  libraries: string[];
+  patterns: string[];
+  kits: string[];
+  notes: string[];
+};
+
+function clampName(s: string): string {
+  const x = String(s || "").trim();
+  return x ? x.slice(0, 80) : "Untitled Repo";
+}
+
+function defaultTemplateFromState(state: ProjectState): RepoSeedTemplateId {
+  // v1: keep this simple and deterministic.
+  // (Later cycles can map build intent / surfaces to templates.)
+  void state;
+  return "kernel_minimal";
+}
+
+export async function compileRepoPackFromDirectorState(opts: {
+  state: ProjectState;
+  include_council_dsl?: boolean;
+}): Promise<
+  | {
+      ok: true;
+      pack: RepoPack;
+      zipBytes: Uint8Array;
+      report: RepoPackCompilerReportV1;
+    }
+  | {
+      ok: false;
+      error: RepoPackImportError;
+    }
+> {
+  const state = opts.state;
+
+  const repoName = clampName(state.design?.brand?.name || state.project?.name || "Untitled Repo");
+
+  const adoptedLibraries = (state as any)?.director?.libraries_v1?.adopted_library_ids || [];
+  const adoptedPatterns = (state as any)?.director?.patterns_v1?.adopted_pattern_ids || [];
+  const adoptedKits = (state as any)?.director?.kits_v1?.adopted_kit_ids || [];
+
+  // Deterministic Spec Pack bytes, then unpack into text files to embed in the generated repo.
+  const specZip = buildSpecPack(state, { include_council_dsl: opts.include_council_dsl === true });
+  const specSha = await sha256Hex(specZip);
+  const specFiles = unzipSync(specZip);
+  const specVFiles: VirtualRepoFile[] = [];
+  for (const [path, bytes] of Object.entries(specFiles)) {
+    const p = String(path || "").replace(/^\/+/, "");
+    if (!p) continue;
+    // Embed spec pack as text files. All files inside the Spec Pack are generated from text.
+    specVFiles.push({ path: `.kindred/spec_pack/${p}`, text: strFromU8(bytes) });
+  }
+
+  // Repo seed: from Kit if present, otherwise kernel-neutral template.
+  const toggles = defaultRepoSeedToggles();
+  const kitId = String(adoptedKits?.[0] || "").trim();
+
+  let seedFiles: Array<{ path: string; text: string }> = [];
+  let rules: any;
+
+  const kit = kitId ? getKitById(kitId) : null;
+  if (kit && kit.repo_seed_templates && kit.repo_seed_templates.length > 0) {
+    const tpl = kit.repo_seed_templates[0];
+    const built = tpl.build({ repo_name: repoName, toggles });
+    seedFiles = built.files;
+    rules = built.rules;
+  } else {
+    const built = buildRepoSeedFiles({ repo_name: repoName, template_id: defaultTemplateFromState(state), toggles });
+    seedFiles = built.files;
+    rules = built.rules;
+  }
+
+  // Deterministic Blueprint Pack (UI blueprint) derived from the same adopted state.
+  const bp = await compileBlueprintPackFromStateWithSpecSha({ state, spec_pack_sha256: specSha });
+  if (!bp.ok) {
+    return {
+      ok: false,
+      error: {
+        code: "PACK_LAYOUT_INVALID",
+        message: bp.error.message,
+        details: bp.error.details,
+      },
+    };
+  }
+
+  const report: RepoPackCompilerReportV1 = {
+    schema: "kindred.repo_pack_compiler_report.v1",
+    version: "v1",
+    repo_name: repoName,
+    spec_pack_sha256: specSha,
+    blueprint_pack_sha256: bp.blueprint_pack_sha256,
+    primary_surface: (state.intent?.primary_surface as any) || null,
+    palettes: Array.isArray(state.intent?.palettes) ? state.intent.palettes.slice() : [],
+    libraries: Array.isArray(adoptedLibraries) ? adoptedLibraries.slice() : [],
+    patterns: Array.isArray(adoptedPatterns) ? adoptedPatterns.slice() : [],
+    kits: Array.isArray(adoptedKits) ? adoptedKits.slice() : [],
+    notes: [
+      "Deterministic Repo Pack compiled from Kindred Director state.",
+      "Provider/product specifics are allowed only via Kits; core remains kernel-neutral.",
+      "Spec Pack is embedded as .kindred/spec_pack/* for auditability.",
+      "Blueprint Pack is embedded as .kindred/blueprint_pack/* for auditability.",
+    ],
+  };
+
+  const extraFiles: VirtualRepoFile[] = [
+    {
+      path: ".kindred/README.md",
+      text:
+        [
+          "# Kindred embedded artefacts",
+          "",
+          "This folder is generated by Kindred AI Builders.",
+          "",
+          "## What’s here",
+          "- `.kindred/spec_pack/` — the deterministic Spec Pack exported from the builder state (as plain text files)",
+          "- `.kindred/blueprint_pack/` — the deterministic UI Blueprint Pack compiled from the Spec Pack",
+          "- `.kindred/repo_pack_compiler_report.json` — a small, deterministic report that fingerprints inputs",
+          "",
+          "## Why this exists",
+          "Kindred’s stance: truth lives in deterministic artefacts. The UI is the control surface.",
+          "",
+        ].join("\n"),
+    },
+    {
+      path: ".kindred/blueprint_pack/blueprint_pack.v1.json",
+      text: bp.jsonText,
+    },
+    {
+      path: ".kindred/repo_pack_compiler_report.json",
+      text: stableJsonText(report, 2),
+    },
+  ];
+
+  const allFiles: VirtualRepoFile[] = [
+    ...seedFiles.map((f) => ({ path: f.path, text: f.text })),
+    ...extraFiles,
+    ...specVFiles,
+  ];
+
+  const created = await createRepoPackFromVirtualFiles({ files: allFiles, rules });
+  if (!created.ok) return created;
+
+  return { ok: true, pack: created.pack, zipBytes: created.zipBytes, report };
+}

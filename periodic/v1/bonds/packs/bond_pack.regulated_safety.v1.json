@@ -1,0 +1,60 @@
+{
+  "rules": [
+    {
+      "id": "bond.reg_change_control_requires_hazard_and_verification",
+      "message": "Regulated change control requires hazard analysis, verification plan, safety-case integrity, and requirements traceability.",
+      "require": {
+        "all_of": [
+          "ev.reg.hazard_analysis",
+          "ev.reg.verification_plan",
+          "pr.reg.safety_case_integrity",
+          "ev.reg.traceability_matrix"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "wf.reg.change_control"
+        ]
+      }
+    },
+    {
+      "id": "bond.reg_release_requires_change_control",
+      "message": "Regulated release approval gate requires change control, traceability, and separation of duties.",
+      "require": {
+        "all_of": [
+          "wf.reg.change_control",
+          "ev.reg.traceability_matrix",
+          "pr.reg.separation_of_duties"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "wf.reg.release_approval_gate"
+        ]
+      }
+    },
+    {
+      "id": "bond.reg_validation_requires_verification_plan",
+      "message": "Validation reporting in regulated contexts requires a verification plan and requirements traceability.",
+      "require": {
+        "all_of": [
+          "ev.reg.verification_plan",
+          "ev.reg.traceability_matrix"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "error",
+      "when": {
+        "any_of": [
+          "ev.reg.validation_report"
+        ]
+      }
+    }
+  ],
+  "schema": "periodic.bond_ruleset.v1",
+  "version": "1"
+}

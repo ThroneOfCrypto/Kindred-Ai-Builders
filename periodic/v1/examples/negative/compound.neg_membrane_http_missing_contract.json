@@ -1,0 +1,10 @@
+{
+  "elements": [
+    "cap.membrane.http_api",
+    "pr.membrane.failure_isolation"
+  ],
+  "id": "compound.neg_membrane_http_missing_contract",
+  "name": "NEGATIVE: membrane HTTP boundary without contract/tests",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1"
+}

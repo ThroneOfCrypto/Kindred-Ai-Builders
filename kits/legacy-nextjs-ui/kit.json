@@ -1,0 +1,12 @@
+{
+  "kit_id": "legacy-nextjs-ui",
+  "title": "Legacy Director UI (Next.js)",
+  "status": "scaffold",
+  "authoritative": "none",
+  "diagnostic_only": true,
+  "notes": "Exports the patched366 Next.js Director-first UI as a target kit. Kernel remains Vercel-authoritative and static.",
+  "payload": {
+    "root": "payload",
+    "include": ["**/*"]
+  }
+}

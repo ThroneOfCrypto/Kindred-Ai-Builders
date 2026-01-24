@@ -1,0 +1,92 @@
+{
+  "schema": "spel.strategy_registry.v1",
+  "version": 1,
+  "strategies": [
+    {
+      "strategy_id": "spel.strategy.declass_precedence.deny_overrides.v1",
+      "doc_id": "spel://strategy/builtin/spel.strategy.declass_precedence.deny_overrides.v1",
+      "kind": "declassification_precedence",
+      "name": "deny_overrides",
+      "description": "If any applicable membrane effect denies declassification, the final decision is DENY; otherwise PERMIT if any permit exists.",
+      "combining": {
+        "algorithm": "deny_overrides",
+        "modes": [
+          "direct",
+          "derived",
+          "transitive"
+        ],
+        "deterministic": true
+      },
+      "tests": {
+        "counterexample_systems": [
+          "periodic/v1/examples/counterexamples_phase1/system.wallet_service_a_http_declass_precedence_deny_overrides.json",
+          "periodic/v1/examples/counterexamples_phase1/system.wallet_service_a_http_declass_precedence_permit_overrides.json"
+        ]
+      },
+      "canonical_semantics_hash_sha256": "00ef1f39f26626a15def8d8aa0c244b1b5b32a9e1ea62297515422be3ea835ff"
+    },
+    {
+      "strategy_id": "spel.strategy.declass_precedence.permit_overrides.v1",
+      "doc_id": "spel://strategy/builtin/spel.strategy.declass_precedence.permit_overrides.v1",
+      "kind": "declassification_precedence",
+      "name": "permit_overrides",
+      "description": "If any applicable membrane effect permits declassification, the final decision is PERMIT; otherwise DENY if any deny exists.",
+      "combining": {
+        "algorithm": "permit_overrides",
+        "modes": [
+          "direct",
+          "derived",
+          "transitive"
+        ],
+        "deterministic": true
+      },
+      "tests": {
+        "counterexample_systems": [
+          "periodic/v1/examples/counterexamples_phase1/system.wallet_service_a_http_declass_precedence_deny_overrides.json",
+          "periodic/v1/examples/counterexamples_phase1/system.wallet_service_a_http_declass_precedence_permit_overrides.json"
+        ]
+      },
+      "canonical_semantics_hash_sha256": "bf42a0f51e22e591c557c83210a7184edfbda60171f937c22ccad89bd97fe830"
+    },
+    {
+      "strategy_id": "spel.strategy.declass_precedence.first_applicable.v1",
+      "doc_id": "spel://strategy/builtin/spel.strategy.declass_precedence.first_applicable.v1",
+      "kind": "declassification_precedence",
+      "name": "first_applicable",
+      "description": "The first applicable membrane effect (in deterministic edge order) determines the final decision.",
+      "combining": {
+        "algorithm": "first_applicable",
+        "modes": [
+          "direct"
+        ],
+        "deterministic": true
+      },
+      "tests": {
+        "counterexample_systems": [
+          "periodic/v1/examples/counterexamples_phase1/system.wallet_service_a_http_declass_precedence_first_applicable.json"
+        ]
+      },
+      "canonical_semantics_hash_sha256": "6a8af1b5113b891be4aca3749aac6167dcc8ee3bddd3f82951d9979fb4db23b9"
+    },
+    {
+      "strategy_id": "spel.strategy.declass_precedence.only_one_applicable.v1",
+      "doc_id": "spel://strategy/builtin/spel.strategy.declass_precedence.only_one_applicable.v1",
+      "kind": "declassification_precedence",
+      "name": "only_one_applicable",
+      "description": "Exactly one applicable effect must exist; conflicts are AMBIGUOUS.",
+      "combining": {
+        "algorithm": "only_one_applicable",
+        "modes": [
+          "direct"
+        ],
+        "deterministic": true
+      },
+      "tests": {
+        "counterexample_systems": [
+          "periodic/v1/examples/counterexamples_phase1/system.wallet_service_a_http_declass_precedence_only_one_applicable.json"
+        ]
+      },
+      "canonical_semantics_hash_sha256": "e2b566346e90d552b2ec63431ae4504b979b3148306742bacbccd00f5b8be276"
+    }
+  ]
+}

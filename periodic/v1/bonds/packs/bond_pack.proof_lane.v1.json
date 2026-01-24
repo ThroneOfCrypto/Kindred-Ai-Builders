@@ -1,0 +1,40 @@
+{
+  "schema": "periodic.bond_ruleset.v1",
+  "version": "1",
+  "rules": [
+    {
+      "schema": "periodic.bond_rule.v1",
+      "id": "bond.proof_lane_requires_reproducible_build_evidence",
+      "severity": "warn",
+      "when": {
+        "any_of": [
+          "wf.proof.verify_receipts"
+        ]
+      },
+      "require": {
+        "all_of": [
+          "ev.proof.build_reproducible"
+        ]
+      },
+      "message": "If a system claims receipt verification, it should also document reproducible build evidence so proofs are not cosmetic."
+    },
+    {
+      "schema": "periodic.bond_rule.v1",
+      "id": "bond.publish_requires_proof_receipts",
+      "severity": "warn",
+      "when": {
+        "any_of": [
+          "exp.flow.publish",
+          "wf.content.draft_review_publish"
+        ]
+      },
+      "require": {
+        "all_of": [
+          "wf.proof.verify_receipts",
+          "ev.proof.receipts.sha256_bytes"
+        ]
+      },
+      "message": "Publishing/export flows should pair with receipt verification workflow and SHA-256+bytes receipt evidence so outputs can be independently verified."
+    }
+  ]
+}

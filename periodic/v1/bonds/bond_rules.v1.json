@@ -1,0 +1,22 @@
+{
+  "rules": [
+    {
+      "id": "bond.base.noop",
+      "message": "Base no-op rule (internal). Present only to keep base bond ruleset non-empty and deterministically sortable.",
+      "require": {
+        "all_of": [
+          "cap._internal.noop"
+        ]
+      },
+      "schema": "periodic.bond_rule.v1",
+      "severity": "warn",
+      "when": {
+        "any_of": [
+          "cap._internal.noop"
+        ]
+      }
+    }
+  ],
+  "schema": "periodic.bond_ruleset.v1",
+  "version": "1"
+}

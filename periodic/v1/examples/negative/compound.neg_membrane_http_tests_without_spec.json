@@ -1,0 +1,10 @@
+{
+  "id": "compound.neg_membrane_http_tests_without_spec",
+  "schema": "periodic.compound.v1",
+  "tables_version": "1",
+  "name": "NEGATIVE: membrane HTTP boundary tests without interface spec",
+  "director_notes": "Negative regression: compatibility tests without an interface spec must fail.",
+  "elements": [
+    "wf.membrane.compatibility_tests"
+  ]
+}
